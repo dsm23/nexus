@@ -1,7 +1,7 @@
-import { useDragAndDrop } from '@/hooks/useDragAndDrop';
-import { Button } from '@/components/ui/button';
-import { GripVertical } from 'lucide-react';
-import { type FC, type ReactNode } from 'react';
+import { useDragAndDrop } from "@/hooks/useDragAndDrop";
+import { Button } from "@/components/ui/button";
+import { GripVertical } from "lucide-react";
+import { type FC, type ReactNode } from "react";
 
 interface DraggableCardProps {
   id: string;
@@ -10,11 +10,11 @@ interface DraggableCardProps {
   className?: string;
 }
 
-export const DraggableCard: FC<DraggableCardProps> = ({ 
-  id, 
-  children, 
-  onReorder, 
-  className = '' 
+export const DraggableCard: FC<DraggableCardProps> = ({
+  id,
+  children,
+  onReorder,
+  className = "",
 }) => {
   const { handleDragOver, handleDrop, getDragHandleProps } = useDragAndDrop();
 
@@ -29,18 +29,16 @@ export const DraggableCard: FC<DraggableCardProps> = ({
         <Button
           variant="ghost"
           size="sm"
-          {...getDragHandleProps({ id, type: 'card' })}
+          {...getDragHandleProps({ id, type: "card" })}
           title="Drag to reorder"
           className="h-8 w-8 p-0 hover:bg-background/80 backdrop-blur-sm border border-border/50 cursor-grab active:cursor-grabbing"
         >
           <GripVertical className="h-4 w-4 text-muted-foreground" />
         </Button>
       </div>
-      
+
       {/* Card Content */}
-      <div className="relative">
-        {children}
-      </div>
+      <div className="relative">{children}</div>
     </div>
   );
 };

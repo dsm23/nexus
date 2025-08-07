@@ -1,37 +1,37 @@
-import { Button } from '@/components/ui/button';
-import { 
+import { Button } from "@/components/ui/button";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { useFocusMode } from '@/contexts/FocusModeContext';
-import { currentUser } from '@/data/mockData';
-import { getTimeBasedGreeting } from '@/lib/utils';
-import { 
-  Focus, 
-  Eye, 
-  Home, 
-  FolderOpen, 
-  Users, 
-  Calendar, 
-  Heart, 
-  Megaphone, 
-  BarChart3, 
-  FileText, 
-  HelpCircle, 
+} from "@/components/ui/dropdown-menu";
+import { useFocusMode } from "@/contexts/FocusModeContext";
+import { currentUser } from "@/data/mockData";
+import { getTimeBasedGreeting } from "@/lib/utils";
+import {
+  Focus,
+  Eye,
+  Home,
+  FolderOpen,
+  Users,
+  Calendar,
+  Heart,
+  Megaphone,
+  BarChart3,
+  FileText,
+  HelpCircle,
   Headphones,
   Clock,
   ChevronDown,
   Building2,
-  Settings
-} from 'lucide-react';
-import { type FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ThemeToggle } from './ThemeToggle';
-import { Profile } from './Profile';
-import { GlobalSearch } from './GlobalSearch';
-import { NotificationDropdown } from './NotificationDropdown';
+  Settings,
+} from "lucide-react";
+import { type FC } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
+import { Profile } from "./Profile";
+import { GlobalSearch } from "./GlobalSearch";
+import { NotificationDropdown } from "./NotificationDropdown";
 
 export const Header: FC = () => {
   const { isFocusMode, toggleFocusMode } = useFocusMode();
@@ -40,28 +40,28 @@ export const Header: FC = () => {
 
   // Core navigation items (most important - always visible)
   const coreNavItems = [
-    { path: '/', label: 'Dashboard', icon: Home },
-    { path: '/projects', label: 'Projects', icon: FolderOpen },
+    { path: "/", label: "Dashboard", icon: Home },
+    { path: "/projects", label: "Projects", icon: FolderOpen },
   ];
 
   // People & Communication group
   const peopleNavItems = [
-    { path: '/employees', label: 'Employees', icon: Users },
-    { path: '/kudos', label: 'Kudos', icon: Heart },
-    { path: '/announcements', label: 'Announcements', icon: Megaphone },
+    { path: "/employees", label: "Employees", icon: Users },
+    { path: "/kudos", label: "Kudos", icon: Heart },
+    { path: "/announcements", label: "Announcements", icon: Megaphone },
   ];
 
   // Workspace & Tools group
   const workspaceNavItems = [
-    { path: '/calendar', label: 'Calendar', icon: Calendar },
-    { path: '/analytics', label: 'Analytics', icon: BarChart3 },
-    { path: '/resources', label: 'Resources', icon: FileText },
+    { path: "/calendar", label: "Calendar", icon: Calendar },
+    { path: "/analytics", label: "Analytics", icon: BarChart3 },
+    { path: "/resources", label: "Resources", icon: FileText },
   ];
 
-  // Support & Settings group  
+  // Support & Settings group
   const supportNavItems = [
-    { path: '/time-off', label: 'Time Off', icon: Clock },
-    { path: '/help-desk', label: 'Help Desk', icon: Headphones },
+    { path: "/time-off", label: "Time Off", icon: Clock },
+    { path: "/help-desk", label: "Help Desk", icon: Headphones },
   ];
 
   return (
@@ -88,16 +88,20 @@ export const Header: FC = () => {
               <GlobalSearch />
             </div>
             {/* Focus Mode Button - Only visible on Dashboard */}
-            {location.pathname === '/' && (
+            {location.pathname === "/" && (
               <Button
                 variant={isFocusMode ? "default" : "outline"}
                 size="sm"
                 onClick={toggleFocusMode}
                 className="gap-2 h-10"
               >
-                {isFocusMode ? <Eye className="h-4 w-4" /> : <Focus className="h-4 w-4" />}
+                {isFocusMode ? (
+                  <Eye className="h-4 w-4" />
+                ) : (
+                  <Focus className="h-4 w-4" />
+                )}
                 <span className="hidden sm:inline">
-                  {isFocusMode ? 'Exit Focus' : 'Focus Mode'}
+                  {isFocusMode ? "Exit Focus" : "Focus Mode"}
                 </span>
               </Button>
             )}
@@ -125,8 +129,8 @@ export const Header: FC = () => {
                     to={item.path}
                     className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                       isActive
-                        ? 'bg-primary/10 text-primary shadow-sm'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                        ? "bg-primary/10 text-primary shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -138,12 +142,14 @@ export const Header: FC = () => {
               {/* People & Communication Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                      peopleNavItems.some(item => location.pathname === item.path)
-                        ? 'bg-primary/10 text-primary shadow-sm'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                      peopleNavItems.some(
+                        (item) => location.pathname === item.path,
+                      )
+                        ? "bg-primary/10 text-primary shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                     }`}
                   >
                     <Building2 className="h-4 w-4" />
@@ -172,12 +178,14 @@ export const Header: FC = () => {
               {/* Workspace & Tools Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                      workspaceNavItems.some(item => location.pathname === item.path)
-                        ? 'bg-primary/10 text-primary shadow-sm'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                      workspaceNavItems.some(
+                        (item) => location.pathname === item.path,
+                      )
+                        ? "bg-primary/10 text-primary shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                     }`}
                   >
                     <Settings className="h-4 w-4" />
@@ -206,12 +214,14 @@ export const Header: FC = () => {
               {/* Support & Settings Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                      supportNavItems.some(item => location.pathname === item.path)
-                        ? 'bg-primary/10 text-primary shadow-sm'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
+                      supportNavItems.some(
+                        (item) => location.pathname === item.path,
+                      )
+                        ? "bg-primary/10 text-primary shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
                     }`}
                   >
                     <HelpCircle className="h-4 w-4" />

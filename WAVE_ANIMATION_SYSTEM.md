@@ -14,14 +14,15 @@ The global wave animation system provides a consistent, smooth animation experie
 
 ```typescript
 interface UseWaveAnimationOptions {
-  threshold?: number;        // Intersection threshold (default: 0.1)
-  rootMargin?: string;      // Root margin for early triggering (default: '50px')
-  staggerDelay?: number;    // Delay between items (default: 100ms)
-  duration?: number;        // Animation duration (default: 500ms)
+  threshold?: number; // Intersection threshold (default: 0.1)
+  rootMargin?: string; // Root margin for early triggering (default: '50px')
+  staggerDelay?: number; // Delay between items (default: 100ms)
+  duration?: number; // Animation duration (default: 500ms)
 }
 ```
 
 **Key Features**:
+
 - **Intersection Observer API**: Proper viewport-based triggering
 - **Performance Optimized**: Uses `willChange` property for GPU acceleration
 - **Customizable**: Configurable timing and thresholds
@@ -31,11 +32,13 @@ interface UseWaveAnimationOptions {
 ## 🎨 Animation Properties
 
 ### **Visual Effects**:
+
 - **Transform**: `translateY(-8px → 0)` - Slide up effect
-- **Opacity**: `0 → 1` - Fade in effect  
+- **Opacity**: `0 → 1` - Fade in effect
 - **Scale**: `0.95 → 1` - Subtle zoom effect
 
 ### **Timing**:
+
 - **Duration**: 500ms per item
 - **Stagger Delay**: 100ms between items
 - **Easing**: `cubic-bezier(0.25, 0.46, 0.45, 0.94)` - Custom smooth curve
@@ -49,7 +52,7 @@ interface UseWaveAnimationOptions {
    - Animates: Individual feed items + "View more" button
    - Items: Up to 3 feed items with staggered animation
 
-2. **CompanyAnnouncements** 
+2. **CompanyAnnouncements**
    - Animates: Individual announcement cards
    - Items: Up to 3 announcements with priority indicators
 
@@ -72,14 +75,17 @@ interface UseWaveAnimationOptions {
 ## 🚀 Performance Benefits
 
 ### **Proper Animation Methods**:
+
 - ❌ **Old**: `setTimeout` for timing (unreliable)
 - ✅ **New**: Intersection Observer API (browser-optimized)
 
 ### **GPU Acceleration**:
+
 - Uses `willChange: 'transform, opacity'` for hardware acceleration
 - CSS transforms instead of layout-triggering properties
 
 ### **Efficiency**:
+
 - Single observer per component (auto-disconnects)
 - No unnecessary re-renders or polling
 - Minimal memory footprint
@@ -87,11 +93,13 @@ interface UseWaveAnimationOptions {
 ## 🎭 User Experience
 
 ### **Trigger Behavior**:
+
 - **Viewport Entry**: Animation starts when component becomes visible
 - **Early Trigger**: 50px margin means animation starts just before full visibility
 - **Progressive Disclosure**: Wave effect reveals content progressively
 
 ### **Visual Hierarchy**:
+
 - **Consistent**: Same animation pattern across all components
 - **Predictable**: Users learn the pattern quickly
 - **Smooth**: Fast but not jarring (500ms duration)
@@ -99,13 +107,14 @@ interface UseWaveAnimationOptions {
 ## 🔄 Usage Pattern
 
 ### **Component Integration**:
+
 ```typescript
 // In any dashboard component
 import { useWaveAnimation } from '@/hooks/useWaveAnimation';
 
 export const MyComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
-  
+
   return (
     <CardContent ref={containerRef}>
       {items.map((item, index) => (
@@ -123,13 +132,14 @@ export const MyComponent = () => {
 ```
 
 ### **Customization**:
+
 ```typescript
 // Custom timing options
 const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation({
-  threshold: 0.2,      // Trigger when 20% visible
-  rootMargin: '100px', // Start 100px early
-  staggerDelay: 150,   // 150ms between items
-  duration: 700        // 700ms animation duration
+  threshold: 0.2, // Trigger when 20% visible
+  rootMargin: "100px", // Start 100px early
+  staggerDelay: 150, // 150ms between items
+  duration: 700, // 700ms animation duration
 });
 ```
 

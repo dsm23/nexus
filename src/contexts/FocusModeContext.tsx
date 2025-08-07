@@ -1,17 +1,26 @@
-import { createContext, useContext, useEffect, useState, type FC, type ReactNode } from 'react';
-import { storage } from '@/lib/utils';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type FC,
+  type ReactNode,
+} from "react";
+import { storage } from "@/lib/utils";
 
 interface FocusModeContextType {
   isFocusMode: boolean;
   toggleFocusMode: () => void;
 }
 
-const FocusModeContext = createContext<FocusModeContextType | undefined>(undefined);
+const FocusModeContext = createContext<FocusModeContextType | undefined>(
+  undefined,
+);
 
 export const useFocusMode = () => {
   const context = useContext(FocusModeContext);
   if (context === undefined) {
-    throw new Error('useFocusMode must be used within a FocusModeProvider');
+    throw new Error("useFocusMode must be used within a FocusModeProvider");
   }
   return context;
 };
@@ -32,13 +41,13 @@ export const FocusModeProvider: FC<FocusModeProviderProps> = ({ children }) => {
   useEffect(() => {
     // Listen for focus mode changes from other tabs
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'nexus-focus-mode') {
-        setIsFocusMode(e.newValue === 'true');
+      if (e.key === "nexus-focus-mode") {
+        setIsFocusMode(e.newValue === "true");
       }
     };
 
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   return (

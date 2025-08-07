@@ -1,19 +1,43 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { defaultQuickLinks, type QuickLink } from '@/data/mockData';
-import { generateId, storage } from '@/lib/utils';
-import { Plus, Trash2, GripVertical, Link, Globe, FileText, Settings, Mail, Home } from 'lucide-react';
-import { useState, useEffect, type FC } from 'react';
-import { useWaveAnimation } from '@/hooks/useWaveAnimation';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { defaultQuickLinks, type QuickLink } from "@/data/mockData";
+import { generateId, storage } from "@/lib/utils";
+import {
+  Plus,
+  Trash2,
+  GripVertical,
+  Link,
+  Globe,
+  FileText,
+  Settings,
+  Mail,
+  Home,
+} from "lucide-react";
+import { useState, useEffect, type FC } from "react";
+import { useWaveAnimation } from "@/hooks/useWaveAnimation";
 
 export const QuickLinks: FC = () => {
   const [links, setLinks] = useState<QuickLink[]>([]);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [newLinkName, setNewLinkName] = useState('');
-  const [newLinkUrl, setNewLinkUrl] = useState('');
+  const [newLinkName, setNewLinkName] = useState("");
+  const [newLinkUrl, setNewLinkUrl] = useState("");
   const [draggedItem, setDraggedItem] = useState<string | null>(null);
   const [dragOverItem, setDragOverItem] = useState<string | null>(null);
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
@@ -22,17 +46,34 @@ export const QuickLinks: FC = () => {
   const getLinkIcon = (name: string, url: string) => {
     const lowerName = name.toLowerCase();
     const lowerUrl = url.toLowerCase();
-    
-    if (lowerName.includes('mail') || lowerName.includes('email') || lowerUrl.includes('mail')) {
+
+    if (
+      lowerName.includes("mail") ||
+      lowerName.includes("email") ||
+      lowerUrl.includes("mail")
+    ) {
       return <Mail className="h-4 w-4" />;
     }
-    if (lowerName.includes('doc') || lowerName.includes('wiki') || lowerName.includes('confluence') || lowerUrl.includes('doc')) {
+    if (
+      lowerName.includes("doc") ||
+      lowerName.includes("wiki") ||
+      lowerName.includes("confluence") ||
+      lowerUrl.includes("doc")
+    ) {
       return <FileText className="h-4 w-4" />;
     }
-    if (lowerName.includes('setting') || lowerName.includes('admin') || lowerName.includes('config')) {
+    if (
+      lowerName.includes("setting") ||
+      lowerName.includes("admin") ||
+      lowerName.includes("config")
+    ) {
       return <Settings className="h-4 w-4" />;
     }
-    if (lowerName.includes('home') || lowerName.includes('dashboard') || lowerName.includes('main')) {
+    if (
+      lowerName.includes("home") ||
+      lowerName.includes("dashboard") ||
+      lowerName.includes("main")
+    ) {
       return <Home className="h-4 w-4" />;
     }
     // Default to globe icon for external links
@@ -57,7 +98,7 @@ export const QuickLinks: FC = () => {
     const newLink: QuickLink = {
       id: generateId(),
       name: newLinkName.trim(),
-      url: newLinkUrl.trim()
+      url: newLinkUrl.trim(),
     };
 
     const updatedLinks = [...links, newLink];
@@ -65,32 +106,32 @@ export const QuickLinks: FC = () => {
     storage.setQuickLinks(updatedLinks);
 
     // Reset form
-    setNewLinkName('');
-    setNewLinkUrl('');
+    setNewLinkName("");
+    setNewLinkUrl("");
     setIsAddDialogOpen(false);
   };
 
   const removeLink = (id: string) => {
-    const updatedLinks = links.filter(link => link.id !== id);
+    const updatedLinks = links.filter((link) => link.id !== id);
     setLinks(updatedLinks);
     storage.setQuickLinks(updatedLinks);
   };
 
   const handleLinkClick = (url: string) => {
     // Ensure URL has protocol
-    const finalUrl = url.startsWith('http') ? url : `https://${url}`;
-    window.open(finalUrl, '_blank', 'noopener,noreferrer');
+    const finalUrl = url.startsWith("http") ? url : `https://${url}`;
+    window.open(finalUrl, "_blank", "noopener,noreferrer");
   };
 
   // Drag and drop handlers
   const handleDragStart = (e: React.DragEvent, linkId: string) => {
     setDraggedItem(linkId);
-    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.effectAllowed = "move";
   };
 
   const handleDragOver = (e: React.DragEvent, linkId: string) => {
     e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
+    e.dataTransfer.dropEffect = "move";
     setDragOverItem(linkId);
   };
 
@@ -100,15 +141,15 @@ export const QuickLinks: FC = () => {
 
   const handleDrop = (e: React.DragEvent, targetId: string) => {
     e.preventDefault();
-    
+
     if (!draggedItem || draggedItem === targetId) {
       setDraggedItem(null);
       setDragOverItem(null);
       return;
     }
 
-    const draggedIndex = links.findIndex(link => link.id === draggedItem);
-    const targetIndex = links.findIndex(link => link.id === targetId);
+    const draggedIndex = links.findIndex((link) => link.id === draggedItem);
+    const targetIndex = links.findIndex((link) => link.id === targetId);
 
     if (draggedIndex === -1 || targetIndex === -1) return;
 
@@ -139,7 +180,11 @@ export const QuickLinks: FC = () => {
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
-            <Button variant="outline" size="sm" className="gap-2 w-full sm:w-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 w-full sm:w-auto"
+            >
               <Plus className="h-4 w-4" />
               Add
             </Button>
@@ -178,7 +223,7 @@ export const QuickLinks: FC = () => {
               </div>
             </div>
             <DialogFooter>
-              <Button 
+              <Button
                 onClick={addLink}
                 disabled={!newLinkName.trim() || !newLinkUrl.trim()}
                 className="w-full sm:w-auto"
@@ -193,7 +238,9 @@ export const QuickLinks: FC = () => {
         {links.length === 0 ? (
           <div className="text-center text-muted-foreground py-8">
             <p className="text-sm">No quick links yet.</p>
-            <p className="text-xs mt-1">Add your most-used tools and resources.</p>
+            <p className="text-xs mt-1">
+              Add your most-used tools and resources.
+            </p>
           </div>
         ) : (
           <div className="space-y-2">
@@ -203,9 +250,13 @@ export const QuickLinks: FC = () => {
                 onDragOver={(e) => handleDragOver(e, link.id)}
                 onDragLeave={handleDragLeave}
                 onDrop={(e) => handleDrop(e, link.id)}
-                className={getItemClassName(`flex items-center justify-between p-2 rounded-lg border hover:bg-muted/50 ${
-                  dragOverItem === link.id ? 'border-primary bg-primary/10' : ''
-                } ${draggedItem === link.id ? 'opacity-50' : ''}`)}
+                className={getItemClassName(
+                  `flex items-center justify-between p-2 rounded-lg border hover:bg-muted/50 ${
+                    dragOverItem === link.id
+                      ? "border-primary bg-primary/10"
+                      : ""
+                  } ${draggedItem === link.id ? "opacity-50" : ""}`,
+                )}
                 style={getItemStyle(index)}
               >
                 <div className="flex items-center gap-2 flex-1">

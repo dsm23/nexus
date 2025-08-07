@@ -1,92 +1,98 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Search, Command } from 'lucide-react';
-import { useState, useEffect, useMemo, useCallback, type FC } from 'react';
-import { SearchService, type SearchResult } from '@/lib/searchService';
-import { useNavigate } from 'react-router-dom';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Search, Command } from "lucide-react";
+import { useState, useEffect, useMemo, useCallback, type FC } from "react";
+import { SearchService, type SearchResult } from "@/lib/searchService";
+import { useNavigate } from "react-router-dom";
 
 const typeLabels = {
-  employee: 'Employee',
-  announcement: 'Announcement',
-  kudo: 'Kudo',
-  event: 'Event',
-  feed: 'Feed Item',
-  'quick-link': 'Quick Link'
+  employee: "Employee",
+  announcement: "Announcement",
+  kudo: "Kudo",
+  event: "Event",
+  feed: "Feed Item",
+  "quick-link": "Quick Link",
 };
 
 const typeIcons = {
-  employee: '👤',
-  announcement: '📢',
-  kudo: '❤️',
-  event: '📅',
-  feed: '📰',
-  'quick-link': '🔗'
+  employee: "👤",
+  announcement: "📢",
+  kudo: "❤️",
+  event: "📅",
+  feed: "📰",
+  "quick-link": "🔗",
 };
 
 export const GlobalSearch: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const navigate = useNavigate();
 
   // Handle keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+      if ((event.metaKey || event.ctrlKey) && event.key === "k") {
         event.preventDefault();
         setIsOpen(true);
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const results = useMemo(() => {
     return SearchService.search(searchQuery);
   }, [searchQuery]);
 
-  const handleResultClick = useCallback((result: SearchResult) => {
-    // Navigate to the specific route with search parameters for highlighting
-    const searchParams = new URLSearchParams();
-    if (result.searchParams) {
-      Object.entries(result.searchParams).forEach(([key, value]) => {
-        searchParams.set(key, value);
-      });
-    }
-    
-    const routeWithParams = result.searchParams 
-      ? `${result.route}?${searchParams.toString()}`
-      : result.route;
-    
-    navigate(routeWithParams);
-    setIsOpen(false);
-    setSearchQuery('');
-  }, [navigate]);
+  const handleResultClick = useCallback(
+    (result: SearchResult) => {
+      // Navigate to the specific route with search parameters for highlighting
+      const searchParams = new URLSearchParams();
+      if (result.searchParams) {
+        Object.entries(result.searchParams).forEach(([key, value]) => {
+          searchParams.set(key, value);
+        });
+      }
 
-  const handleQuickAction = useCallback((type: string) => {
-    switch (type) {
-      case 'employees':
-        navigate('/employees');
-        break;
-      case 'announcements':
-        navigate('/announcements');
-        break;
-      case 'events':
-        navigate('/calendar');
-        break;
-      case 'kudos':
-        navigate('/kudos');
-        break;
-    }
-    setIsOpen(false);
-  }, [navigate]);
+      const routeWithParams = result.searchParams
+        ? `${result.route}?${searchParams.toString()}`
+        : result.route;
+
+      navigate(routeWithParams);
+      setIsOpen(false);
+      setSearchQuery("");
+    },
+    [navigate],
+  );
+
+  const handleQuickAction = useCallback(
+    (type: string) => {
+      switch (type) {
+        case "employees":
+          navigate("/employees");
+          break;
+        case "announcements":
+          navigate("/announcements");
+          break;
+        case "events":
+          navigate("/calendar");
+          break;
+        case "kudos":
+          navigate("/kudos");
+          break;
+      }
+      setIsOpen(false);
+    },
+    [navigate],
+  );
 
   // Reset selected index when results change
   useEffect(() => {
@@ -99,35 +105,35 @@ export const GlobalSearch: FC = () => {
       if (!isOpen) return;
 
       switch (e.key) {
-        case 'ArrowDown':
+        case "ArrowDown":
           e.preventDefault();
-          setSelectedIndex(prev => Math.min(prev + 1, results.length - 1));
+          setSelectedIndex((prev) => Math.min(prev + 1, results.length - 1));
           break;
-        case 'ArrowUp':
+        case "ArrowUp":
           e.preventDefault();
-          setSelectedIndex(prev => Math.max(prev - 1, 0));
+          setSelectedIndex((prev) => Math.max(prev - 1, 0));
           break;
-        case 'Enter':
+        case "Enter":
           e.preventDefault();
           if (results[selectedIndex] && searchQuery.trim()) {
             handleResultClick(results[selectedIndex]);
           }
           break;
-        case 'Escape':
+        case "Escape":
           e.preventDefault();
           setIsOpen(false);
           break;
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, results, selectedIndex, handleResultClick, searchQuery]);
 
   // Reset search when dialog closes
   useEffect(() => {
     if (!isOpen) {
-      setSearchQuery('');
+      setSearchQuery("");
       setSelectedIndex(0);
     }
   }, [isOpen]);
@@ -163,7 +169,7 @@ export const GlobalSearch: FC = () => {
           <DialogHeader className="px-6 pt-6 pb-0">
             <DialogTitle>Search Nexus</DialogTitle>
           </DialogHeader>
-          
+
           <div className="flex flex-col">
             {/* Search Input */}
             <form onSubmit={handleSubmit} className="px-6 pb-4">
@@ -178,47 +184,49 @@ export const GlobalSearch: FC = () => {
                 />
               </div>
             </form>
-            
+
             {/* Results */}
             <div className="max-h-96 overflow-y-auto border-t">
-              {searchQuery.trim() === '' ? (
+              {searchQuery.trim() === "" ? (
                 <div className="p-6 space-y-4">
                   <div>
                     <h4 className="text-sm font-medium mb-3">Quick Actions</h4>
                     <div className="space-y-1">
-                      <div 
+                      <div
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
-                        onClick={() => handleQuickAction('employees')}
+                        onClick={() => handleQuickAction("employees")}
                       >
                         <span className="text-lg">👤</span>
                         <span className="text-sm">Search employees</span>
                       </div>
-                      <div 
+                      <div
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
-                        onClick={() => handleQuickAction('announcements')}
+                        onClick={() => handleQuickAction("announcements")}
                       >
                         <span className="text-lg">📢</span>
                         <span className="text-sm">Search announcements</span>
                       </div>
-                      <div 
+                      <div
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
-                        onClick={() => handleQuickAction('events')}
+                        onClick={() => handleQuickAction("events")}
                       >
                         <span className="text-lg">📅</span>
                         <span className="text-sm">Search calendar events</span>
                       </div>
-                      <div 
+                      <div
                         className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
-                        onClick={() => handleQuickAction('kudos')}
+                        onClick={() => handleQuickAction("kudos")}
                       >
                         <span className="text-lg">❤️</span>
                         <span className="text-sm">Search kudos</span>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
-                    <h4 className="text-sm font-medium mb-2">Recent Searches</h4>
+                    <h4 className="text-sm font-medium mb-2">
+                      Recent Searches
+                    </h4>
                     <div className="text-sm text-muted-foreground">
                       No recent searches
                     </div>
@@ -238,7 +246,7 @@ export const GlobalSearch: FC = () => {
                     <div
                       key={`${result.type}-${result.id}`}
                       className={`flex items-start px-6 py-3 cursor-pointer hover:bg-accent ${
-                        index === selectedIndex ? 'bg-accent' : ''
+                        index === selectedIndex ? "bg-accent" : ""
                       }`}
                       onClick={() => handleResultClick(result)}
                     >
@@ -247,7 +255,9 @@ export const GlobalSearch: FC = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="font-medium truncate">{result.title}</span>
+                          <span className="font-medium truncate">
+                            {result.title}
+                          </span>
                           <span className="text-xs px-2 py-0.5 bg-muted rounded-full text-muted-foreground flex-shrink-0">
                             {typeLabels[result.type]}
                           </span>
@@ -266,7 +276,9 @@ export const GlobalSearch: FC = () => {
             {(searchQuery.trim() || results.length > 0) && (
               <div className="border-t px-6 py-3 text-xs text-muted-foreground bg-muted/30 flex justify-between">
                 <span>
-                  {results.length > 0 ? 'Use ↑↓ to navigate • Enter to select' : 'Type to search'}
+                  {results.length > 0
+                    ? "Use ↑↓ to navigate • Enter to select"
+                    : "Type to search"}
                 </span>
                 <span>Esc to close</span>
               </div>

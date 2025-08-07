@@ -1,20 +1,34 @@
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Header } from '@/components/Header';
-import { PageWrapper, PageSection } from '@/components/PageWrapper';
-import { projects, type Project } from '@/data/mockData';
-import { generateId } from '@/lib/utils';
-import { 
-  ArrowLeft, 
-  Search, 
-  Filter, 
-  Plus, 
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Header } from "@/components/Header";
+import { PageWrapper, PageSection } from "@/components/PageWrapper";
+import { projects, type Project } from "@/data/mockData";
+import { generateId } from "@/lib/utils";
+import {
+  ArrowLeft,
+  Search,
+  Filter,
+  Plus,
   Calendar,
   Users,
   CheckCircle2,
@@ -22,46 +36,46 @@ import {
   AlertCircle,
   MoreVertical,
   FolderOpen,
-  Target
-} from 'lucide-react';
-import { useState, type FC } from 'react';
-import { Link } from 'react-router-dom';
+  Target,
+} from "lucide-react";
+import { useState, type FC } from "react";
+import { Link } from "react-router-dom";
 
-const getStatusColor = (status: Project['status']) => {
+const getStatusColor = (status: Project["status"]) => {
   switch (status) {
-    case 'active':
-      return 'border-blue-600 bg-blue-50 text-blue-700 dark:border-blue-300 dark:bg-blue-100 dark:text-blue-800';
-    case 'completed':
-      return 'border-green-600 bg-green-50 text-green-700 dark:border-green-300 dark:bg-green-100 dark:text-green-800';
-    case 'on-hold':
-      return 'border-yellow-600 bg-yellow-50 text-yellow-700 dark:border-yellow-300 dark:bg-yellow-100 dark:text-yellow-800';
-    case 'cancelled':
-      return 'border-red-600 bg-red-50 text-red-700 dark:border-red-300 dark:bg-red-100 dark:text-red-800';
+    case "active":
+      return "border-blue-600 bg-blue-50 text-blue-700 dark:border-blue-300 dark:bg-blue-100 dark:text-blue-800";
+    case "completed":
+      return "border-green-600 bg-green-50 text-green-700 dark:border-green-300 dark:bg-green-100 dark:text-green-800";
+    case "on-hold":
+      return "border-yellow-600 bg-yellow-50 text-yellow-700 dark:border-yellow-300 dark:bg-yellow-100 dark:text-yellow-800";
+    case "cancelled":
+      return "border-red-600 bg-red-50 text-red-700 dark:border-red-300 dark:bg-red-100 dark:text-red-800";
     default:
-      return 'border-muted-foreground/20 bg-muted text-muted-foreground';
+      return "border-muted-foreground/20 bg-muted text-muted-foreground";
   }
 };
 
-const getPriorityColor = (priority: Project['priority']) => {
+const getPriorityColor = (priority: Project["priority"]) => {
   switch (priority) {
-    case 'high':
-      return 'text-red-600';
-    case 'medium':
-      return 'text-yellow-600';
-    case 'low':
-      return 'text-green-600';
+    case "high":
+      return "text-red-600";
+    case "medium":
+      return "text-yellow-600";
+    case "low":
+      return "text-green-600";
     default:
-      return 'text-muted-foreground';
+      return "text-muted-foreground";
   }
 };
 
-const getPriorityIcon = (priority: Project['priority']) => {
+const getPriorityIcon = (priority: Project["priority"]) => {
   switch (priority) {
-    case 'high':
+    case "high":
       return <AlertCircle className="h-4 w-4" />;
-    case 'medium':
+    case "medium":
       return <Clock className="h-4 w-4" />;
-    case 'low':
+    case "low":
       return <CheckCircle2 className="h-4 w-4" />;
     default:
       return <Clock className="h-4 w-4" />;
@@ -70,21 +84,25 @@ const getPriorityIcon = (priority: Project['priority']) => {
 
 export const ProjectsPage: FC = () => {
   const [projectsList, setProjectsList] = useState<Project[]>(projects);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterStatus, setFilterStatus] = useState('all');
-  const [filterPriority, setFilterPriority] = useState('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterPriority, setFilterPriority] = useState("all");
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-  const [newProjectName, setNewProjectName] = useState('');
-  const [newProjectDescription, setNewProjectDescription] = useState('');
-  const [newProjectPriority, setNewProjectPriority] = useState<Project['priority']>('medium');
+  const [newProjectName, setNewProjectName] = useState("");
+  const [newProjectDescription, setNewProjectDescription] = useState("");
+  const [newProjectPriority, setNewProjectPriority] =
+    useState<Project["priority"]>("medium");
 
   // Filter projects based on search query, status, and priority
-  const filteredProjects = projectsList.filter(project => {
-    const matchesSearch = project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = filterStatus === 'all' || project.status === filterStatus;
-    const matchesPriority = filterPriority === 'all' || project.priority === filterPriority;
-    
+  const filteredProjects = projectsList.filter((project) => {
+    const matchesSearch =
+      project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStatus =
+      filterStatus === "all" || project.status === filterStatus;
+    const matchesPriority =
+      filterPriority === "all" || project.priority === filterPriority;
+
     return matchesSearch && matchesStatus && matchesPriority;
   });
 
@@ -95,35 +113,35 @@ export const ProjectsPage: FC = () => {
       id: generateId(),
       name: newProjectName.trim(),
       description: newProjectDescription.trim(),
-      status: 'active',
+      status: "active",
       priority: newProjectPriority,
       progress: 0,
       startDate: new Date(),
       endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days from now
-      teamMembers: ['You'],
-      tasks: []
+      teamMembers: ["You"],
+      tasks: [],
     };
 
-    setProjectsList(prev => [newProject, ...prev]);
+    setProjectsList((prev) => [newProject, ...prev]);
 
     // Reset form
-    setNewProjectName('');
-    setNewProjectDescription('');
-    setNewProjectPriority('medium');
+    setNewProjectName("");
+    setNewProjectDescription("");
+    setNewProjectPriority("medium");
     setIsAddDialogOpen(false);
   };
 
   const getProgressColor = (progress: number) => {
-    if (progress >= 80) return 'bg-green-500';
-    if (progress >= 50) return 'bg-blue-500';
-    if (progress >= 25) return 'bg-yellow-500';
-    return 'bg-gray-500';
+    if (progress >= 80) return "bg-green-500";
+    if (progress >= 50) return "bg-blue-500";
+    if (progress >= 25) return "bg-yellow-500";
+    return "bg-gray-500";
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <PageWrapper className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6">
         {/* Header Section */}
         <PageSection index={0} className="mb-6">
@@ -135,11 +153,14 @@ export const ProjectsPage: FC = () => {
               </Button>
             </Link>
           </div>
-          
+
           <div className="space-y-2">
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">Projects & Tasks</h1>
+            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
+              Projects & Tasks
+            </h1>
             <p className="text-sm sm:text-base text-muted-foreground">
-              Manage your projects, track progress, and collaborate with your team
+              Manage your projects, track progress, and collaborate with your
+              team
             </p>
           </div>
         </PageSection>
@@ -147,38 +168,44 @@ export const ProjectsPage: FC = () => {
         {/* Actions & Filters Section */}
         <PageSection index={1}>
           <Card className="mb-6">
-          <CardHeader className="pb-3 sm:pb-4">
-            <CardTitle className="text-base sm:text-lg">Manage Projects</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4 sm:space-y-6">
-            {/* First Row - Search and Create */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:items-end">
-              <div className="flex-1">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search projects..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                  />
+            <CardHeader className="pb-3 sm:pb-4">
+              <CardTitle className="text-base sm:text-lg">
+                Manage Projects
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 sm:space-y-6">
+              {/* First Row - Search and Create */}
+              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:items-end">
+                <div className="flex-1">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      placeholder="Search projects..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
                 </div>
-              </div>
-              
-              {/* Create Project Button */}
-              <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button className="gap-2 w-full sm:w-auto whitespace-nowrap">
-                    <Plus className="h-4 w-4" />
-                    <span className="sm:hidden">Create Project</span>
-                    <span className="hidden sm:inline">New Project</span>
-                  </Button>
-                </DialogTrigger>
+
+                {/* Create Project Button */}
+                <Dialog
+                  open={isAddDialogOpen}
+                  onOpenChange={setIsAddDialogOpen}
+                >
+                  <DialogTrigger asChild>
+                    <Button className="gap-2 w-full sm:w-auto whitespace-nowrap">
+                      <Plus className="h-4 w-4" />
+                      <span className="sm:hidden">Create Project</span>
+                      <span className="hidden sm:inline">New Project</span>
+                    </Button>
+                  </DialogTrigger>
                   <DialogContent className="sm:max-w-[500px] mx-4">
                     <DialogHeader>
                       <DialogTitle>Create New Project</DialogTitle>
                       <DialogDescription>
-                        Start a new project and begin tracking progress with your team.
+                        Start a new project and begin tracking progress with
+                        your team.
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
@@ -195,13 +222,18 @@ export const ProjectsPage: FC = () => {
                         />
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-4 items-start gap-4">
-                        <Label htmlFor="description" className="sm:text-right sm:mt-2">
+                        <Label
+                          htmlFor="description"
+                          className="sm:text-right sm:mt-2"
+                        >
                           Description
                         </Label>
                         <Textarea
                           id="description"
                           value={newProjectDescription}
-                          onChange={(e) => setNewProjectDescription(e.target.value)}
+                          onChange={(e) =>
+                            setNewProjectDescription(e.target.value)
+                          }
                           placeholder="Describe the project goals and scope"
                           className="sm:col-span-3"
                           rows={3}
@@ -211,7 +243,12 @@ export const ProjectsPage: FC = () => {
                         <Label htmlFor="priority" className="sm:text-right">
                           Priority
                         </Label>
-                        <Select value={newProjectPriority} onValueChange={(value: Project['priority']) => setNewProjectPriority(value)}>
+                        <Select
+                          value={newProjectPriority}
+                          onValueChange={(value: Project["priority"]) =>
+                            setNewProjectPriority(value)
+                          }
+                        >
                           <SelectTrigger className="sm:col-span-3">
                             <SelectValue />
                           </SelectTrigger>
@@ -224,9 +261,12 @@ export const ProjectsPage: FC = () => {
                       </div>
                     </div>
                     <DialogFooter>
-                      <Button 
+                      <Button
                         onClick={addProject}
-                        disabled={!newProjectName.trim() || !newProjectDescription.trim()}
+                        disabled={
+                          !newProjectName.trim() ||
+                          !newProjectDescription.trim()
+                        }
                       >
                         Create Project
                       </Button>
@@ -253,10 +293,13 @@ export const ProjectsPage: FC = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 {/* Priority Filter */}
                 <div className="w-full sm:w-56">
-                  <Select value={filterPriority} onValueChange={setFilterPriority}>
+                  <Select
+                    value={filterPriority}
+                    onValueChange={setFilterPriority}
+                  >
                     <SelectTrigger className="gap-2 h-10 w-full">
                       <Target className="h-4 w-4" />
                       <SelectValue placeholder="Filter by priority" />
@@ -269,17 +312,18 @@ export const ProjectsPage: FC = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                
+
                 {/* Spacer for alignment */}
                 <div className="flex-1 hidden sm:block" />
               </div>
-              
+
               {/* Results Count */}
               <div className="text-xs sm:text-sm text-muted-foreground">
-                Showing {filteredProjects.length} of {projectsList.length} projects
+                Showing {filteredProjects.length} of {projectsList.length}{" "}
+                projects
               </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
         </PageSection>
 
         {/* Projects Grid */}
@@ -293,16 +337,18 @@ export const ProjectsPage: FC = () => {
                       <FolderOpen className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground" />
                     </div>
                     <h3 className="font-medium text-sm sm:text-base">
-                      {searchQuery ? 'No projects found' : 'No projects yet'}
+                      {searchQuery ? "No projects found" : "No projects yet"}
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground">
-                      {searchQuery 
-                        ? 'Try adjusting your search or filter criteria'
-                        : 'Create your first project to get started'
-                      }
+                      {searchQuery
+                        ? "Try adjusting your search or filter criteria"
+                        : "Create your first project to get started"}
                     </p>
                     {!searchQuery && (
-                      <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+                      <Dialog
+                        open={isAddDialogOpen}
+                        onOpenChange={setIsAddDialogOpen}
+                      >
                         <DialogTrigger asChild>
                           <Button className="mt-3 sm:mt-4 gap-2 w-full sm:w-auto">
                             <Plus className="h-4 w-4" />
@@ -311,9 +357,9 @@ export const ProjectsPage: FC = () => {
                         </DialogTrigger>
                       </Dialog>
                     )}
-                </div>
-              </CardContent>
-            </Card>
+                  </div>
+                </CardContent>
+              </Card>
             </PageSection>
           ) : (
             filteredProjects.map((project, index) => (
@@ -321,26 +367,32 @@ export const ProjectsPage: FC = () => {
                 <Card className="hover:shadow-md transition-shadow">
                   <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start gap-3 sm:gap-4">
-                      <div className={`mt-1 flex-shrink-0 ${getPriorityColor(project.priority)}`}>
+                      <div
+                        className={`mt-1 flex-shrink-0 ${getPriorityColor(project.priority)}`}
+                      >
                         {getPriorityIcon(project.priority)}
                       </div>
-                      
+
                       <div className="flex-1 space-y-3 sm:space-y-4 min-w-0">
                         {/* Project Header */}
                         <div className="flex items-start justify-between gap-2">
                           <div className="space-y-2 flex-1 min-w-0">
                             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-                              <h3 className="font-semibold text-base sm:text-lg truncate">{project.name}</h3>
+                              <h3 className="font-semibold text-base sm:text-lg truncate">
+                                {project.name}
+                              </h3>
                               <div className="flex flex-wrap gap-2">
-                                <Badge 
+                                <Badge
                                   variant="outline"
                                   className={`text-xs ${getStatusColor(project.status)}`}
                                 >
-                                  {project.status.replace('-', ' ').toUpperCase()}
+                                  {project.status
+                                    .replace("-", " ")
+                                    .toUpperCase()}
                                 </Badge>
-                                <Badge 
+                                <Badge
                                   variant="outline"
-                                  className={`text-xs ${getPriorityColor(project.priority).replace('text-', 'border-').replace('600', '200')} ${getPriorityColor(project.priority).replace('text-', 'bg-').replace('600', '50')} ${getPriorityColor(project.priority)}`}
+                                  className={`text-xs ${getPriorityColor(project.priority).replace("text-", "border-").replace("600", "200")} ${getPriorityColor(project.priority).replace("text-", "bg-").replace("600", "50")} ${getPriorityColor(project.priority)}`}
                                 >
                                   {project.priority.toUpperCase()}
                                 </Badge>
@@ -350,8 +402,12 @@ export const ProjectsPage: FC = () => {
                               {project.description}
                             </p>
                           </div>
-                          
-                          <Button variant="ghost" size="sm" className="flex-shrink-0">
+
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="flex-shrink-0"
+                          >
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </div>
@@ -360,10 +416,12 @@ export const ProjectsPage: FC = () => {
                         <div className="space-y-2">
                           <div className="flex justify-between text-xs sm:text-sm">
                             <span>Progress</span>
-                            <span className="font-medium">{project.progress}%</span>
+                            <span className="font-medium">
+                              {project.progress}%
+                            </span>
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                            <div 
+                            <div
                               className={`h-2 rounded-full transition-all duration-300 ${getProgressColor(project.progress)}`}
                               style={{ width: `${project.progress}%` }}
                             ></div>
@@ -374,7 +432,9 @@ export const ProjectsPage: FC = () => {
                         <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-3 w-3 flex-shrink-0" />
-                            <span className="truncate">Due: {project.endDate.toLocaleDateString()}</span>
+                            <span className="truncate">
+                              Due: {project.endDate.toLocaleDateString()}
+                            </span>
                           </div>
                           <div className="flex items-center gap-1">
                             <Users className="h-3 w-3 flex-shrink-0" />
@@ -388,13 +448,21 @@ export const ProjectsPage: FC = () => {
 
                         {/* Team Members Preview */}
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                          <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0">Team:</span>
+                          <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0">
+                            Team:
+                          </span>
                           <div className="flex flex-wrap gap-1">
-                            {project.teamMembers.slice(0, 3).map((member: string, idx: number) => (
-                              <Badge key={idx} variant="secondary" className="text-xs">
-                                {member}
-                              </Badge>
-                            ))}
+                            {project.teamMembers
+                              .slice(0, 3)
+                              .map((member: string, idx: number) => (
+                                <Badge
+                                  key={idx}
+                                  variant="secondary"
+                                  className="text-xs"
+                                >
+                                  {member}
+                                </Badge>
+                              ))}
                             {project.teamMembers.length > 3 && (
                               <Badge variant="secondary" className="text-xs">
                                 +{project.teamMembers.length - 3}

@@ -48,4 +48,3 @@ runs:
       if: ${{ inputs.pnpm-run-install == 'true' }}
       shell: bash
       run: pnpm install --frozen-lockfile
-

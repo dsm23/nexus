@@ -1,79 +1,95 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Header } from '@/components/Header';
-import { PageWrapper, PageSection } from '@/components/PageWrapper';
-import { forYouFeed, type FeedItem } from '@/data/mockData';
-import { formatRelativeTime } from '@/lib/utils';
-import { FileText, Bell, CheckSquare, Info, ArrowLeft, Search, Filter } from 'lucide-react';
-import { useState, type FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Header } from "@/components/Header";
+import { PageWrapper, PageSection } from "@/components/PageWrapper";
+import { forYouFeed, type FeedItem } from "@/data/mockData";
+import { formatRelativeTime } from "@/lib/utils";
+import {
+  FileText,
+  Bell,
+  CheckSquare,
+  Info,
+  ArrowLeft,
+  Search,
+  Filter,
+} from "lucide-react";
+import { useState, type FC } from "react";
+import { Link } from "react-router-dom";
 
-const getTypeIcon = (type: FeedItem['type']) => {
+const getTypeIcon = (type: FeedItem["type"]) => {
   switch (type) {
-    case 'document':
+    case "document":
       return <FileText className="h-4 w-4" />;
-    case 'news':
+    case "news":
       return <Info className="h-4 w-4" />;
-    case 'task':
+    case "task":
       return <CheckSquare className="h-4 w-4" />;
-    case 'update':
+    case "update":
       return <Bell className="h-4 w-4" />;
     default:
       return <Info className="h-4 w-4" />;
   }
 };
 
-const getTypeColor = (type: FeedItem['type']) => {
+const getTypeColor = (type: FeedItem["type"]) => {
   switch (type) {
-    case 'document':
-      return 'text-primary';
-    case 'news':
-      return 'text-green-800 dark:text-green-300';
-    case 'task':
-      return 'text-orange-800 dark:text-orange-300';
-    case 'update':
-      return 'text-purple-800 dark:text-purple-300';
+    case "document":
+      return "text-primary";
+    case "news":
+      return "text-green-800 dark:text-green-300";
+    case "task":
+      return "text-orange-800 dark:text-orange-300";
+    case "update":
+      return "text-purple-800 dark:text-purple-300";
     default:
-      return 'text-muted-foreground';
+      return "text-muted-foreground";
   }
 };
 
-const getTypeBadge = (type: FeedItem['type']) => {
+const getTypeBadge = (type: FeedItem["type"]) => {
   switch (type) {
-    case 'document':
-      return 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-100 dark:text-blue-800';
-    case 'news':
-      return 'bg-green-50 text-green-700 border-green-200 dark:bg-green-100 dark:text-green-800';
-    case 'task':
-      return 'bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-100 dark:text-orange-800';
-    case 'update':
-      return 'bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-100 dark:text-purple-800';
+    case "document":
+      return "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-100 dark:text-blue-800";
+    case "news":
+      return "bg-green-50 text-green-700 border-green-200 dark:bg-green-100 dark:text-green-800";
+    case "task":
+      return "bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-100 dark:text-orange-800";
+    case "update":
+      return "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-100 dark:text-purple-800";
     default:
-      return 'bg-muted text-muted-foreground border-border';
+      return "bg-muted text-muted-foreground border-border";
   }
 };
 
 export const ForYouPage: FC = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterType, setFilterType] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterType, setFilterType] = useState<string>("all");
 
   // Filter feed items based on search and type
   const filteredItems = forYouFeed.filter((item) => {
-    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         (item.author && item.author.toLowerCase().includes(searchQuery.toLowerCase()));
-    
-    const matchesType = filterType === 'all' || item.type === filterType;
-    
+    const matchesSearch =
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (item.author &&
+        item.author.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    const matchesType = filterType === "all" || item.type === filterType;
+
     return matchesSearch && matchesType;
   });
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <PageWrapper className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-6">
         {/* Header Section */}
         <div className="mb-6">
@@ -85,7 +101,7 @@ export const ForYouPage: FC = () => {
               </Button>
             </Link>
           </div>
-          
+
           <div className="space-y-2">
             <h1 className="text-2xl font-bold tracking-tight">For You</h1>
             <p className="text-muted-foreground">
@@ -113,7 +129,7 @@ export const ForYouPage: FC = () => {
                   />
                 </div>
               </div>
-              
+
               {/* Type Filter */}
               <div className="sm:w-48">
                 <Select value={filterType} onValueChange={setFilterType}>
@@ -131,7 +147,7 @@ export const ForYouPage: FC = () => {
                 </Select>
               </div>
             </div>
-            
+
             {/* Results Count */}
             <div className="mt-4 text-sm text-muted-foreground">
               Showing {filteredItems.length} of {forYouFeed.length} items
@@ -161,37 +177,42 @@ export const ForYouPage: FC = () => {
             filteredItems.map((item, index) => (
               <PageSection key={item.id} index={index}>
                 <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex gap-4">
-                    <div className={`mt-1 ${getTypeColor(item.type)}`}>
-                      {getTypeIcon(item.type)}
-                    </div>
-                    <div className="flex-1 space-y-3">
-                      <div className="flex items-start justify-between">
-                        <div className="space-y-2">
-                          <h3 className="font-medium leading-none">{item.title}</h3>
-                          <div className="flex items-center gap-2">
-                            <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${getTypeBadge(item.type)}`}>
-                              {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
-                            </span>
-                            <span className="text-xs text-muted-foreground">
-                              {formatRelativeTime(item.timestamp)}
-                            </span>
+                  <CardContent className="p-6">
+                    <div className="flex gap-4">
+                      <div className={`mt-1 ${getTypeColor(item.type)}`}>
+                        {getTypeIcon(item.type)}
+                      </div>
+                      <div className="flex-1 space-y-3">
+                        <div className="flex items-start justify-between">
+                          <div className="space-y-2">
+                            <h3 className="font-medium leading-none">
+                              {item.title}
+                            </h3>
+                            <div className="flex items-center gap-2">
+                              <span
+                                className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${getTypeBadge(item.type)}`}
+                              >
+                                {item.type.charAt(0).toUpperCase() +
+                                  item.type.slice(1)}
+                              </span>
+                              <span className="text-xs text-muted-foreground">
+                                {formatRelativeTime(item.timestamp)}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {item.description}
-                      </p>
-                      {item.author && (
-                        <p className="text-xs text-muted-foreground">
-                          by {item.author}
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {item.description}
                         </p>
-                      )}
+                        {item.author && (
+                          <p className="text-xs text-muted-foreground">
+                            by {item.author}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
               </PageSection>
             ))
           )}
