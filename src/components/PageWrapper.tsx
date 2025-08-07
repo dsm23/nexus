@@ -1,5 +1,5 @@
-import { type FC, type ReactNode, createContext, useContext } from 'react';
-import { useWaveAnimation } from '@/hooks/useWaveAnimation';
+import { type FC, type ReactNode, createContext, useContext } from "react";
+import { useWaveAnimation } from "@/hooks/useWaveAnimation";
 
 interface PageWrapperProps {
   children: ReactNode;
@@ -13,10 +13,13 @@ interface AnimationContextType {
 
 const AnimationContext = createContext<AnimationContextType | null>(null);
 
-export const PageWrapper: FC<PageWrapperProps> = ({ children, className = '' }) => {
+export const PageWrapper: FC<PageWrapperProps> = ({
+  children,
+  className = "",
+}) => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation({
     staggerDelay: 50,
-    duration: 600
+    duration: 600,
   });
 
   return (
@@ -34,20 +37,21 @@ interface PageSectionProps {
   className?: string;
 }
 
-export const PageSection: FC<PageSectionProps> = ({ children, index, className = '' }) => {
+export const PageSection: FC<PageSectionProps> = ({
+  children,
+  index,
+  className = "",
+}) => {
   const context = useContext(AnimationContext);
-  
+
   if (!context) {
-    throw new Error('PageSection must be used within a PageWrapper');
+    throw new Error("PageSection must be used within a PageWrapper");
   }
-  
+
   const { getItemStyle, getItemClassName } = context;
 
   return (
-    <div 
-      style={getItemStyle(index)}
-      className={getItemClassName(className)}
-    >
+    <div style={getItemStyle(index)} className={getItemClassName(className)}>
       {children}
     </div>
   );

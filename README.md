@@ -9,34 +9,39 @@ A comprehensive, modern intranet dashboard built with React, TypeScript, and Tai
 
 ## 🚀 Live Demo
 
-This project is configured for deployment on **Vercel**. 
+This project is configured for deployment on **Vercel**.
 
 ## ✨ Features
 
 ### 🏠 **Dashboard Hub**
+
 - **Responsive Design**: Fully responsive across mobile, tablet, and desktop
 - **Dark/Light Mode**: Complete theming system with user preference persistence
 - **Focus Mode**: Distraction-free mode for improved productivity
 - **Drag & Drop**: Customizable card layout with persistent preferences
 
 ### 👥 **Employee Engagement**
+
 - **Kudos & Shout-Outs**: Peer recognition system with real-time feed
 - **Employee Directory**: Searchable directory with department filtering
 - **Organization Chart**: Interactive hierarchical organization structure
 - **Profile Management**: User profiles with avatar and preferences
 
 ### 📅 **Team Collaboration**
+
 - **Team Calendar**: Event management with birthdays, anniversaries, and meetings
 - **Company Announcements**: Priority-based announcement system
 - **Quick Links**: Customizable bookmarks with drag-and-drop reordering
 - **For You Feed**: Personalized content and updates
 
 ### 🔍 **Search & Navigation**
+
 - **Global Search**: Cmd/Ctrl+K shortcut for quick access
 - **Advanced Filtering**: Multi-criteria filtering across all modules
 - **Smart Navigation**: Breadcrumb navigation and quick actions
 
 ### 🎨 **User Experience**
+
 - **Welcome Checklist**: Interactive onboarding for new users
 - **Accessible Design**: WCAG compliant with keyboard navigation
 - **Loading States**: Smooth transitions and loading indicators
@@ -45,23 +50,27 @@ This project is configured for deployment on **Vercel**.
 ## 🛠 Tech Stack
 
 ### **Frontend**
+
 - **React 19** - Latest React with concurrent features
 - **TypeScript** - Type-safe development
 - **Vite** - Lightning-fast build tool and dev server
 - **React Router DOM** - Client-side routing
 
 ### **Styling & UI**
+
 - **Tailwind CSS v4** - Utility-first CSS with latest features
 - **Radix UI** - Accessible, unstyled UI primitives
 - **shadcn/ui** - Beautiful, reusable UI components
 - **Lucide React** - Beautiful, customizable icons
 
 ### **State Management**
+
 - **React Context API** - Global state management
 - **localStorage** - Persistent user preferences
 - **Custom Hooks** - Reusable stateful logic
 
 ### **Additional Libraries**
+
 - **react-organizational-chart** - Interactive org chart visualization
 - **Sonner** - Toast notifications
 - **class-variance-authority** - Component variant management
@@ -98,23 +107,27 @@ nexus/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Node.js** 18+ 
+
+- **Node.js** 18+
 - **npm** 9+ or **yarn** 1.22+
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/praveen-sripati/nexus.git
    cd nexus
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -137,6 +150,7 @@ npm run preview
 ### Vercel (Recommended)
 
 1. **Install Vercel CLI**
+
    ```bash
    npm i -g vercel
    ```
@@ -151,6 +165,7 @@ The project includes a `vercel.json` configuration file for optimal deployment.
 ### Other Platforms
 
 The build output in `/dist` can be deployed to any static hosting service:
+
 - **Netlify**: Drag and drop the `dist` folder
 - **GitHub Pages**: Use GitHub Actions with the build
 - **AWS S3**: Upload the `dist` folder contents
@@ -159,14 +174,14 @@ The build output in `/dist` can be deployed to any static hosting service:
 
 ### Dashboard Components
 
-| Component | Description | Features |
-|-----------|-------------|----------|
-| **For You Feed** | Personalized content | • Document updates<br>• Task notifications<br>• News items |
-| **Company Announcements** | Official communications | • Priority levels<br>• Search & filter<br>• Rich content |
-| **Employee Directory** | Team member lookup | • Department filtering<br>• Contact information<br>• Search functionality |
-| **Kudos Feed** | Peer recognition | • Give/receive kudos<br>• Real-time updates<br>• Social interaction |
-| **Team Calendar** | Event management | • Birthdays & anniversaries<br>• Company events<br>• Visual indicators |
-| **Quick Links** | Bookmark management | • Drag & drop sorting<br>• Add/remove links<br>• Quick access |
+| Component                 | Description             | Features                                                                  |
+| ------------------------- | ----------------------- | ------------------------------------------------------------------------- |
+| **For You Feed**          | Personalized content    | • Document updates<br>• Task notifications<br>• News items                |
+| **Company Announcements** | Official communications | • Priority levels<br>• Search & filter<br>• Rich content                  |
+| **Employee Directory**    | Team member lookup      | • Department filtering<br>• Contact information<br>• Search functionality |
+| **Kudos Feed**            | Peer recognition        | • Give/receive kudos<br>• Real-time updates<br>• Social interaction       |
+| **Team Calendar**         | Event management        | • Birthdays & anniversaries<br>• Company events<br>• Visual indicators    |
+| **Quick Links**           | Bookmark management     | • Drag & drop sorting<br>• Add/remove links<br>• Quick access             |
 
 ### User Experience Features
 

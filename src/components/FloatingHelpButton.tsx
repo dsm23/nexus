@@ -1,25 +1,36 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { helpdeskTickets } from '@/data/mockData';
-import { 
-  MessageSquare, 
-  Phone, 
-  FileText, 
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { helpdeskTickets } from "@/data/mockData";
+import {
+  MessageSquare,
+  Phone,
+  FileText,
   Plus,
   AlertCircle,
   X,
-  Headphones
-} from 'lucide-react';
-import { useState, type FC } from 'react';
-import { Link } from 'react-router-dom';
+  Headphones,
+} from "lucide-react";
+import { useState, type FC } from "react";
+import { Link } from "react-router-dom";
 
 export const FloatingHelpButton: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
-  
-  const openTickets = helpdeskTickets.filter(t => t.status === 'open' || t.status === 'in-progress').length;
+
+  const openTickets = helpdeskTickets.filter(
+    (t) => t.status === "open" || t.status === "in-progress",
+  ).length;
   const hasOpenTickets = openTickets > 0;
 
   const handleDialogOpenChange = (open: boolean) => {
@@ -47,11 +58,17 @@ export const FloatingHelpButton: FC = () => {
                 className="h-14 w-14 rounded-full shadow-md hover:shadow-lg transition-all duration-300 relative border-primary bg-background/90 backdrop-blur-sm hover:bg-accent text-foreground hover:text-foreground hover:-translate-y-1 hover:scale-105"
                 onClick={handleButtonClick}
               >
-                <Headphones size={24} style={{ width: '24px', height: '24px' }} className="text-foreground" />
+                <Headphones
+                  size={24}
+                  style={{ width: "24px", height: "24px" }}
+                  className="text-foreground"
+                />
                 {/* Notification Badge */}
                 {hasOpenTickets && (
                   <div className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full flex items-center justify-center">
-                    <span className="text-xs text-white font-bold">{openTickets}</span>
+                    <span className="text-xs text-white font-bold">
+                      {openTickets}
+                    </span>
                   </div>
                 )}
               </Button>
@@ -60,7 +77,7 @@ export const FloatingHelpButton: FC = () => {
               <p>Help & Support</p>
             </TooltipContent>
           </Tooltip>
-          
+
           <DialogContent className="sm:max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
@@ -68,7 +85,7 @@ export const FloatingHelpButton: FC = () => {
                 Help & Support
               </DialogTitle>
             </DialogHeader>
-            
+
             <div className="space-y-4">
               {/* Quick Stats */}
               {hasOpenTickets && (
@@ -78,7 +95,8 @@ export const FloatingHelpButton: FC = () => {
                       <AlertCircle className="h-5 w-5 text-blue-600" />
                       <div>
                         <p className="text-sm font-medium text-blue-900">
-                          You have {openTickets} active ticket{openTickets !== 1 ? 's' : ''}
+                          You have {openTickets} active ticket
+                          {openTickets !== 1 ? "s" : ""}
                         </p>
                         <p className="text-xs text-blue-700">
                           Click "My Tickets" to view details
@@ -91,32 +109,56 @@ export const FloatingHelpButton: FC = () => {
 
               {/* Quick Actions */}
               <div className="grid gap-3">
-                <Link to="/help-desk?action=create" onClick={() => setIsOpen(false)}>
-                  <Button variant="outline" className="w-full justify-start gap-3 h-12">
+                <Link
+                  to="/help-desk?action=create"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-3 h-12"
+                  >
                     <Plus className="h-4 w-4 text-blue-600" />
                     <div className="text-left">
                       <p className="font-medium">Create New Ticket</p>
-                      <p className="text-xs text-muted-foreground">Report an issue or request help</p>
+                      <p className="text-xs text-muted-foreground">
+                        Report an issue or request help
+                      </p>
                     </div>
                   </Button>
                 </Link>
 
-                <Link to="/help-desk?tab=tickets" onClick={() => setIsOpen(false)}>
-                  <Button variant="outline" className="w-full justify-start gap-3 h-12">
+                <Link
+                  to="/help-desk?tab=tickets"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-3 h-12"
+                  >
                     <MessageSquare className="h-4 w-4 text-green-600" />
                     <div className="text-left">
                       <p className="font-medium">My Tickets</p>
-                      <p className="text-xs text-muted-foreground">View and track your support requests</p>
+                      <p className="text-xs text-muted-foreground">
+                        View and track your support requests
+                      </p>
                     </div>
                   </Button>
                 </Link>
 
-                <Link to="/help-desk?tab=knowledge" onClick={() => setIsOpen(false)}>
-                  <Button variant="outline" className="w-full justify-start gap-3 h-12">
+                <Link
+                  to="/help-desk?tab=knowledge"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-3 h-12"
+                  >
                     <FileText className="h-4 w-4 text-purple-600" />
                     <div className="text-left">
                       <p className="font-medium">Knowledge Base</p>
-                      <p className="text-xs text-muted-foreground">Browse help articles and guides</p>
+                      <p className="text-xs text-muted-foreground">
+                        Browse help articles and guides
+                      </p>
                     </div>
                   </Button>
                 </Link>
@@ -140,9 +182,9 @@ export const FloatingHelpButton: FC = () => {
               </Card>
 
               {/* Close Button */}
-              <Button 
-                variant="ghost" 
-                size="sm" 
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setIsOpen(false)}
                 className="w-full"
               >

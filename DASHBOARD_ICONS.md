@@ -5,6 +5,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 ## Main Dashboard Components
 
 ### 1. Company Announcements
+
 - **Main Icon**: 📢 Megaphone (`Megaphone` from lucide-react)
 - **Priority Icons**:
   - High Priority: ⚠️ Alert Circle (`AlertCircle`)
@@ -13,6 +14,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 - **Location**: Component title and individual announcement items
 
 ### 2. For You Feed
+
 - **Main Icon**: ✨ Sparkles (`Sparkles` from lucide-react)
 - **Content Type Icons**:
   - Document: 📄 File Text (`FileText`)
@@ -22,12 +24,14 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 - **Location**: Component title and individual feed items
 
 ### 3. Employee Directory
+
 - **Main Icon**: 👥 Users (`Users` from lucide-react)
 - **Action Icons**:
   - View All: 🔗 External Link (`ExternalLink`)
 - **Location**: Component title and action buttons
 
 ### 4. Kudos Feed
+
 - **Main Icon**: ❤️ Heart (`Heart` from lucide-react)
 - **Action Icons**:
   - Add Kudos: ➕ Plus (`Plus`)
@@ -35,6 +39,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 - **Location**: Component title and action buttons
 
 ### 5. Quick Links
+
 - **Main Icon**: 🔗 Link (`Link` from lucide-react)
 - **Dynamic Link Icons** (based on link name/URL):
   - Email/Mail: 📧 Mail (`Mail`)
@@ -49,6 +54,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 - **Location**: Component title and individual quick link items
 
 ### 6. Team Calendar
+
 - **Main Icon**: 👥 Users (`Users` from lucide-react)
 - **Event Type Icons**:
   - General Event: 📅 Calendar (`Calendar`)
@@ -59,6 +65,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 - **Location**: Component title and individual calendar events
 
 ### 7. Welcome Checklist
+
 - **Main Icon**: ✨ Sparkles (`Sparkles` from lucide-react)
 - **Management Icons**:
   - Dismiss: ❌ X (`X`)
@@ -67,6 +74,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 ## Global Navigation & Search
 
 ### 8. Global Search
+
 - **Main Icon**: 🔍 Search (`Search` from lucide-react)
 - **Keyboard Shortcut**: ⌘ Command (`Command`)
 - **Search Result Type Icons** (using emojis for visual variety):
@@ -79,6 +87,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 - **Location**: Header search bar and search results
 
 ### 9. Header
+
 - **Focus Mode Icons**:
   - Focus Mode: 🎯 Focus (`Focus`)
   - Exit Focus: 👁️ Eye (`Eye`)

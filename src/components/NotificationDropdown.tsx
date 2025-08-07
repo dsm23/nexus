@@ -1,43 +1,43 @@
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { forYouFeed, type FeedItem } from '@/data/mockData';
-import { formatRelativeTime } from '@/lib/utils';
-import { FileText, Bell, CheckSquare, Info, ArrowRight } from 'lucide-react';
-import { type FC } from 'react';
-import { Link } from 'react-router-dom';
+} from "@/components/ui/dropdown-menu";
+import { forYouFeed, type FeedItem } from "@/data/mockData";
+import { formatRelativeTime } from "@/lib/utils";
+import { FileText, Bell, CheckSquare, Info, ArrowRight } from "lucide-react";
+import { type FC } from "react";
+import { Link } from "react-router-dom";
 
-const getTypeIcon = (type: FeedItem['type']) => {
+const getTypeIcon = (type: FeedItem["type"]) => {
   switch (type) {
-    case 'document':
+    case "document":
       return <FileText className="h-4 w-4" />;
-    case 'news':
+    case "news":
       return <Info className="h-4 w-4" />;
-    case 'task':
+    case "task":
       return <CheckSquare className="h-4 w-4" />;
-    case 'update':
+    case "update":
       return <Bell className="h-4 w-4" />;
     default:
       return <Info className="h-4 w-4" />;
   }
 };
 
-const getTypeColor = (type: FeedItem['type']) => {
+const getTypeColor = (type: FeedItem["type"]) => {
   switch (type) {
-    case 'document':
-      return 'text-primary';
-    case 'news':
-      return 'text-green-800 dark:text-green-300';
-    case 'task':
-      return 'text-orange-800 dark:text-orange-300';
-    case 'update':
-      return 'text-purple-800 dark:text-purple-300';
+    case "document":
+      return "text-primary";
+    case "news":
+      return "text-green-800 dark:text-green-300";
+    case "task":
+      return "text-orange-800 dark:text-orange-300";
+    case "update":
+      return "text-purple-800 dark:text-purple-300";
     default:
-      return 'text-muted-foreground';
+      return "text-muted-foreground";
   }
 };
 
@@ -53,11 +53,11 @@ export const NotificationDropdown: FC = () => {
         <Button variant="outline" size="icon" className="relative h-10 w-10">
           <Bell className="h-[1.2rem] w-[1.2rem]" />
           {unreadCount > 0 && (
-            <Badge 
-              variant="destructive" 
+            <Badge
+              variant="destructive"
               className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
             >
-              {unreadCount > 9 ? '9+' : unreadCount}
+              {unreadCount > 9 ? "9+" : unreadCount}
             </Badge>
           )}
           <span className="sr-only">View notifications</span>
@@ -68,13 +68,17 @@ export const NotificationDropdown: FC = () => {
           <div className="flex items-center justify-between">
             <h4 className="font-semibold text-base">Notifications</h4>
             <Link to="/for-you">
-              <Button variant="ghost" size="sm" className="h-7 px-3 text-xs hover:bg-background">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 px-3 text-xs hover:bg-background"
+              >
                 View All
               </Button>
             </Link>
           </div>
         </div>
-        
+
         <div className="max-h-80 overflow-y-auto">
           {displayItems.length === 0 ? (
             <div className="text-center text-muted-foreground py-12">
@@ -85,16 +89,20 @@ export const NotificationDropdown: FC = () => {
           ) : (
             <div className="py-2">
               {displayItems.map((item, index) => (
-                <div 
-                  key={item.id} 
+                <div
+                  key={item.id}
                   className="flex gap-3 p-4 hover:bg-muted/200 transition-colors cursor-pointer bg-primary/3"
                 >
-                  <div className={`mt-1 flex-shrink-0 ${getTypeColor(item.type)}`}>
+                  <div
+                    className={`mt-1 flex-shrink-0 ${getTypeColor(item.type)}`}
+                  >
                     {getTypeIcon(item.type)}
                   </div>
                   <div className="flex-1 space-y-2 min-w-0">
                     <div className="flex items-start justify-between gap-3">
-                      <h5 className={`text-sm leading-5 ${index < 3 ? 'font-semibold text-foreground' : 'font-medium text-foreground/90'}`}>
+                      <h5
+                        className={`text-sm leading-5 ${index < 3 ? "font-semibold text-foreground" : "font-medium text-foreground/90"}`}
+                      >
                         {item.title}
                       </h5>
                       <span className="text-xs text-muted-foreground whitespace-nowrap mt-0.5">
@@ -105,7 +113,10 @@ export const NotificationDropdown: FC = () => {
                       {item.description}
                     </p>
                     {item.author && (
-                      <Badge variant="secondary" className="text-xs h-6 px-2 font-normal">
+                      <Badge
+                        variant="secondary"
+                        className="text-xs h-6 px-2 font-normal"
+                      >
                         {item.author}
                       </Badge>
                     )}
@@ -120,11 +131,15 @@ export const NotificationDropdown: FC = () => {
             </div>
           )}
         </div>
-        
+
         {forYouFeed.length > 5 && (
           <div className="p-3 border-t bg-muted/20">
             <Link to="/for-you" className="block">
-              <Button variant="outline" size="sm" className="w-full justify-center gap-2 h-9 text-sm font-medium">
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full justify-center gap-2 h-9 text-sm font-medium"
+              >
                 <span>View All {forYouFeed.length} Notifications</span>
                 <ArrowRight className="h-4 w-4" />
               </Button>

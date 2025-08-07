@@ -1,31 +1,35 @@
-import { Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface LoadingSpinnerProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
   className?: string;
 }
 
-export const LoadingSpinner = ({ size = 'md', className }: LoadingSpinnerProps) => {
+export const LoadingSpinner = ({
+  size = "md",
+  className,
+}: LoadingSpinnerProps) => {
   const sizeClasses = {
-    sm: 'h-4 w-4',
-    md: 'h-6 w-6',
-    lg: 'h-8 w-8',
+    sm: "h-4 w-4",
+    md: "h-6 w-6",
+    lg: "h-8 w-8",
   };
 
   return (
-    <Loader2 
-      className={cn('animate-spin', sizeClasses[size], className)} 
-    />
+    <Loader2 className={cn("animate-spin", sizeClasses[size], className)} />
   );
 };
 
 interface PageLoaderProps {
   message?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 }
 
-export const PageLoader = ({ message = 'Loading...', size = 'lg' }: PageLoaderProps) => {
+export const PageLoader = ({
+  message = "Loading...",
+  size = "lg",
+}: PageLoaderProps) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-[200px] space-y-4">
       <LoadingSpinner size={size} />
@@ -34,7 +38,11 @@ export const PageLoader = ({ message = 'Loading...', size = 'lg' }: PageLoaderPr
   );
 };
 
-export const FullPageLoader = ({ message = 'Loading...' }: { message?: string }) => {
+export const FullPageLoader = ({
+  message = "Loading...",
+}: {
+  message?: string;
+}) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
       <LoadingSpinner size="lg" />
