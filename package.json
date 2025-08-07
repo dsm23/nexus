@@ -44,6 +44,9 @@
     "tailwindcss": "4.1.11"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@commitlint/types": "19.8.1",
     "@eslint/js": "9.32.0",
     "@types/react": "19.1.9",
     "@types/react-dom": "19.1.7",
