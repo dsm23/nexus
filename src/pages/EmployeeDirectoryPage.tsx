@@ -1,19 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Header } from "@/components/Header";
-import { OrganizationChart } from "@/components/OrganizationChart";
-import { PageWrapper, PageSection } from "@/components/PageWrapper";
-import { employees } from "@/data/mockData";
+} from "~/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { Header } from "~/components/Header";
+import { OrganizationChart } from "~/components/OrganizationChart";
+import { PageWrapper, PageSection } from "~/components/PageWrapper";
+import { employees } from "~/data/mockData";
 import {
   ArrowLeft,
   Search,

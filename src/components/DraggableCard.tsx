@@ -1,5 +1,5 @@
-import { useDragAndDrop } from "@/hooks/useDragAndDrop";
-import { Button } from "@/components/ui/button";
+import { useDragAndDrop } from "~/hooks/useDragAndDrop";
+import { Button } from "~/components/ui/button";
 import { GripVertical } from "lucide-react";
 import { type FC, type ReactNode } from "react";
 

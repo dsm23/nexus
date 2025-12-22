@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { forYouFeed, type FeedItem } from "@/data/mockData";
-import { formatRelativeTime } from "@/lib/utils";
+} from "~/components/ui/dropdown-menu";
+import { forYouFeed, type FeedItem } from "~/data/mockData";
+import { formatRelativeTime } from "~/lib/utils";
 import { FileText, Bell, CheckSquare, Info, ArrowRight } from "lucide-react";
 import { type FC } from "react";
 import { Link } from "react-router-dom";

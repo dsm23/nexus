@@ -1,17 +1,17 @@
-import { Analytics } from "@/components/Analytics";
-import { CompanyAnnouncements } from "@/components/CompanyAnnouncements";
-import { DraggableCard } from "@/components/DraggableCard";
-import { EmployeeDirectory } from "@/components/EmployeeDirectory";
-import { Header } from "@/components/Header";
-import { KudosFeed } from "@/components/KudosFeed";
-import { Projects } from "@/components/Projects";
-import { QuickLinks } from "@/components/QuickLinks";
-import { Resources } from "@/components/Resources";
-import { TeamCalendar } from "@/components/TeamCalendar";
-import { TimeOff } from "@/components/TimeOff";
-import { WelcomeChecklist } from "@/components/WelcomeChecklist";
-import { useFocusMode } from "@/contexts/FocusModeContext";
-import { storage } from "@/lib/utils";
+import { Analytics } from "~/components/Analytics";
+import { CompanyAnnouncements } from "~/components/CompanyAnnouncements";
+import { DraggableCard } from "~/components/DraggableCard";
+import { EmployeeDirectory } from "~/components/EmployeeDirectory";
+import { Header } from "~/components/Header";
+import { KudosFeed } from "~/components/KudosFeed";
+import { Projects } from "~/components/Projects";
+import { QuickLinks } from "~/components/QuickLinks";
+import { Resources } from "~/components/Resources";
+import { TeamCalendar } from "~/components/TeamCalendar";
+import { TimeOff } from "~/components/TimeOff";
+import { WelcomeChecklist } from "~/components/WelcomeChecklist";
+import { useFocusMode } from "~/contexts/FocusModeContext";
+import { storage } from "~/lib/utils";
 import { useState, useEffect, type FC } from "react";
 
 export const Dashboard: FC = () => {

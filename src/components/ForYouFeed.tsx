@@ -4,10 +4,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { forYouFeed, type FeedItem } from "@/data/mockData";
-import { formatRelativeTime } from "@/lib/utils";
+} from "~/components/ui/card";
+import { Button } from "~/components/ui/button";
+import { forYouFeed, type FeedItem } from "~/data/mockData";
+import { formatRelativeTime } from "~/lib/utils";
 import {
   FileText,
   Bell,
@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { type FC } from "react";
 import { Link } from "react-router-dom";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const getTypeIcon = (type: FeedItem["type"]) => {
   switch (type) {

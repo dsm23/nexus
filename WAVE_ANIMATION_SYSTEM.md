@@ -110,7 +110,7 @@ interface UseWaveAnimationOptions {
 
 ```typescript
 // In any dashboard component
-import { useWaveAnimation } from '@/hooks/useWaveAnimation';
+import { useWaveAnimation } from '~/hooks/useWaveAnimation';
 
 export const MyComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();

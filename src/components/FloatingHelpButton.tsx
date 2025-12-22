@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent } from "~/components/ui/card";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "~/components/ui/dialog";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { helpdeskTickets } from "@/data/mockData";
+} from "~/components/ui/tooltip";
+import { helpdeskTickets } from "~/data/mockData";
 import {
   MessageSquare,
   Phone,

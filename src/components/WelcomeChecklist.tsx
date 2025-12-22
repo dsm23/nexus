@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { storage } from "@/lib/utils";
+} from "~/components/ui/card";
+import { Checkbox } from "~/components/ui/checkbox";
+import { storage } from "~/lib/utils";
 import { X, Sparkles } from "lucide-react";
 import { useState, type FC, useEffect } from "react";
 

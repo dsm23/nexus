@@ -4,15 +4,15 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { calendarEvents, type CalendarEvent } from "@/data/mockData";
-import { formatEventDate } from "@/lib/utils";
+} from "~/components/ui/card";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { calendarEvents, type CalendarEvent } from "~/data/mockData";
+import { formatEventDate } from "~/lib/utils";
 import { Calendar, Users, Cake, Award, ArrowRight } from "lucide-react";
 import { type FC } from "react";
 import { Link } from "react-router-dom";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const getEventIcon = (type: CalendarEvent["type"]) => {
   switch (type) {

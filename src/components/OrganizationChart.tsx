@@ -1,6 +1,6 @@
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { employees, type Employee } from "@/data/mockData";
+import { Badge } from "~/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { employees, type Employee } from "~/data/mockData";
 import { Users, Crown, Shield, User } from "lucide-react";
 import { type FC, useEffect, useRef } from "react";
 import { Tree, TreeNode } from "react-organizational-chart";

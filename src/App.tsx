@@ -1,4 +1,4 @@
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { TooltipProvider } from "~/components/ui/tooltip";
 import { type FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
