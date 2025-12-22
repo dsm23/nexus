@@ -1,6 +1,8 @@
 // Mock data for Nexus intranet dashboard
 // Simulates API responses as specified in PRD
 
+import type { PieProps } from "recharts";
+
 export interface User {
   id: string;
   name: string;
@@ -73,12 +75,6 @@ export interface DepartmentData {
   employees: number;
   projects: number;
   satisfaction: number;
-}
-
-export interface ProjectStatusData {
-  status: string;
-  count: number;
-  percentage: number;
 }
 
 export interface EngagementData {
@@ -651,10 +647,10 @@ export const departmentData: DepartmentData[] = [
   { department: "Executive", employees: 1, projects: 1, satisfaction: 4.8 },
 ];
 
-export const projectStatusData: ProjectStatusData[] = [
-  { status: "Active", count: 8, percentage: 66.7 },
-  { status: "Completed", count: 3, percentage: 25.0 },
-  { status: "On Hold", count: 1, percentage: 8.3 },
+export const projectStatusData: Required<PieProps>["data"] = [
+  { status: "Active", count: 8, percent: 66.7 },
+  { status: "Completed", count: 3, percent: 25.0 },
+  { status: "On Hold", count: 1, percent: 8.3 },
 ];
 
 export const engagementData: EngagementData[] = [
