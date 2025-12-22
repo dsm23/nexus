@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Header } from "@/components/Header";
-import { PageWrapper, PageSection } from "@/components/PageWrapper";
-import { forYouFeed, type FeedItem } from "@/data/mockData";
-import { formatRelativeTime } from "@/lib/utils";
+} from "~/components/ui/select";
+import { Header } from "~/components/Header";
+import { PageWrapper, PageSection } from "~/components/PageWrapper";
+import { forYouFeed, type FeedItem } from "~/data/mockData";
+import { formatRelativeTime } from "~/lib/utils";
 import {
   FileText,
   Bell,

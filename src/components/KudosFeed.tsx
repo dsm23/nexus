@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "~/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -14,16 +14,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { kudos as initialKudos, currentUser, type Kudo } from "@/data/mockData";
-import { formatRelativeTime, generateId } from "@/lib/utils";
+} from "~/components/ui/dialog";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
+import { Textarea } from "~/components/ui/textarea";
+import { kudos as initialKudos, currentUser, type Kudo } from "~/data/mockData";
+import { formatRelativeTime, generateId } from "~/lib/utils";
 import { Heart, Plus, ArrowRight } from "lucide-react";
 import { useState, type FC } from "react";
 import { Link } from "react-router-dom";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 export const KudosFeed: FC = () => {
   const [kudosList, setKudosList] = useState<Kudo[]>(initialKudos);

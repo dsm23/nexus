@@ -4,7 +4,7 @@ import {
   kudos,
   calendarEvents,
   forYouFeed,
-} from "@/data/mockData";
+} from "~/data/mockData";
 
 export interface SearchResult {
   id: string;

@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "~/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -17,13 +17,13 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Header } from "@/components/Header";
-import { PageWrapper, PageSection } from "@/components/PageWrapper";
-import { projects, type Project } from "@/data/mockData";
-import { generateId } from "@/lib/utils";
+} from "~/components/ui/dialog";
+import { Label } from "~/components/ui/label";
+import { Textarea } from "~/components/ui/textarea";
+import { Header } from "~/components/Header";
+import { PageWrapper, PageSection } from "~/components/PageWrapper";
+import { projects, type Project } from "~/data/mockData";
+import { generateId } from "~/lib/utils";
 import {
   ArrowLeft,
   Search,

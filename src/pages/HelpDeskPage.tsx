@@ -1,33 +1,33 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
+import { Textarea } from "~/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "~/components/ui/select";
+import { Badge } from "~/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Header } from "@/components/Header";
-import { PageWrapper, PageSection } from "@/components/PageWrapper";
+} from "~/components/ui/dialog";
+import { Header } from "~/components/Header";
+import { PageWrapper, PageSection } from "~/components/PageWrapper";
 import {
   helpdeskTickets,
   helpdeskKnowledgeBase,
   helpdeskCategories,
   type HelpdeskTicket,
   type HelpdeskKnowledgeBase,
-} from "@/data/mockData";
+} from "~/data/mockData";
 import {
   ArrowLeft,
   HelpCircle,

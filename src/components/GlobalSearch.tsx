@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+} from "~/components/ui/dialog";
+import { Input } from "~/components/ui/input";
 import { Search, Command } from "lucide-react";
 import { useState, useEffect, useMemo, useCallback, type FC } from "react";
-import { SearchService, type SearchResult } from "@/lib/searchService";
+import { SearchService, type SearchResult } from "~/lib/searchService";
 import { useNavigate } from "react-router-dom";
 
 const typeLabels = {

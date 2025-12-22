@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { helpdeskTickets } from "@/data/mockData";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
+import { helpdeskTickets } from "~/data/mockData";
 import {
   ArrowRight,
   Headphones,
@@ -10,7 +10,7 @@ import {
   CheckCircle,
   MessageSquare,
 } from "lucide-react";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { type FC } from "react";
 import { Link } from "react-router-dom";
 

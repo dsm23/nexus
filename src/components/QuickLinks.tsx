@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "~/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -14,11 +14,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { defaultQuickLinks, type QuickLink } from "@/data/mockData";
-import { generateId, storage } from "@/lib/utils";
+} from "~/components/ui/dialog";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
+import { defaultQuickLinks, type QuickLink } from "~/data/mockData";
+import { generateId, storage } from "~/lib/utils";
 import {
   Plus,
   Trash2,
@@ -31,7 +31,7 @@ import {
   Home,
 } from "lucide-react";
 import { useState, useEffect, type FC } from "react";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 export const QuickLinks: FC = () => {
   const [links, setLinks] = useState<QuickLink[]>([]);

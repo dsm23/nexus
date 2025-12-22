@@ -1,18 +1,18 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Header } from "@/components/Header";
-import { PageWrapper, PageSection } from "@/components/PageWrapper";
-import { announcements, type Announcement } from "@/data/mockData";
-import { formatRelativeTime } from "@/lib/utils";
+} from "~/components/ui/select";
+import { Header } from "~/components/Header";
+import { PageWrapper, PageSection } from "~/components/PageWrapper";
+import { announcements, type Announcement } from "~/data/mockData";
+import { formatRelativeTime } from "~/lib/utils";
 import {
   AlertCircle,
   Info,

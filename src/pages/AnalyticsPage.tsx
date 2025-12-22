@@ -1,15 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Header } from "@/components/Header";
-import { PageWrapper, PageSection } from "@/components/PageWrapper";
+} from "~/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { Header } from "~/components/Header";
+import { PageWrapper, PageSection } from "~/components/PageWrapper";
 import {
   analyticsMetrics,
   activityData,
@@ -18,7 +18,7 @@ import {
   engagementData,
   productivityData,
   type AnalyticsMetric,
-} from "@/data/mockData";
+} from "~/data/mockData";
 import {
   ArrowLeft,
   TrendingUp,

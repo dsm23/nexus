@@ -6,7 +6,7 @@ import {
   type FC,
   type ReactNode,
 } from "react";
-import { storage } from "@/lib/utils";
+import { storage } from "~/lib/utils";
 
 interface FocusModeContextType {
   isFocusMode: boolean;

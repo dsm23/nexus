@@ -4,10 +4,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { projects, type Project } from "@/data/mockData";
+} from "~/components/ui/card";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { projects, type Project } from "~/data/mockData";
 import {
   FolderOpen,
   ArrowRight,
@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { type FC } from "react";
 import { Link } from "react-router-dom";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const getStatusColor = (status: Project["status"]) => {
   switch (status) {

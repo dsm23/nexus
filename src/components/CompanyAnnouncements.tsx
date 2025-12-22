@@ -4,15 +4,15 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { announcements, type Announcement } from "@/data/mockData";
-import { formatRelativeTime } from "@/lib/utils";
+} from "~/components/ui/card";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { announcements, type Announcement } from "~/data/mockData";
+import { formatRelativeTime } from "~/lib/utils";
 import { AlertCircle, Info, Megaphone, ArrowRight } from "lucide-react";
 import { type FC } from "react";
 import { Link } from "react-router-dom";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const getPriorityIcon = (priority: Announcement["priority"]) => {
   switch (priority) {

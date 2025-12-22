@@ -1,17 +1,17 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Badge } from "~/components/ui/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { employees } from "@/data/mockData";
+} from "~/components/ui/card";
+import { employees } from "~/data/mockData";
 import { Users, ArrowRight } from "lucide-react";
 import { useState, type FC } from "react";
 import { Link } from "react-router-dom";
-import { useWaveAnimation } from "@/hooks/useWaveAnimation";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const departments = ["All", "Engineering", "Design", "Product", "Marketing"];
 
