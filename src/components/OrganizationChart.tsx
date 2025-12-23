@@ -99,6 +99,8 @@ const EmployeeNode: FC<EmployeeNodeProps> = ({ employee, isRoot = false }) => {
                       : "bg-gray-500 text-gray-50"
                 } `}
               >
+                {/* TODO re-write this logic to avoid the component being defined in render */}
+                {/* eslint-disable-next-line react-hooks/static-components */}
                 <HierarchyIcon className="h-3 w-3" />
               </div>
             </div>
