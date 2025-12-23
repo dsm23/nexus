@@ -8,8 +8,6 @@
     "helpers:pinGitHubActionDigestsToSemver",
     "security:openssf-scorecard",
     ":approveMajorUpdates",
-    ":automergeAll",
-    ":automergePr",
     ":enableVulnerabilityAlerts",
     ":pinAllExceptPeerDependencies"
   ],
