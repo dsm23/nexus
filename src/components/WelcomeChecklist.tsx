@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import type { FC } from "react";
+import { Sparkles, X } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -8,8 +11,6 @@ import {
 } from "~/components/ui/card";
 import { Checkbox } from "~/components/ui/checkbox";
 import { storage } from "~/lib/utils";
-import { X, Sparkles } from "lucide-react";
-import { useState, type FC, useEffect } from "react";
 
 interface ChecklistItem {
   id: string;
@@ -80,9 +81,9 @@ export const WelcomeChecklist: FC<WelcomeChecklistProps> = ({ onDismiss }) => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Sparkles className="h-5 w-5" />
             Welcome to Nexus! 🎉
           </CardTitle>
@@ -95,7 +96,7 @@ export const WelcomeChecklist: FC<WelcomeChecklistProps> = ({ onDismiss }) => {
           variant="ghost"
           size="sm"
           onClick={handleDismiss}
-          className="h-8 w-8 p-0 self-start sm:self-auto"
+          className="h-8 w-8 self-start p-0 sm:self-auto"
         >
           <X className="h-4 w-4" />
         </Button>
@@ -115,13 +116,13 @@ export const WelcomeChecklist: FC<WelcomeChecklistProps> = ({ onDismiss }) => {
               <div className="flex-1 space-y-1">
                 <label
                   htmlFor={item.id}
-                  className={`text-sm font-medium leading-none cursor-pointer ${
-                    item.completed ? "line-through text-muted-foreground" : ""
+                  className={`cursor-pointer text-sm leading-none font-medium ${
+                    item.completed ? "text-muted-foreground line-through" : ""
                   }`}
                 >
                   {item.label}
                 </label>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-muted-foreground text-xs">
                   {item.description}
                 </p>
               </div>
@@ -130,8 +131,8 @@ export const WelcomeChecklist: FC<WelcomeChecklistProps> = ({ onDismiss }) => {
         </div>
 
         {completedCount === totalCount && (
-          <div className="mt-4 p-3 bg-green-500/10 rounded-lg border border-green-500/20">
-            <p className="text-sm text-green-800 dark:text-green-300 font-medium">
+          <div className="mt-4 rounded-lg border border-green-500/20 bg-green-500/10 p-3">
+            <p className="text-sm font-medium text-green-800 dark:text-green-300">
               🎉 Congratulations! You've completed the welcome checklist.
             </p>
             <Button size="sm" onClick={handleDismiss} className="mt-2">

@@ -1,3 +1,16 @@
+import { useEffect, useState } from "react";
+import type { FC } from "react";
+import {
+  FileText,
+  Globe,
+  GripVertical,
+  Home,
+  Link,
+  Mail,
+  Plus,
+  Settings,
+  Trash2,
+} from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -17,21 +30,10 @@ import {
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { defaultQuickLinks, type QuickLink } from "~/data/mockData";
-import { generateId, storage } from "~/lib/utils";
-import {
-  Plus,
-  Trash2,
-  GripVertical,
-  Link,
-  Globe,
-  FileText,
-  Settings,
-  Mail,
-  Home,
-} from "lucide-react";
-import { useState, useEffect, type FC } from "react";
+import { defaultQuickLinks } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
+import { generateId, storage } from "~/lib/utils";
+import type { QuickLink } from "~/data/mockData";
 
 export const QuickLinks: FC = () => {
   const [links, setLinks] = useState<QuickLink[]>([]);
@@ -170,9 +172,9 @@ export const QuickLinks: FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Link className="h-5 w-5" />
             My Quick Links
           </CardTitle>
@@ -183,7 +185,7 @@ export const QuickLinks: FC = () => {
             <Button
               variant="outline"
               size="sm"
-              className="gap-2 w-full sm:w-auto"
+              className="w-full gap-2 sm:w-auto"
             >
               <Plus className="h-4 w-4" />
               Add
@@ -197,7 +199,7 @@ export const QuickLinks: FC = () => {
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+              <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-4 sm:gap-4">
                 <Label htmlFor="name" className="sm:text-right">
                   Name
                 </Label>
@@ -209,7 +211,7 @@ export const QuickLinks: FC = () => {
                   className="sm:col-span-3"
                 />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+              <div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-4 sm:gap-4">
                 <Label htmlFor="url" className="sm:text-right">
                   URL
                 </Label>
@@ -236,9 +238,9 @@ export const QuickLinks: FC = () => {
       </CardHeader>
       <CardContent ref={containerRef}>
         {links.length === 0 ? (
-          <div className="text-center text-muted-foreground py-8">
+          <div className="text-muted-foreground py-8 text-center">
             <p className="text-sm">No quick links yet.</p>
-            <p className="text-xs mt-1">
+            <p className="mt-1 text-xs">
               Add your most-used tools and resources.
             </p>
           </div>
@@ -251,7 +253,7 @@ export const QuickLinks: FC = () => {
                 onDragLeave={handleDragLeave}
                 onDrop={(e) => handleDrop(e, link.id)}
                 className={getItemClassName(
-                  `flex items-center justify-between p-2 rounded-lg border hover:bg-muted/50 ${
+                  `hover:bg-muted/50 flex items-center justify-between rounded-lg border p-2 ${
                     dragOverItem === link.id
                       ? "border-primary bg-primary/10"
                       : ""
@@ -259,18 +261,18 @@ export const QuickLinks: FC = () => {
                 )}
                 style={getItemStyle(index)}
               >
-                <div className="flex items-center gap-2 flex-1">
+                <div className="flex flex-1 items-center gap-2">
                   <div
                     draggable
                     onDragStart={(e) => handleDragStart(e, link.id)}
                     onDragEnd={handleDragEnd}
-                    className="cursor-move p-1 rounded hover:bg-muted"
+                    className="hover:bg-muted cursor-move rounded p-1"
                   >
-                    <GripVertical className="h-4 w-4 text-muted-foreground" />
+                    <GripVertical className="text-muted-foreground h-4 w-4" />
                   </div>
                   <button
                     onClick={() => handleLinkClick(link.url)}
-                    className="flex items-center gap-2 flex-1 text-left"
+                    className="flex flex-1 items-center gap-2 text-left"
                   >
                     {getLinkIcon(link.name, link.url)}
                     <span className="text-sm font-medium">{link.name}</span>
@@ -280,7 +282,7 @@ export const QuickLinks: FC = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => removeLink(link.id)}
-                  className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
+                  className="text-muted-foreground hover:text-destructive h-8 w-8 p-0"
                 >
                   <Trash2 className="h-3 w-3" />
                 </Button>

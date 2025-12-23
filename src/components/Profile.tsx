@@ -1,3 +1,15 @@
+import { type FC } from "react";
+import {
+  Bell,
+  FileText,
+  Heart,
+  HelpCircle,
+  LogOut,
+  MessageSquare,
+  Settings,
+  Shield,
+  User,
+} from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -8,18 +20,6 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { currentUser } from "~/data/mockData";
-import {
-  User,
-  Settings,
-  Bell,
-  HelpCircle,
-  LogOut,
-  Shield,
-  FileText,
-  Heart,
-  MessageSquare,
-} from "lucide-react";
-import { type FC } from "react";
 
 export const Profile: FC = () => {
   const handleProfileAction = (action: string) => {
@@ -70,11 +70,11 @@ export const Profile: FC = () => {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="relative h-10 w-10 rounded-full p-0 hover:bg-accent"
+          className="hover:bg-accent relative h-10 w-10 rounded-full p-0"
           aria-label="Profile menu"
         >
           <img
-            className="h-10 w-10 rounded-full object-cover border-2 border-border hover:border-primary transition-colors"
+            className="border-border hover:border-primary h-10 w-10 rounded-full border-2 object-cover transition-colors"
             src={currentUser.avatar}
             alt={`${currentUser.name}'s avatar`}
           />
@@ -83,13 +83,13 @@ export const Profile: FC = () => {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
+            <p className="text-sm leading-none font-medium">
               {currentUser.name}
             </p>
-            <p className="text-xs leading-none text-muted-foreground">
+            <p className="text-muted-foreground text-xs leading-none">
               {currentUser.role}
             </p>
-            <p className="text-xs leading-none text-muted-foreground">
+            <p className="text-muted-foreground text-xs leading-none">
               {currentUser.department}
             </p>
           </div>

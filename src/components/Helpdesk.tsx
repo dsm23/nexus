@@ -1,18 +1,18 @@
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Button } from "~/components/ui/button";
-import { Badge } from "~/components/ui/badge";
-import { helpdeskTickets } from "~/data/mockData";
+import { type FC } from "react";
 import {
-  ArrowRight,
-  Headphones,
-  Clock,
   AlertCircle,
+  ArrowRight,
   CheckCircle,
+  Clock,
+  Headphones,
   MessageSquare,
 } from "lucide-react";
-import { useWaveAnimation } from "~/hooks/useWaveAnimation";
-import { type FC } from "react";
 import { Link } from "react-router-dom";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { helpdeskTickets } from "~/data/mockData";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 export const Helpdesk: FC = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
@@ -83,7 +83,7 @@ export const Helpdesk: FC = () => {
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
         <CardTitle className="text-lg font-semibold">Helpdesk</CardTitle>
         <Link to="/helpdesk">
-          <Button variant="ghost" size="sm" className="gap-2 h-8">
+          <Button variant="ghost" size="sm" className="h-8 gap-2">
             Support
             <ArrowRight className="h-4 w-4" />
           </Button>
@@ -96,23 +96,23 @@ export const Helpdesk: FC = () => {
           style={getItemStyle(0)}
         >
           <div className="space-y-1">
-            <p className="text-lg font-bold text-primary">
+            <p className="text-primary text-lg font-bold">
               {openTickets.length}
             </p>
-            <p className="text-xs text-muted-foreground">Open Tickets</p>
+            <p className="text-muted-foreground text-xs">Open Tickets</p>
           </div>
           <div className="space-y-1">
             <p className="text-lg font-bold text-green-600">
               {userTickets.filter((t) => t.status === "resolved").length}
             </p>
-            <p className="text-xs text-muted-foreground">Resolved</p>
+            <p className="text-muted-foreground text-xs">Resolved</p>
           </div>
         </div>
 
         {/* Recent Tickets */}
         <div className={getItemClassName("space-y-3")} style={getItemStyle(1)}>
           <div className="flex items-center gap-2">
-            <Headphones className="h-4 w-4 text-muted-foreground" />
+            <Headphones className="text-muted-foreground h-4 w-4" />
             <h4 className="text-sm font-medium">Recent Tickets</h4>
           </div>
 
@@ -122,22 +122,22 @@ export const Helpdesk: FC = () => {
                 <div
                   key={ticket.id}
                   className={getItemClassName(
-                    "p-2 rounded-lg bg-muted/30 space-y-2",
+                    "bg-muted/30 space-y-2 rounded-lg p-2",
                   )}
                   style={getItemStyle(2 + index)}
                 >
                   <div className="flex items-start justify-between">
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-medium truncate">
+                      <p className="truncate text-xs font-medium">
                         {ticket.title}
                       </p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         {ticket.id} • {formatDate(ticket.submittedAt)}
                       </p>
                     </div>
-                    <div className="flex items-center gap-1 ml-2">
+                    <div className="ml-2 flex items-center gap-1">
                       <Badge
-                        className={`${getStatusColor(ticket.status)} border text-xs px-1.5 py-0.5`}
+                        className={`${getStatusColor(ticket.status)} border px-1.5 py-0.5 text-xs`}
                       >
                         <div className="flex items-center gap-1">
                           {getStatusIcon(ticket.status)}
@@ -153,7 +153,7 @@ export const Helpdesk: FC = () => {
                     >
                       {ticket.priority} Priority
                     </span>
-                    <span className="text-xs text-muted-foreground capitalize">
+                    <span className="text-muted-foreground text-xs capitalize">
                       {ticket.category}
                     </span>
                   </div>
@@ -162,11 +162,11 @@ export const Helpdesk: FC = () => {
             </div>
           ) : (
             <div
-              className={getItemClassName("text-center py-4")}
+              className={getItemClassName("py-4 text-center")}
               style={getItemStyle(2)}
             >
-              <MessageSquare className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-              <p className="text-xs text-muted-foreground">
+              <MessageSquare className="text-muted-foreground mx-auto mb-2 h-8 w-8" />
+              <p className="text-muted-foreground text-xs">
                 No support tickets
               </p>
             </div>
@@ -175,14 +175,14 @@ export const Helpdesk: FC = () => {
 
         {/* Quick Actions */}
         <div
-          className={getItemClassName("pt-3 border-t")}
+          className={getItemClassName("border-t pt-3")}
           style={getItemStyle(5)}
         >
           <Link to="/helpdesk" className="block">
             <Button
               variant="outline"
               size="sm"
-              className="w-full justify-center gap-2 h-8"
+              className="h-8 w-full justify-center gap-2"
             >
               <Headphones className="h-3 w-3" />
               <span className="text-xs">Submit Ticket</span>

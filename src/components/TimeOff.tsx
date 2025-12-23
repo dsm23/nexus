@@ -1,11 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Button } from "~/components/ui/button";
-import { Badge } from "~/components/ui/badge";
-import { userTimeOffBalance, timeOffRequests } from "~/data/mockData";
-import { Calendar, Clock, Plane, AlertCircle, ArrowRight } from "lucide-react";
-import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { type FC } from "react";
+import { AlertCircle, ArrowRight, Calendar, Clock, Plane } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { timeOffRequests, userTimeOffBalance } from "~/data/mockData";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 export const TimeOff: FC = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
@@ -48,7 +48,7 @@ export const TimeOff: FC = () => {
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
         <CardTitle className="text-lg font-semibold">Time Off</CardTitle>
         <Link to="/time-off">
-          <Button variant="outline" size="sm" className="gap-2 h-8">
+          <Button variant="outline" size="sm" className="h-8 gap-2">
             Manage
             <ArrowRight className="h-4 w-4" />
           </Button>
@@ -61,16 +61,16 @@ export const TimeOff: FC = () => {
           style={getItemStyle(0)}
         >
           <div className="space-y-1">
-            <p className="text-lg font-bold text-primary">
+            <p className="text-primary text-lg font-bold">
               {totalDaysRemaining}
             </p>
-            <p className="text-xs text-muted-foreground">Days Available</p>
+            <p className="text-muted-foreground text-xs">Days Available</p>
           </div>
           <div className="space-y-1">
             <p className="text-lg font-bold text-orange-600">
               {pendingRequests.length}
             </p>
-            <p className="text-xs text-muted-foreground">Pending</p>
+            <p className="text-muted-foreground text-xs">Pending</p>
           </div>
         </div>
 
@@ -89,9 +89,9 @@ export const TimeOff: FC = () => {
                 {vacationBalance.remaining} / {vacationBalance.total}
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
+            <div className="h-2 w-full rounded-full bg-gray-200">
               <div
-                className="bg-blue-600 h-2 rounded-full"
+                className="h-2 rounded-full bg-blue-600"
                 style={{
                   width: `${(vacationBalance.used / vacationBalance.total) * 100}%`,
                 }}
@@ -103,7 +103,7 @@ export const TimeOff: FC = () => {
         {/* Upcoming Time Off */}
         <div className={getItemClassName("space-y-3")} style={getItemStyle(2)}>
           <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-muted-foreground" />
+            <Calendar className="text-muted-foreground h-4 w-4" />
             <h4 className="text-sm font-medium">Upcoming Time Off</h4>
           </div>
 
@@ -113,17 +113,17 @@ export const TimeOff: FC = () => {
                 <div
                   key={request.id}
                   className={getItemClassName(
-                    "flex items-center justify-between p-2 rounded-lg bg-muted/30",
+                    "bg-muted/30 flex items-center justify-between rounded-lg p-2",
                   )}
                   style={getItemStyle(3 + index)}
                 >
-                  <div className="flex items-center gap-2 min-w-0">
+                  <div className="flex min-w-0 items-center gap-2">
                     {getTypeIcon(request.type)}
                     <div className="min-w-0">
-                      <p className="text-xs font-medium truncate capitalize">
+                      <p className="truncate text-xs font-medium capitalize">
                         {request.type}
                       </p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         {formatDate(request.startDate)} -{" "}
                         {formatDate(request.endDate)}
                       </p>
@@ -137,11 +137,11 @@ export const TimeOff: FC = () => {
             </div>
           ) : (
             <div
-              className={getItemClassName("text-center py-4")}
+              className={getItemClassName("py-4 text-center")}
               style={getItemStyle(3)}
             >
-              <Calendar className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-              <p className="text-xs text-muted-foreground">
+              <Calendar className="text-muted-foreground mx-auto mb-2 h-8 w-8" />
+              <p className="text-muted-foreground text-xs">
                 No upcoming time off
               </p>
             </div>
@@ -151,7 +151,7 @@ export const TimeOff: FC = () => {
         {/* Pending Requests Alert */}
         {pendingRequests.length > 0 && (
           <div
-            className={getItemClassName("pt-3 border-t")}
+            className={getItemClassName("border-t pt-3")}
             style={getItemStyle(5)}
           >
             <div className="flex items-center gap-2 text-sm text-yellow-600">
@@ -166,14 +166,14 @@ export const TimeOff: FC = () => {
 
         {/* Quick Actions */}
         <div
-          className={getItemClassName("pt-3 border-t")}
+          className={getItemClassName("border-t pt-3")}
           style={getItemStyle(6)}
         >
           <Link to="/time-off" className="block">
             <Button
               variant="outline"
               size="sm"
-              className="w-full justify-center gap-2 h-8"
+              className="h-8 w-full justify-center gap-2"
             >
               <Plane className="h-3 w-3" />
               <span className="text-xs">Request Time Off</span>

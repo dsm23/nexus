@@ -1,21 +1,21 @@
-import { TooltipProvider } from "~/components/ui/tooltip";
 import { type FC } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
+import { TooltipProvider } from "~/components/ui/tooltip";
+import { FloatingHelpButton } from "./components/FloatingHelpButton";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { FocusModeProvider } from "./contexts/FocusModeContext";
-import { ScrollToTop } from "./components/ScrollToTop";
-import { FloatingHelpButton } from "./components/FloatingHelpButton";
-import { Dashboard } from "./pages/Dashboard";
-import { ForYouPage } from "./pages/ForYouPage";
-import { CompanyAnnouncementsPage } from "./pages/CompanyAnnouncementsPage";
-import { KudosFeedPage } from "./pages/KudosFeedPage";
-import { EmployeeDirectoryPage } from "./pages/EmployeeDirectoryPage";
-import { CalendarPage } from "./pages/CalendarPage";
-import { ProjectsPage } from "./pages/ProjectsPage";
 import { AnalyticsPage } from "./pages/AnalyticsPage";
-import { ResourcesPage } from "./pages/ResourcesPage";
+import { CalendarPage } from "./pages/CalendarPage";
+import { CompanyAnnouncementsPage } from "./pages/CompanyAnnouncementsPage";
+import { Dashboard } from "./pages/Dashboard";
+import { EmployeeDirectoryPage } from "./pages/EmployeeDirectoryPage";
+import { ForYouPage } from "./pages/ForYouPage";
 import { HelpDeskPage } from "./pages/HelpDeskPage";
+import { KudosFeedPage } from "./pages/KudosFeedPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
+import { ResourcesPage } from "./pages/ResourcesPage";
 import { TimeOffPage } from "./pages/TimeOffPage";
 
 const AppRoutes: FC = () => {

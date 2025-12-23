@@ -1,3 +1,35 @@
+import { useState } from "react";
+import type { FC } from "react";
+import {
+  ArrowLeft,
+  Calendar,
+  Download,
+  FolderOpen,
+  Heart,
+  TrendingDown,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
@@ -8,46 +40,15 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
 import {
-  analyticsMetrics,
   activityData,
+  analyticsMetrics,
   departmentData,
-  projectStatusData,
   engagementData,
   productivityData,
-  type AnalyticsMetric,
+  projectStatusData,
 } from "~/data/mockData";
-import {
-  ArrowLeft,
-  TrendingUp,
-  TrendingDown,
-  Users,
-  FolderOpen,
-  Heart,
-  Calendar,
-  Download,
-} from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
-import {
-  LineChart,
-  Line,
-  AreaChart,
-  Area,
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import type { AnalyticsMetric } from "~/data/mockData";
 
 // Chart color schemes
 const chartColors = {
@@ -86,26 +87,26 @@ const MetricCard: FC<{ metric: AnalyticsMetric }> = ({ metric }) => (
     <CardContent className="p-4 sm:p-6">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+          <p className="text-muted-foreground text-xs font-medium sm:text-sm">
             {metric.name}
           </p>
-          <p className="text-lg sm:text-2xl font-bold">
+          <p className="text-lg font-bold sm:text-2xl">
             {metric.value}
             {metric.unit === "%" ? "%" : ""}
             {metric.unit !== "%" &&
               metric.unit !== "projects" &&
               metric.unit !== "members" &&
               metric.unit !== "kudos" && (
-                <span className="text-xs sm:text-sm text-muted-foreground ml-1">
+                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">
                   {metric.unit}
                 </span>
               )}
           </p>
           <div className="flex items-center gap-1 text-xs sm:text-sm">
             {metric.changeType === "increase" ? (
-              <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-green-600" />
+              <TrendingUp className="h-3 w-3 text-green-600 sm:h-4 sm:w-4" />
             ) : (
-              <TrendingDown className="h-3 w-3 sm:h-4 sm:w-4 text-red-600" />
+              <TrendingDown className="h-3 w-3 text-red-600 sm:h-4 sm:w-4" />
             )}
             <span
               className={
@@ -120,7 +121,7 @@ const MetricCard: FC<{ metric: AnalyticsMetric }> = ({ metric }) => (
           </div>
         </div>
         <div
-          className={`p-2 sm:p-3 rounded-full ${
+          className={`rounded-full p-2 sm:p-3 ${
             metric.changeType === "increase"
               ? "bg-green-100 text-green-600"
               : "bg-red-100 text-red-600"
@@ -137,13 +138,13 @@ export const AnalyticsPage: FC = () => {
   const [dateRange, setDateRange] = useState("7d");
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0} className="mb-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div className="mb-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <Link to="/">
               <Button variant="ghost" size="sm" className="gap-2 self-start">
                 <ArrowLeft className="h-4 w-4" />
@@ -151,7 +152,7 @@ export const AnalyticsPage: FC = () => {
               </Button>
             </Link>
 
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+            <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
               <Select value={dateRange} onValueChange={setDateRange}>
                 <SelectTrigger className="w-full sm:w-40">
                   <Calendar className="h-4 w-4" />
@@ -165,7 +166,7 @@ export const AnalyticsPage: FC = () => {
                 </SelectContent>
               </Select>
 
-              <Button variant="outline" className="gap-2 w-full sm:w-auto">
+              <Button variant="outline" className="w-full gap-2 sm:w-auto">
                 <Download className="h-4 w-4" />
                 <span className="sm:hidden">Export</span>
                 <span className="hidden sm:inline">Export Report</span>
@@ -174,10 +175,10 @@ export const AnalyticsPage: FC = () => {
           </div>
 
           <div className="space-y-2">
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
+            <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
               Analytics & Reports
             </h1>
-            <p className="text-sm sm:text-base text-muted-foreground">
+            <p className="text-muted-foreground text-sm sm:text-base">
               Comprehensive insights into team performance, engagement, and
               productivity
             </p>
@@ -187,7 +188,7 @@ export const AnalyticsPage: FC = () => {
         {/* Key Metrics */}
         <PageSection
           index={1}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6"
+          className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
         >
           {analyticsMetrics.map((metric, index) => (
             <div
@@ -204,7 +205,7 @@ export const AnalyticsPage: FC = () => {
         <Tabs defaultValue="overview" className="space-y-6">
           <PageSection index={2}>
             <div className="w-full overflow-x-auto">
-              <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-flex">
+              <TabsList className="grid w-full grid-cols-4 lg:inline-flex lg:w-auto">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="engagement">Engagement</TabsTrigger>
                 <TabsTrigger value="productivity">Productivity</TabsTrigger>
@@ -217,7 +218,7 @@ export const AnalyticsPage: FC = () => {
           <TabsContent value="overview" className="space-y-6">
             <PageSection
               index={3}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+              className="grid grid-cols-1 gap-6 lg:grid-cols-2"
             >
               {/* Activity Trends */}
               <Card
@@ -315,7 +316,7 @@ export const AnalyticsPage: FC = () => {
 
           {/* Engagement Tab */}
           <TabsContent value="engagement" className="space-y-6">
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
               <div className="xl:col-span-2">
                 <Card>
                   <CardHeader>
@@ -373,20 +374,20 @@ export const AnalyticsPage: FC = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-primary">
+                      <p className="text-primary text-2xl font-bold">
                         {engagementData[engagementData.length - 1]
                           ?.kudosGiven || 0}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Kudos Given This Month
                       </p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-secondary">
+                      <p className="text-secondary text-2xl font-bold">
                         {engagementData[engagementData.length - 1]
                           ?.kudosReceived || 0}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Kudos Received
                       </p>
                     </div>
@@ -395,7 +396,7 @@ export const AnalyticsPage: FC = () => {
                         {engagementData[engagementData.length - 1]
                           ?.announcements || 0}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Announcements
                       </p>
                     </div>
@@ -410,21 +411,21 @@ export const AnalyticsPage: FC = () => {
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Kudos Activity</span>
                       <div className="flex items-center text-green-600">
-                        <TrendingUp className="h-4 w-4 mr-1" />
+                        <TrendingUp className="mr-1 h-4 w-4" />
                         <span className="text-sm">+12%</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Communication</span>
                       <div className="flex items-center text-green-600">
-                        <TrendingUp className="h-4 w-4 mr-1" />
+                        <TrendingUp className="mr-1 h-4 w-4" />
                         <span className="text-sm">+8%</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Team Interaction</span>
                       <div className="flex items-center text-green-600">
-                        <TrendingUp className="h-4 w-4 mr-1" />
+                        <TrendingUp className="mr-1 h-4 w-4" />
                         <span className="text-sm">+15%</span>
                       </div>
                     </div>
@@ -436,7 +437,7 @@ export const AnalyticsPage: FC = () => {
 
           {/* Productivity Tab */}
           <TabsContent value="productivity" className="space-y-6">
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
               <div className="xl:col-span-2">
                 <Card>
                   <CardHeader>
@@ -480,20 +481,20 @@ export const AnalyticsPage: FC = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-primary">
+                      <p className="text-primary text-2xl font-bold">
                         {productivityData[productivityData.length - 1]
                           ?.tasksCompleted || 0}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Tasks Completed
                       </p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl font-bold text-secondary">
+                      <p className="text-secondary text-2xl font-bold">
                         {productivityData[productivityData.length - 1]
                           ?.projectsDelivered || 0}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Projects Delivered
                       </p>
                     </div>
@@ -503,7 +504,7 @@ export const AnalyticsPage: FC = () => {
                           ?.teamEfficiency || 0}
                         %
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Team Efficiency
                       </p>
                     </div>
@@ -518,21 +519,21 @@ export const AnalyticsPage: FC = () => {
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Task Completion</span>
                       <div className="flex items-center text-green-600">
-                        <TrendingUp className="h-4 w-4 mr-1" />
+                        <TrendingUp className="mr-1 h-4 w-4" />
                         <span className="text-sm">+18%</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Project Delivery</span>
                       <div className="flex items-center text-green-600">
-                        <TrendingUp className="h-4 w-4 mr-1" />
+                        <TrendingUp className="mr-1 h-4 w-4" />
                         <span className="text-sm">+25%</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-sm">Team Efficiency</span>
                       <div className="flex items-center text-green-600">
-                        <TrendingUp className="h-4 w-4 mr-1" />
+                        <TrendingUp className="mr-1 h-4 w-4" />
                         <span className="text-sm">+7%</span>
                       </div>
                     </div>
@@ -637,16 +638,16 @@ export const AnalyticsPage: FC = () => {
               </CardHeader>
               <CardContent>
                 {/* Mobile Card View */}
-                <div className="block md:hidden space-y-4">
+                <div className="block space-y-4 md:hidden">
                   {departmentData.map((dept) => (
                     <Card key={dept.department} className="p-4">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
-                          <h3 className="font-semibold text-base">
+                          <h3 className="text-base font-semibold">
                             {dept.department}
                           </h3>
                           <span
-                            className={`text-sm px-2 py-1 rounded-full ${
+                            className={`rounded-full px-2 py-1 text-sm ${
                               dept.satisfaction >= 4.3
                                 ? "bg-green-100 text-green-700"
                                 : dept.satisfaction >= 4.0
@@ -669,8 +670,8 @@ export const AnalyticsPage: FC = () => {
                           </div>
                         </div>
 
-                        <div className="pt-2 border-t">
-                          <div className="flex justify-between items-center text-sm">
+                        <div className="border-t pt-2">
+                          <div className="flex items-center justify-between text-sm">
                             <span className="text-muted-foreground">
                               Projects per Employee
                             </span>
@@ -685,17 +686,17 @@ export const AnalyticsPage: FC = () => {
                 </div>
 
                 {/* Desktop Table View */}
-                <div className="hidden md:block overflow-x-auto">
+                <div className="hidden overflow-x-auto md:block">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b">
-                        <th className="text-left py-3 px-2">Department</th>
-                        <th className="text-right py-3 px-2">Employees</th>
-                        <th className="text-right py-3 px-2">
+                        <th className="px-2 py-3 text-left">Department</th>
+                        <th className="px-2 py-3 text-right">Employees</th>
+                        <th className="px-2 py-3 text-right">
                           Active Projects
                         </th>
-                        <th className="text-right py-3 px-2">Satisfaction</th>
-                        <th className="text-right py-3 px-2">
+                        <th className="px-2 py-3 text-right">Satisfaction</th>
+                        <th className="px-2 py-3 text-right">
                           Projects per Employee
                         </th>
                       </tr>
@@ -704,20 +705,20 @@ export const AnalyticsPage: FC = () => {
                       {departmentData.map((dept) => (
                         <tr
                           key={dept.department}
-                          className="border-b hover:bg-muted/50 transition-colors"
+                          className="hover:bg-muted/50 border-b transition-colors"
                         >
-                          <td className="py-3 px-2 font-medium">
+                          <td className="px-2 py-3 font-medium">
                             {dept.department}
                           </td>
-                          <td className="text-right py-3 px-2">
+                          <td className="px-2 py-3 text-right">
                             {dept.employees}
                           </td>
-                          <td className="text-right py-3 px-2">
+                          <td className="px-2 py-3 text-right">
                             {dept.projects}
                           </td>
-                          <td className="text-right py-3 px-2">
+                          <td className="px-2 py-3 text-right">
                             <span
-                              className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                              className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${
                                 dept.satisfaction >= 4.3
                                   ? "bg-green-100 text-green-700"
                                   : dept.satisfaction >= 4.0
@@ -728,7 +729,7 @@ export const AnalyticsPage: FC = () => {
                               {dept.satisfaction.toFixed(1)}/5
                             </span>
                           </td>
-                          <td className="text-right py-3 px-2 font-medium">
+                          <td className="px-2 py-3 text-right font-medium">
                             {(dept.projects / dept.employees).toFixed(1)}
                           </td>
                         </tr>

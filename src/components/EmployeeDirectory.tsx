@@ -1,5 +1,9 @@
-import { Button } from "~/components/ui/button";
+import { useState } from "react";
+import type { FC } from "react";
+import { ArrowRight, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,9 +12,6 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { employees } from "~/data/mockData";
-import { Users, ArrowRight } from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const departments = ["All", "Engineering", "Design", "Product", "Marketing"];
@@ -28,9 +29,9 @@ export const EmployeeDirectory: FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Users className="h-5 w-5" />
             Employee Directory
           </CardTitle>
@@ -42,7 +43,7 @@ export const EmployeeDirectory: FC = () => {
           <Button
             variant="outline"
             size="sm"
-            className="gap-2 w-full sm:w-auto"
+            className="w-full gap-2 sm:w-auto"
           >
             View All
             <ArrowRight className="h-4 w-4" />
@@ -51,7 +52,7 @@ export const EmployeeDirectory: FC = () => {
       </CardHeader>
       <CardContent ref={containerRef}>
         {/* Department Filter */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="mb-6 flex flex-wrap gap-2">
           {departments.map((dept) => (
             <Button
               key={dept}
@@ -71,12 +72,12 @@ export const EmployeeDirectory: FC = () => {
         </div>
 
         {/* Employee Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {filteredEmployees.map((employee, index) => (
             <div
               key={employee.id}
               className={getItemClassName(
-                "p-4 rounded-lg border hover:bg-muted/50",
+                "hover:bg-muted/50 rounded-lg border p-4",
               )}
               style={getItemStyle(index)}
             >
@@ -85,14 +86,14 @@ export const EmployeeDirectory: FC = () => {
                   <img
                     src={employee.avatar}
                     alt={employee.name}
-                    className="w-10 h-10 rounded-full bg-muted"
+                    className="bg-muted h-10 w-10 rounded-full"
                   />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-sm font-medium truncate">
+                <div className="min-w-0 flex-1">
+                  <h4 className="truncate text-sm font-medium">
                     {employee.name}
                   </h4>
-                  <p className="text-sm text-muted-foreground truncate">
+                  <p className="text-muted-foreground truncate text-sm">
                     {employee.role}
                   </p>
                   <div className="mt-1">
@@ -120,8 +121,8 @@ export const EmployeeDirectory: FC = () => {
         </div>
 
         {filteredEmployees.length === 0 && (
-          <div className="text-center text-muted-foreground py-8">
-            <Users className="h-8 w-8 mx-auto mb-2 opacity-50" />
+          <div className="text-muted-foreground py-8 text-center">
+            <Users className="mx-auto mb-2 h-8 w-8 opacity-50" />
             <p className="text-sm">
               No employees found in {selectedDepartment} department.
             </p>
@@ -129,8 +130,8 @@ export const EmployeeDirectory: FC = () => {
         )}
 
         {/* Summary */}
-        <div className="mt-6 pt-4 border-t">
-          <p className="text-xs text-muted-foreground text-center">
+        <div className="mt-6 border-t pt-4">
+          <p className="text-muted-foreground text-center text-xs">
             Showing {filteredEmployees.length} of {employees.length} employees
             {selectedDepartment !== "All" && ` in ${selectedDepartment}`}
           </p>
@@ -142,7 +143,7 @@ export const EmployeeDirectory: FC = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground w-full gap-2"
                 >
                   <span>View {employees.length - 6} more employees</span>
                   <ArrowRight className="h-3 w-3" />

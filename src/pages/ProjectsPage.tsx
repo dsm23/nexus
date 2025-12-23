@@ -1,14 +1,25 @@
-import { Button } from "~/components/ui/button";
-import { Badge } from "~/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Input } from "~/components/ui/input";
+import { useState } from "react";
+import type { FC } from "react";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select";
+  AlertCircle,
+  ArrowLeft,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Filter,
+  FolderOpen,
+  MoreVertical,
+  Plus,
+  Search,
+  Target,
+  Users,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -18,28 +29,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
+import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { Textarea } from "~/components/ui/textarea";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
-import { projects, type Project } from "~/data/mockData";
-import { generateId } from "~/lib/utils";
 import {
-  ArrowLeft,
-  Search,
-  Filter,
-  Plus,
-  Calendar,
-  Users,
-  CheckCircle2,
-  Clock,
-  AlertCircle,
-  MoreVertical,
-  FolderOpen,
-  Target,
-} from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
+import { Textarea } from "~/components/ui/textarea";
+import { projects } from "~/data/mockData";
+import { generateId } from "~/lib/utils";
+import type { Project } from "~/data/mockData";
 
 const getStatusColor = (status: Project["status"]) => {
   switch (status) {
@@ -139,13 +141,13 @@ export const ProjectsPage: FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0} className="mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
@@ -155,10 +157,10 @@ export const ProjectsPage: FC = () => {
           </div>
 
           <div className="space-y-2">
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
+            <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
               Projects & Tasks
             </h1>
-            <p className="text-sm sm:text-base text-muted-foreground">
+            <p className="text-muted-foreground text-sm sm:text-base">
               Manage your projects, track progress, and collaborate with your
               team
             </p>
@@ -175,10 +177,10 @@ export const ProjectsPage: FC = () => {
             </CardHeader>
             <CardContent className="space-y-4 sm:space-y-6">
               {/* First Row - Search and Create */}
-              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:items-end">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                     <Input
                       placeholder="Search projects..."
                       value={searchQuery}
@@ -194,13 +196,13 @@ export const ProjectsPage: FC = () => {
                   onOpenChange={setIsAddDialogOpen}
                 >
                   <DialogTrigger asChild>
-                    <Button className="gap-2 w-full sm:w-auto whitespace-nowrap">
+                    <Button className="w-full gap-2 whitespace-nowrap sm:w-auto">
                       <Plus className="h-4 w-4" />
                       <span className="sm:hidden">Create Project</span>
                       <span className="hidden sm:inline">New Project</span>
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[500px] mx-4">
+                  <DialogContent className="mx-4 sm:max-w-[500px]">
                     <DialogHeader>
                       <DialogTitle>Create New Project</DialogTitle>
                       <DialogDescription>
@@ -209,7 +211,7 @@ export const ProjectsPage: FC = () => {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
+                      <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-4">
                         <Label htmlFor="name" className="sm:text-right">
                           Name
                         </Label>
@@ -221,10 +223,10 @@ export const ProjectsPage: FC = () => {
                           className="sm:col-span-3"
                         />
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-4 items-start gap-4">
+                      <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-4">
                         <Label
                           htmlFor="description"
-                          className="sm:text-right sm:mt-2"
+                          className="sm:mt-2 sm:text-right"
                         >
                           Description
                         </Label>
@@ -239,7 +241,7 @@ export const ProjectsPage: FC = () => {
                           rows={3}
                         />
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
+                      <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-4">
                         <Label htmlFor="priority" className="sm:text-right">
                           Priority
                         </Label>
@@ -276,11 +278,11 @@ export const ProjectsPage: FC = () => {
               </div>
 
               {/* Second Row - Filters */}
-              <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 sm:items-center">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 {/* Status Filter */}
                 <div className="w-full sm:w-56">
                   <Select value={filterStatus} onValueChange={setFilterStatus}>
-                    <SelectTrigger className="gap-2 h-10 w-full">
+                    <SelectTrigger className="h-10 w-full gap-2">
                       <Filter className="h-4 w-4" />
                       <SelectValue placeholder="Filter by status" />
                     </SelectTrigger>
@@ -300,7 +302,7 @@ export const ProjectsPage: FC = () => {
                     value={filterPriority}
                     onValueChange={setFilterPriority}
                   >
-                    <SelectTrigger className="gap-2 h-10 w-full">
+                    <SelectTrigger className="h-10 w-full gap-2">
                       <Target className="h-4 w-4" />
                       <SelectValue placeholder="Filter by priority" />
                     </SelectTrigger>
@@ -314,11 +316,11 @@ export const ProjectsPage: FC = () => {
                 </div>
 
                 {/* Spacer for alignment */}
-                <div className="flex-1 hidden sm:block" />
+                <div className="hidden flex-1 sm:block" />
               </div>
 
               {/* Results Count */}
-              <div className="text-xs sm:text-sm text-muted-foreground">
+              <div className="text-muted-foreground text-xs sm:text-sm">
                 Showing {filteredProjects.length} of {projectsList.length}{" "}
                 projects
               </div>
@@ -332,14 +334,14 @@ export const ProjectsPage: FC = () => {
             <PageSection index={2}>
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-8 sm:py-12">
-                  <div className="text-center space-y-3 max-w-sm mx-auto px-4">
-                    <div className="h-10 w-10 sm:h-12 sm:w-12 mx-auto bg-muted rounded-full flex items-center justify-center">
-                      <FolderOpen className="h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground" />
+                  <div className="mx-auto max-w-sm space-y-3 px-4 text-center">
+                    <div className="bg-muted mx-auto flex h-10 w-10 items-center justify-center rounded-full sm:h-12 sm:w-12">
+                      <FolderOpen className="text-muted-foreground h-5 w-5 sm:h-6 sm:w-6" />
                     </div>
-                    <h3 className="font-medium text-sm sm:text-base">
+                    <h3 className="text-sm font-medium sm:text-base">
                       {searchQuery ? "No projects found" : "No projects yet"}
                     </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-xs sm:text-sm">
                       {searchQuery
                         ? "Try adjusting your search or filter criteria"
                         : "Create your first project to get started"}
@@ -350,7 +352,7 @@ export const ProjectsPage: FC = () => {
                         onOpenChange={setIsAddDialogOpen}
                       >
                         <DialogTrigger asChild>
-                          <Button className="mt-3 sm:mt-4 gap-2 w-full sm:w-auto">
+                          <Button className="mt-3 w-full gap-2 sm:mt-4 sm:w-auto">
                             <Plus className="h-4 w-4" />
                             Create First Project
                           </Button>
@@ -364,7 +366,7 @@ export const ProjectsPage: FC = () => {
           ) : (
             filteredProjects.map((project, index) => (
               <PageSection key={project.id} index={index + 3}>
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="transition-shadow hover:shadow-md">
                   <CardContent className="p-4 sm:p-6">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div
@@ -373,12 +375,12 @@ export const ProjectsPage: FC = () => {
                         {getPriorityIcon(project.priority)}
                       </div>
 
-                      <div className="flex-1 space-y-3 sm:space-y-4 min-w-0">
+                      <div className="min-w-0 flex-1 space-y-3 sm:space-y-4">
                         {/* Project Header */}
                         <div className="flex items-start justify-between gap-2">
-                          <div className="space-y-2 flex-1 min-w-0">
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-                              <h3 className="font-semibold text-base sm:text-lg truncate">
+                          <div className="min-w-0 flex-1 space-y-2">
+                            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                              <h3 className="truncate text-base font-semibold sm:text-lg">
                                 {project.name}
                               </h3>
                               <div className="flex flex-wrap gap-2">
@@ -398,7 +400,7 @@ export const ProjectsPage: FC = () => {
                                 </Badge>
                               </div>
                             </div>
-                            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                            <p className="text-muted-foreground text-xs leading-relaxed sm:text-sm">
                               {project.description}
                             </p>
                           </div>
@@ -420,7 +422,7 @@ export const ProjectsPage: FC = () => {
                               {project.progress}%
                             </span>
                           </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                          <div className="h-2 w-full rounded-full bg-gray-200 dark:bg-gray-700">
                             <div
                               className={`h-2 rounded-full transition-all duration-300 ${getProgressColor(project.progress)}`}
                               style={{ width: `${project.progress}%` }}
@@ -429,7 +431,7 @@ export const ProjectsPage: FC = () => {
                         </div>
 
                         {/* Project Meta Info */}
-                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
+                        <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-xs sm:gap-4">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-3 w-3 flex-shrink-0" />
                             <span className="truncate">
@@ -447,8 +449,8 @@ export const ProjectsPage: FC = () => {
                         </div>
 
                         {/* Team Members Preview */}
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                          <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0">
+                        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                          <span className="text-muted-foreground flex-shrink-0 text-xs sm:text-sm">
                             Team:
                           </span>
                           <div className="flex flex-wrap gap-1">
@@ -481,11 +483,11 @@ export const ProjectsPage: FC = () => {
 
         {/* Load More Button (for future pagination) */}
         {filteredProjects.length > 0 && (
-          <div className="mt-6 sm:mt-8 text-center px-4">
+          <div className="mt-6 px-4 text-center sm:mt-8">
             <Button variant="outline" disabled className="w-full sm:w-auto">
               Load More Projects
             </Button>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-muted-foreground mt-2 text-xs">
               All projects loaded
             </p>
           </div>

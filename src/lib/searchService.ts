@@ -1,9 +1,9 @@
 import {
-  employees,
   announcements,
-  kudos,
   calendarEvents,
+  employees,
   forYouFeed,
+  kudos,
 } from "~/data/mockData";
 
 export interface SearchResult {

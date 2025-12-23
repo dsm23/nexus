@@ -1,3 +1,18 @@
+import { useState } from "react";
+import type { FC } from "react";
+import {
+  ArrowLeft,
+  Award,
+  Cake,
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  Filter,
+  Search,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
@@ -8,21 +23,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
-import { calendarEvents, type CalendarEvent } from "~/data/mockData";
-import {
-  ArrowLeft,
-  Search,
-  Filter,
-  Calendar,
-  Cake,
-  Award,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
+import { calendarEvents } from "~/data/mockData";
+import type { CalendarEvent } from "~/data/mockData";
 
 const getEventIcon = (type: CalendarEvent["type"]) => {
   switch (type) {
@@ -151,7 +153,7 @@ export const CalendarPage: FC = () => {
       days.push(
         <div
           key={`header-${i}`}
-          className="p-2 text-center text-sm font-medium text-muted-foreground border-b border-r"
+          className="text-muted-foreground border-r border-b p-2 text-center text-sm font-medium"
         >
           {dayNames[i]}
         </div>,
@@ -163,7 +165,7 @@ export const CalendarPage: FC = () => {
       days.push(
         <div
           key={`empty-${i}`}
-          className="p-2 border-b border-r bg-muted/20"
+          className="bg-muted/20 border-r border-b p-2"
         ></div>,
       );
     }
@@ -176,10 +178,10 @@ export const CalendarPage: FC = () => {
       days.push(
         <div
           key={day}
-          className="p-2 border-b border-r min-h-[120px] bg-background hover:bg-muted/30 transition-colors"
+          className="bg-background hover:bg-muted/30 min-h-[120px] border-r border-b p-2 transition-colors"
         >
           <div
-            className={`text-sm font-medium mb-1 ${isCurrentDay ? "bg-primary text-primary-foreground rounded-full w-6 h-6 flex items-center justify-center" : ""}`}
+            className={`mb-1 text-sm font-medium ${isCurrentDay ? "bg-primary text-primary-foreground flex h-6 w-6 items-center justify-center rounded-full" : ""}`}
           >
             {day}
           </div>
@@ -187,7 +189,7 @@ export const CalendarPage: FC = () => {
             {dayEvents.slice(0, 3).map((event) => (
               <div
                 key={event.id}
-                className={`text-xs p-1 rounded truncate ${getEventBgColor(event.type)} border`}
+                className={`truncate rounded p-1 text-xs ${getEventBgColor(event.type)} border`}
                 title={`${event.title}${event.description ? ` - ${event.description}` : ""}`}
               >
                 <div className="flex items-center gap-1">
@@ -199,7 +201,7 @@ export const CalendarPage: FC = () => {
               </div>
             ))}
             {dayEvents.length > 3 && (
-              <div className="text-xs text-muted-foreground">
+              <div className="text-muted-foreground text-xs">
                 +{dayEvents.length - 3} more
               </div>
             )}
@@ -212,13 +214,13 @@ export const CalendarPage: FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0} className="mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
@@ -240,9 +242,9 @@ export const CalendarPage: FC = () => {
           <Card className="mb-6">
             <CardContent className="p-6">
               {/* Search and Filters */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Search className="text-muted-foreground absolute top-3 left-3 h-4 w-4" />
                   <Input
                     placeholder="Search events..."
                     value={searchQuery}
@@ -251,7 +253,7 @@ export const CalendarPage: FC = () => {
                   />
                 </div>
                 <div className="flex items-center gap-2">
-                  <Filter className="h-4 w-4 text-muted-foreground" />
+                  <Filter className="text-muted-foreground h-4 w-4" />
                   <Select value={filterType} onValueChange={setFilterType}>
                     <SelectTrigger className="w-40">
                       <SelectValue placeholder="Filter by type" />
@@ -269,7 +271,7 @@ export const CalendarPage: FC = () => {
               </div>
 
               {/* Calendar Navigation */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b">
+              <div className="mb-6 flex items-center justify-between border-b pb-4">
                 <h2 className="text-2xl font-bold">
                   {getMonthName(currentDate)}
                 </h2>
@@ -299,7 +301,7 @@ export const CalendarPage: FC = () => {
               </div>
 
               {/* Calendar Grid */}
-              <div className="grid grid-cols-7 border-l border-t">
+              <div className="grid grid-cols-7 border-t border-l">
                 {renderCalendarGrid()}
               </div>
             </CardContent>
@@ -310,7 +312,7 @@ export const CalendarPage: FC = () => {
         <PageSection index={2}>
           <Card className="mt-6">
             <CardContent>
-              <h3 className="text-lg font-semibold mb-4">Event Types</h3>
+              <h3 className="mb-4 text-lg font-semibold">Event Types</h3>
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center gap-2">
                   <div className="text-blue-600">
@@ -338,8 +340,8 @@ export const CalendarPage: FC = () => {
         {/* Summary */}
         {filteredEvents.length !== calendarEvents.length && (
           <PageSection index={3}>
-            <div className="mt-6 pt-4 border-t text-center">
-              <p className="text-xs text-muted-foreground">
+            <div className="mt-6 border-t pt-4 text-center">
+              <p className="text-muted-foreground text-xs">
                 Showing {filteredEvents.length} of {calendarEvents.length}{" "}
                 events
                 {searchQuery && ` matching "${searchQuery}"`}

@@ -134,8 +134,8 @@
   }
 
   .dark ::-webkit-scrollbar-thumb {
-    background-color: oklch(0.439 0 0);
     border-radius: 4px;
+    background-color: oklch(0.439 0 0);
   }
 
   .dark ::-webkit-scrollbar-thumb:hover {

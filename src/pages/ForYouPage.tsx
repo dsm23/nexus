@@ -1,3 +1,17 @@
+import { useState } from "react";
+import type { FC } from "react";
+import {
+  ArrowLeft,
+  Bell,
+  CheckSquare,
+  FileText,
+  Filter,
+  Info,
+  Search,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
@@ -8,21 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
-import { forYouFeed, type FeedItem } from "~/data/mockData";
+import { forYouFeed } from "~/data/mockData";
 import { formatRelativeTime } from "~/lib/utils";
-import {
-  FileText,
-  Bell,
-  CheckSquare,
-  Info,
-  ArrowLeft,
-  Search,
-  Filter,
-} from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
+import type { FeedItem } from "~/data/mockData";
 
 const getTypeIcon = (type: FeedItem["type"]) => {
   switch (type) {
@@ -87,13 +89,13 @@ export const ForYouPage: FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
@@ -116,11 +118,11 @@ export const ForYouPage: FC = () => {
             <CardTitle className="text-lg">Filter & Search</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row">
               {/* Search Input */}
               <div className="flex-1">
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                   <Input
                     placeholder="Search updates, documents, tasks..."
                     value={searchQuery}
@@ -149,7 +151,7 @@ export const ForYouPage: FC = () => {
             </div>
 
             {/* Results Count */}
-            <div className="mt-4 text-sm text-muted-foreground">
+            <div className="text-muted-foreground mt-4 text-sm">
               Showing {filteredItems.length} of {forYouFeed.length} items
             </div>
           </CardContent>
@@ -161,12 +163,12 @@ export const ForYouPage: FC = () => {
             <PageSection index={2}>
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-12">
-                  <div className="text-center space-y-2">
-                    <div className="h-12 w-12 mx-auto bg-muted rounded-full flex items-center justify-center">
-                      <Search className="h-6 w-6 text-muted-foreground" />
+                  <div className="space-y-2 text-center">
+                    <div className="bg-muted mx-auto flex h-12 w-12 items-center justify-center rounded-full">
+                      <Search className="text-muted-foreground h-6 w-6" />
                     </div>
                     <h3 className="font-medium">No items found</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       Try adjusting your search or filter criteria
                     </p>
                   </div>
@@ -176,7 +178,7 @@ export const ForYouPage: FC = () => {
           ) : (
             filteredItems.map((item, index) => (
               <PageSection key={item.id} index={index}>
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="transition-shadow hover:shadow-md">
                   <CardContent className="p-6">
                     <div className="flex gap-4">
                       <div className={`mt-1 ${getTypeColor(item.type)}`}>
@@ -185,27 +187,27 @@ export const ForYouPage: FC = () => {
                       <div className="flex-1 space-y-3">
                         <div className="flex items-start justify-between">
                           <div className="space-y-2">
-                            <h3 className="font-medium leading-none">
+                            <h3 className="leading-none font-medium">
                               {item.title}
                             </h3>
                             <div className="flex items-center gap-2">
                               <span
-                                className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border ${getTypeBadge(item.type)}`}
+                                className={`inline-flex items-center rounded-md border px-2 py-1 text-xs font-medium ${getTypeBadge(item.type)}`}
                               >
                                 {item.type.charAt(0).toUpperCase() +
                                   item.type.slice(1)}
                               </span>
-                              <span className="text-xs text-muted-foreground">
+                              <span className="text-muted-foreground text-xs">
                                 {formatRelativeTime(item.timestamp)}
                               </span>
                             </div>
                           </div>
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                        <p className="text-muted-foreground text-sm leading-relaxed">
                           {item.description}
                         </p>
                         {item.author && (
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-muted-foreground text-xs">
                             by {item.author}
                           </p>
                         )}
@@ -224,7 +226,7 @@ export const ForYouPage: FC = () => {
             <Button variant="outline" disabled>
               Load More Items
             </Button>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-muted-foreground mt-2 text-xs">
               All items loaded
             </p>
           </div>

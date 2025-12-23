@@ -1,11 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type FC,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import type { FC, ReactNode } from "react";
 import { storage } from "~/lib/utils";
 
 interface FocusModeContextType {

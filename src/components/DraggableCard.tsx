@@ -1,7 +1,7 @@
-import { useDragAndDrop } from "~/hooks/useDragAndDrop";
-import { Button } from "~/components/ui/button";
-import { GripVertical } from "lucide-react";
 import { type FC, type ReactNode } from "react";
+import { GripVertical } from "lucide-react";
+import { Button } from "~/components/ui/button";
+import { useDragAndDrop } from "~/hooks/useDragAndDrop";
 
 interface DraggableCardProps {
   id: string;
@@ -25,15 +25,15 @@ export const DraggableCard: FC<DraggableCardProps> = ({
       className={`group relative transition-all duration-200 ${className}`}
     >
       {/* Drag Handle Button */}
-      <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+      <div className="absolute top-3 right-3 z-10 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
         <Button
           variant="ghost"
           size="sm"
           {...getDragHandleProps({ id, type: "card" })}
           title="Drag to reorder"
-          className="h-8 w-8 p-0 hover:bg-background/80 backdrop-blur-sm border border-border/50 cursor-grab active:cursor-grabbing"
+          className="hover:bg-background/80 border-border/50 h-8 w-8 cursor-grab border p-0 backdrop-blur-sm active:cursor-grabbing"
         >
-          <GripVertical className="h-4 w-4 text-muted-foreground" />
+          <GripVertical className="text-muted-foreground h-4 w-4" />
         </Button>
       </div>
 

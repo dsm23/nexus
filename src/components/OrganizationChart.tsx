@@ -1,9 +1,11 @@
+import { useEffect, useRef } from "react";
+import type { FC } from "react";
+import { Crown, Shield, User, Users } from "lucide-react";
+import { Tree, TreeNode } from "react-organizational-chart";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { employees, type Employee } from "~/data/mockData";
-import { Users, Crown, Shield, User } from "lucide-react";
-import { type FC, useEffect, useRef } from "react";
-import { Tree, TreeNode } from "react-organizational-chart";
+import { employees } from "~/data/mockData";
+import type { Employee } from "~/data/mockData";
 
 const getDepartmentBadgeColor = (department: string) => {
   switch (department) {
@@ -78,49 +80,41 @@ const EmployeeNode: FC<EmployeeNodeProps> = ({ employee, isRoot = false }) => {
   return (
     <div className="flex justify-center">
       <Card
-        className={`
-        relative hover:shadow-lg transition-all duration-200 cursor-pointer
-        ${isRoot ? "border-2 border-primary shadow-lg" : ""}
-        ${level <= 1 ? "bg-gradient-to-br from-background to-muted/20" : ""}
-        w-[240px] min-w-[240px] max-w-[240px] flex-shrink-0
-      `}
+        className={`relative cursor-pointer transition-all duration-200 hover:shadow-lg ${isRoot ? "border-primary border-2 shadow-lg" : ""} ${level <= 1 ? "from-background to-muted/20 bg-gradient-to-br" : ""} w-[240px] max-w-[240px] min-w-[240px] flex-shrink-0`}
       >
         <CardContent className="p-4">
-          <div className="flex flex-col items-center text-center space-y-3">
+          <div className="flex flex-col items-center space-y-3 text-center">
             <div className="relative">
               <img
                 src={employee.avatar}
                 alt={employee.name}
-                className="w-16 h-16 rounded-full bg-muted border-2 border-background shadow-sm"
+                className="bg-muted border-background h-16 w-16 rounded-full border-2 shadow-sm"
               />
               <div
-                className={`
-                absolute -bottom-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs
-                ${
+                className={`absolute -right-1 -bottom-1 flex h-6 w-6 items-center justify-center rounded-full text-xs ${
                   level === 0
                     ? "bg-yellow-500 text-yellow-900"
                     : level <= 2
                       ? "bg-blue-500 text-blue-50"
                       : "bg-gray-500 text-gray-50"
-                }
-              `}
+                } `}
               >
-                <HierarchyIcon className="w-3 h-3" />
+                <HierarchyIcon className="h-3 w-3" />
               </div>
             </div>
 
-            <div className="space-y-2 w-full">
+            <div className="w-full space-y-2">
               <h4
                 className={`font-medium ${level === 0 ? "text-lg" : "text-sm"} truncate`}
               >
                 {employee.name}
               </h4>
-              <p className="text-xs text-muted-foreground leading-tight line-clamp-2">
+              <p className="text-muted-foreground line-clamp-2 text-xs leading-tight">
                 {employee.role}
               </p>
               <Badge
                 variant="outline"
-                className={`${getDepartmentBadgeColor(employee.department)} text-xs px-2 py-1`}
+                className={`${getDepartmentBadgeColor(employee.department)} px-2 py-1 text-xs`}
               >
                 {employee.department}
               </Badge>
@@ -235,12 +229,12 @@ export const OrganizationChart: FC = () => {
     return (
       <Card>
         <CardContent className="flex flex-col items-center justify-center py-12">
-          <div className="text-center space-y-2">
-            <div className="h-12 w-12 mx-auto bg-muted rounded-full flex items-center justify-center">
-              <Users className="h-6 w-6 text-muted-foreground" />
+          <div className="space-y-2 text-center">
+            <div className="bg-muted mx-auto flex h-12 w-12 items-center justify-center rounded-full">
+              <Users className="text-muted-foreground h-6 w-6" />
             </div>
             <h3 className="font-medium">No organization structure found</h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               Unable to build organization chart from employee data
             </p>
           </div>
@@ -272,12 +266,12 @@ export const OrganizationChart: FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-primary">
+              <div className="text-primary text-2xl font-bold">
                 {totalEmployees}
               </div>
-              <div className="text-sm text-muted-foreground">
+              <div className="text-muted-foreground text-sm">
                 Total Employees
               </div>
             </div>
@@ -285,19 +279,19 @@ export const OrganizationChart: FC = () => {
               <div className="text-2xl font-bold text-blue-600">
                 {departmentCount}
               </div>
-              <div className="text-sm text-muted-foreground">Departments</div>
+              <div className="text-muted-foreground text-sm">Departments</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-green-600">
                 {levelCounts[3] || 0}
               </div>
-              <div className="text-sm text-muted-foreground">Managers</div>
+              <div className="text-muted-foreground text-sm">Managers</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-purple-600">
                 {(levelCounts[1] || 0) + (levelCounts[2] || 0)}
               </div>
-              <div className="text-sm text-muted-foreground">Leadership</div>
+              <div className="text-muted-foreground text-sm">Leadership</div>
             </div>
           </div>
         </CardContent>
@@ -350,28 +344,28 @@ export const OrganizationChart: FC = () => {
           <CardTitle className="text-lg">Hierarchy Legend</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-yellow-500 flex items-center justify-center">
-                <Crown className="w-3 h-3 text-yellow-900" />
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500">
+                <Crown className="h-3 w-3 text-yellow-900" />
               </div>
               <span className="text-sm">CEO / Executive</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center">
-                <Shield className="w-3 h-3 text-blue-50" />
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
+                <Shield className="h-3 w-3 text-blue-50" />
               </div>
               <span className="text-sm">Director / VP</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gray-500 flex items-center justify-center">
-                <Users className="w-3 h-3 text-gray-50" />
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-500">
+                <Users className="h-3 w-3 text-gray-50" />
               </div>
               <span className="text-sm">Manager / Lead</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-gray-500 flex items-center justify-center">
-                <User className="w-3 h-3 text-gray-50" />
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-500">
+                <User className="h-3 w-3 text-gray-50" />
               </div>
               <span className="text-sm">Individual Contributor</span>
             </div>

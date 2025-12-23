@@ -1,11 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Button } from "~/components/ui/button";
-import { analyticsMetrics, activityData } from "~/data/mockData";
-import { TrendingUp, TrendingDown, ArrowRight } from "lucide-react";
-import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { type FC } from "react";
+import { ArrowRight, TrendingDown, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
-import { LineChart, Line, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { Button } from "~/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { activityData, analyticsMetrics } from "~/data/mockData";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 export const Analytics: FC = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
@@ -22,7 +22,7 @@ export const Analytics: FC = () => {
           Analytics Overview
         </CardTitle>
         <Link to="/analytics">
-          <Button variant="outline" size="sm" className="gap-2 h-8">
+          <Button variant="outline" size="sm" className="h-8 gap-2">
             View All
             <ArrowRight className="h-4 w-4" />
           </Button>
@@ -30,17 +30,17 @@ export const Analytics: FC = () => {
       </CardHeader>
       <CardContent ref={containerRef} className="space-y-6">
         {/* Key Metrics Grid - Expanded for main layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:gap-6">
           {analyticsMetrics.slice(0, 4).map((metric, index) => (
             <div
               key={metric.id}
               className={getItemClassName(
-                "space-y-3 p-4 rounded-lg bg-muted/30 border",
+                "bg-muted/30 space-y-3 rounded-lg border p-4",
               )}
               style={getItemStyle(index)}
             >
               <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-muted-foreground">
+                <p className="text-muted-foreground text-sm font-medium">
                   {metric.name}
                 </p>
                 {metric.changeType === "increase" ? (
@@ -69,12 +69,12 @@ export const Analytics: FC = () => {
 
         {/* Mini Activity Chart - Enhanced for main layout */}
         <div
-          className={getItemClassName("grid grid-cols-1 lg:grid-cols-2 gap-6")}
+          className={getItemClassName("grid grid-cols-1 gap-6 lg:grid-cols-2")}
           style={getItemStyle(4)}
         >
           <div className="space-y-4">
-            <h4 className="text-base font-semibold flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-primary" />
+            <h4 className="flex items-center gap-2 text-base font-semibold">
+              <TrendingUp className="text-primary h-5 w-5" />
               Activity Trends (7 days)
             </h4>
             <div className="h-32">
@@ -111,17 +111,17 @@ export const Analytics: FC = () => {
             <div className="flex items-center justify-center gap-6">
               <div className="flex items-center gap-2">
                 <div
-                  className="w-3 h-3 rounded-full"
+                  className="h-3 w-3 rounded-full"
                   style={{ backgroundColor: chartColors.primary }}
                 ></div>
-                <span className="text-sm text-muted-foreground">Projects</span>
+                <span className="text-muted-foreground text-sm">Projects</span>
               </div>
               <div className="flex items-center gap-2">
                 <div
-                  className="w-3 h-3 rounded-full"
+                  className="h-3 w-3 rounded-full"
                   style={{ backgroundColor: chartColors.secondary }}
                 ></div>
-                <span className="text-sm text-muted-foreground">Kudos</span>
+                <span className="text-muted-foreground text-sm">Kudos</span>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@ export const Analytics: FC = () => {
             <div className="space-y-3">
               <div
                 className={getItemClassName(
-                  "p-3 rounded-lg bg-green-50 border border-green-200",
+                  "rounded-lg border border-green-200 bg-green-50 p-3",
                 )}
                 style={getItemStyle(5)}
               >
@@ -145,7 +145,7 @@ export const Analytics: FC = () => {
               </div>
               <div
                 className={getItemClassName(
-                  "p-3 rounded-lg bg-blue-50 border border-blue-200",
+                  "rounded-lg border border-blue-200 bg-blue-50 p-3",
                 )}
                 style={getItemStyle(6)}
               >
@@ -158,7 +158,7 @@ export const Analytics: FC = () => {
               </div>
               <div
                 className={getItemClassName(
-                  "p-3 rounded-lg bg-purple-50 border border-purple-200",
+                  "rounded-lg border border-purple-200 bg-purple-50 p-3",
                 )}
                 style={getItemStyle(7)}
               >
