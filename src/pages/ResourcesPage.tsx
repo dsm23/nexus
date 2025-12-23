@@ -1,3 +1,27 @@
+import { useMemo, useState } from "react";
+import type { FC } from "react";
+import {
+  ArrowLeft,
+  BookOpen,
+  Download,
+  ExternalLink,
+  Eye,
+  File,
+  FileText,
+  Filter,
+  GraduationCap,
+  Heart,
+  Library,
+  Search,
+  Settings,
+  Star,
+  User,
+  Video,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
+import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
@@ -8,35 +32,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { Badge } from "~/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
-import {
-  resourceCategories,
-  resourcesData,
-  type Resource,
-} from "~/data/mockData";
-import {
-  ArrowLeft,
-  FileText,
-  BookOpen,
-  Download,
-  Search,
-  Filter,
-  Star,
-  User,
-  ExternalLink,
-  File,
-  Video,
-  Eye,
-  Heart,
-  GraduationCap,
-  Settings,
-  Library,
-} from "lucide-react";
-import { useState, useMemo, type FC } from "react";
-import { Link } from "react-router-dom";
+import { resourceCategories, resourcesData } from "~/data/mockData";
+import type { Resource } from "~/data/mockData";
 
 const getFileIcon = (type: string) => {
   switch (type) {
@@ -81,20 +79,20 @@ const ResourceCard: FC<{
   style?: React.CSSProperties;
 }> = ({ resource, onToggleFavorite, className = "", style }) => (
   <Card
-    className={`hover:shadow-md transition-shadow ${className}`}
+    className={`transition-shadow hover:shadow-md ${className}`}
     style={style}
   >
     <CardContent className="p-4">
       <div className="space-y-3">
         <div className="flex items-start justify-between">
-          <div className="flex items-center gap-2 min-w-0 flex-1">
+          <div className="flex min-w-0 flex-1 items-center gap-2">
             {getFileIcon(resource.type)}
-            <h3 className="font-medium text-sm truncate">{resource.title}</h3>
+            <h3 className="truncate text-sm font-medium">{resource.title}</h3>
           </div>
           <Button
             variant="ghost"
             size="sm"
-            className="h-8 w-8 p-0 flex-shrink-0"
+            className="h-8 w-8 flex-shrink-0 p-0"
             onClick={() => onToggleFavorite(resource.id)}
           >
             <Heart
@@ -103,7 +101,7 @@ const ResourceCard: FC<{
           </Button>
         </div>
 
-        <p className="text-xs text-muted-foreground line-clamp-2">
+        <p className="text-muted-foreground line-clamp-2 text-xs">
           {resource.description}
         </p>
 
@@ -120,7 +118,7 @@ const ResourceCard: FC<{
           )}
         </div>
 
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex items-center justify-between text-xs">
           <div className="flex items-center gap-1">
             <User className="h-3 w-3" />
             <span>{resource.uploadedBy}</span>
@@ -129,12 +127,12 @@ const ResourceCard: FC<{
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+          <div className="text-muted-foreground flex items-center gap-1 text-xs">
             <Eye className="h-3 w-3" />
             <span>{resource.downloadCount} views</span>
           </div>
           <Button size="sm" className="h-7 text-xs">
-            <Download className="h-3 w-3 mr-1" />
+            <Download className="mr-1 h-3 w-3" />
             {resource.type === "link" ? "Open" : "Download"}
           </Button>
         </div>
@@ -198,13 +196,13 @@ export const ResourcesPage: FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0} className="mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
@@ -214,10 +212,10 @@ export const ResourcesPage: FC = () => {
           </div>
 
           <div className="space-y-2">
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
+            <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
               Company Resources & Documents
             </h1>
-            <p className="text-sm sm:text-base text-muted-foreground">
+            <p className="text-muted-foreground text-sm sm:text-base">
               Access company policies, documents, templates, and resources
             </p>
           </div>
@@ -225,13 +223,13 @@ export const ResourcesPage: FC = () => {
 
         <Tabs defaultValue="browse" className="space-y-6">
           <PageSection index={1}>
-            <TabsList className="grid w-full grid-cols-2 max-w-md">
+            <TabsList className="grid w-full max-w-md grid-cols-2">
               <TabsTrigger value="browse" className="gap-2">
-                <Search className="h-4 w-4 hidden sm:inline" />
+                <Search className="hidden h-4 w-4 sm:inline" />
                 Browse Resources
               </TabsTrigger>
               <TabsTrigger value="categories" className="gap-2">
-                <BookOpen className="h-4 w-4 hidden sm:inline" />
+                <BookOpen className="hidden h-4 w-4 sm:inline" />
                 Categories
               </TabsTrigger>
             </TabsList>
@@ -244,9 +242,9 @@ export const ResourcesPage: FC = () => {
               <Card>
                 <CardContent className="p-4">
                   <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col gap-4 sm:flex-row">
                       <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                         <Input
                           placeholder="Search resources, documents, and files..."
                           value={searchQuery}
@@ -264,13 +262,13 @@ export const ResourcesPage: FC = () => {
                       </Button>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col gap-4 sm:flex-row">
                       <Select
                         value={selectedCategory}
                         onValueChange={setSelectedCategory}
                       >
                         <SelectTrigger className="w-full sm:w-48">
-                          <Filter className="h-4 w-4 mr-2" />
+                          <Filter className="mr-2 h-4 w-4" />
                           <SelectValue placeholder="All Categories" />
                         </SelectTrigger>
                         <SelectContent>
@@ -311,12 +309,12 @@ export const ResourcesPage: FC = () => {
                 <h2 className="text-lg font-semibold">
                   {filteredResources.length} Resources Found
                 </h2>
-                <div className="text-sm text-muted-foreground">
+                <div className="text-muted-foreground text-sm">
                   Total: {resources.length} resources
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {filteredResources.map((resource, index) => (
                   <ResourceCard
                     key={resource.id}
@@ -331,8 +329,8 @@ export const ResourcesPage: FC = () => {
               {filteredResources.length === 0 && (
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center py-12">
-                    <Search className="h-12 w-12 text-muted-foreground mb-4" />
-                    <h3 className="text-lg font-medium mb-2">
+                    <Search className="text-muted-foreground mb-4 h-12 w-12" />
+                    <h3 className="mb-2 text-lg font-medium">
                       No resources found
                     </h3>
                     <p className="text-muted-foreground text-center">
@@ -347,17 +345,17 @@ export const ResourcesPage: FC = () => {
           {/* Categories Tab */}
           <TabsContent value="categories" className="space-y-6">
             <PageSection index={4}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {resourceCategories.map((category, index) => (
                   <Card
                     key={category.id}
-                    className="hover:shadow-md transition-shadow cursor-pointer animate-in fade-in slide-in-from-bottom-4 duration-300"
+                    className="animate-in fade-in slide-in-from-bottom-4 cursor-pointer transition-shadow duration-300 hover:shadow-md"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`p-2 rounded-lg bg-${category.color}-100 text-${category.color}-600`}
+                          className={`rounded-lg p-2 bg-${category.color}-100 text-${category.color}-600`}
                         >
                           {getCategoryIcon(category.icon)}
                         </div>
@@ -365,14 +363,14 @@ export const ResourcesPage: FC = () => {
                           <CardTitle className="text-base">
                             {category.name}
                           </CardTitle>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-muted-foreground text-sm">
                             {category.count} resources
                           </p>
                         </div>
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         {category.description}
                       </p>
                     </CardContent>

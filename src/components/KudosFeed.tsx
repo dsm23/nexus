@@ -1,3 +1,7 @@
+import { useState } from "react";
+import type { FC } from "react";
+import { ArrowRight, Heart, Plus } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -18,12 +22,10 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-import { kudos as initialKudos, currentUser, type Kudo } from "~/data/mockData";
-import { formatRelativeTime, generateId } from "~/lib/utils";
-import { Heart, Plus, ArrowRight } from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
+import { currentUser, kudos as initialKudos } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
+import { formatRelativeTime, generateId } from "~/lib/utils";
+import type { Kudo } from "~/data/mockData";
 
 export const KudosFeed: FC = () => {
   const [kudosList, setKudosList] = useState<Kudo[]>(initialKudos);
@@ -56,9 +58,9 @@ export const KudosFeed: FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Heart className="h-5 w-5" />
             Kudos & Shout-Outs
           </CardTitle>
@@ -66,7 +68,7 @@ export const KudosFeed: FC = () => {
             Recognize and celebrate your colleagues
           </CardDescription>
         </div>
-        <div className="flex items-center gap-2 w-full sm:w-auto">
+        <div className="flex w-full items-center gap-2 sm:w-auto">
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
             <DialogTrigger asChild>
               <Button variant="outline" size="sm" className="gap-2">
@@ -95,7 +97,7 @@ export const KudosFeed: FC = () => {
                   />
                 </div>
                 <div className="grid grid-cols-4 items-start gap-4">
-                  <Label htmlFor="message" className="text-right pt-2">
+                  <Label htmlFor="message" className="pt-2 text-right">
                     Message
                   </Label>
                   <Textarea
@@ -128,10 +130,10 @@ export const KudosFeed: FC = () => {
       </CardHeader>
       <CardContent ref={containerRef}>
         {displayKudos.length === 0 ? (
-          <div className="text-center text-muted-foreground py-8">
-            <Heart className="h-8 w-8 mx-auto mb-2 opacity-50" />
+          <div className="text-muted-foreground py-8 text-center">
+            <Heart className="mx-auto mb-2 h-8 w-8 opacity-50" />
             <p className="text-sm">No kudos yet.</p>
-            <p className="text-xs mt-1">
+            <p className="mt-1 text-xs">
               Be the first to recognize a colleague!
             </p>
           </div>
@@ -141,7 +143,7 @@ export const KudosFeed: FC = () => {
               <div
                 key={kudo.id}
                 className={getItemClassName(
-                  "p-4 rounded-lg border bg-gradient-to-r from-rose-500/5 to-pink-500/5 border-rose-500/20",
+                  "rounded-lg border border-rose-500/20 bg-gradient-to-r from-rose-500/5 to-pink-500/5 p-4",
                 )}
                 style={getItemStyle(index)}
               >
@@ -157,15 +159,15 @@ export const KudosFeed: FC = () => {
                             {kudo.from}
                           </span>
                           {" → "}
-                          <span className="text-red-600 dark:text-red-400 font-semibold">
+                          <span className="font-semibold text-red-600 dark:text-red-400">
                             {kudo.to}
                           </span>
                         </p>
-                        <p className="text-sm leading-relaxed text-foreground">
+                        <p className="text-foreground text-sm leading-relaxed">
                           {kudo.message}
                         </p>
                       </div>
-                      <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                      <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
                         {formatRelativeTime(kudo.timestamp)}
                       </span>
                     </div>
@@ -176,12 +178,12 @@ export const KudosFeed: FC = () => {
 
             {/* Show remaining count if there are more kudos */}
             {kudosList.length > 3 && (
-              <div className="pt-2 border-t">
+              <div className="border-t pt-2">
                 <Link to="/kudos">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-full gap-2 text-muted-foreground hover:text-foreground"
+                    className="text-muted-foreground hover:text-foreground w-full gap-2"
                   >
                     <span>View {kudosList.length - 3} more kudos</span>
                     <ArrowRight className="h-3 w-3" />

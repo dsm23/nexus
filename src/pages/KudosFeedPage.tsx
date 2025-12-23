@@ -1,3 +1,9 @@
+import { useState } from "react";
+import type { FC } from "react";
+import { ArrowLeft, Heart, Plus, Search } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
@@ -12,13 +18,9 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
-import { kudos as initialKudos, currentUser, type Kudo } from "~/data/mockData";
+import { currentUser, kudos as initialKudos } from "~/data/mockData";
 import { formatRelativeTime, generateId } from "~/lib/utils";
-import { Heart, Plus, ArrowLeft, Search } from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
+import type { Kudo } from "~/data/mockData";
 
 export const KudosFeedPage: FC = () => {
   const [kudosList, setKudosList] = useState<Kudo[]>(initialKudos);
@@ -57,14 +59,14 @@ export const KudosFeedPage: FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0}>
           <div className="mb-6">
-            <div className="flex items-center gap-4 mb-4">
+            <div className="mb-4 flex items-center gap-4">
               <Link to="/">
                 <Button variant="ghost" size="sm" className="gap-2">
                   <ArrowLeft className="h-4 w-4" />
@@ -94,11 +96,11 @@ export const KudosFeedPage: FC = () => {
               <CardTitle className="text-lg">Actions & Search</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 {/* Search Input */}
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                     <Input
                       placeholder="Search kudos by name or message..."
                       value={searchQuery}
@@ -140,7 +142,7 @@ export const KudosFeedPage: FC = () => {
                         />
                       </div>
                       <div className="grid grid-cols-4 items-start gap-4">
-                        <Label htmlFor="message" className="text-right pt-2">
+                        <Label htmlFor="message" className="pt-2 text-right">
                           Message
                         </Label>
                         <Textarea
@@ -166,7 +168,7 @@ export const KudosFeedPage: FC = () => {
               </div>
 
               {/* Results Count */}
-              <div className="mt-4 text-sm text-muted-foreground">
+              <div className="text-muted-foreground mt-4 text-sm">
                 Showing {filteredKudos.length} of {kudosList.length} kudos
               </div>
             </CardContent>
@@ -179,12 +181,12 @@ export const KudosFeedPage: FC = () => {
             <PageSection index={2}>
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-12">
-                  <div className="text-center space-y-2">
-                    <Heart className="h-12 w-12 mx-auto text-muted-foreground opacity-50" />
+                  <div className="space-y-2 text-center">
+                    <Heart className="text-muted-foreground mx-auto h-12 w-12 opacity-50" />
                     <h3 className="font-medium">
                       {searchQuery ? "No kudos found" : "No kudos yet"}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       {searchQuery
                         ? "Try adjusting your search criteria"
                         : "Be the first to recognize a colleague!"}
@@ -209,7 +211,7 @@ export const KudosFeedPage: FC = () => {
           ) : (
             filteredKudos.map((kudo, index) => (
               <PageSection key={kudo.id} index={index + 2}>
-                <div className="p-6 rounded-lg border bg-gradient-to-r from-rose-500/5 to-pink-500/5 border-rose-500/20 hover:shadow-md transition-shadow">
+                <div className="rounded-lg border border-rose-500/20 bg-gradient-to-r from-rose-500/5 to-pink-500/5 p-6 transition-shadow hover:shadow-md">
                   <div className="flex items-start gap-4">
                     <div className="mt-1 text-red-600 dark:text-red-400">
                       <Heart className="h-5 w-5 fill-current" />
@@ -222,15 +224,15 @@ export const KudosFeedPage: FC = () => {
                               {kudo.from}
                             </span>
                             {" → "}
-                            <span className="text-red-600 dark:text-red-400 font-semibold">
+                            <span className="font-semibold text-red-600 dark:text-red-400">
                               {kudo.to}
                             </span>
                           </p>
-                          <p className="text-sm leading-relaxed text-foreground">
+                          <p className="text-foreground text-sm leading-relaxed">
                             {kudo.message}
                           </p>
                         </div>
-                        <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                        <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
                           {formatRelativeTime(kudo.timestamp)}
                         </span>
                       </div>
@@ -248,7 +250,7 @@ export const KudosFeedPage: FC = () => {
             <Button variant="outline" disabled>
               Load More Kudos
             </Button>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-muted-foreground mt-2 text-xs">
               All kudos loaded
             </p>
           </div>

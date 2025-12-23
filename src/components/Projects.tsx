@@ -1,3 +1,16 @@
+import { type FC } from "react";
+import {
+  AlertCircle,
+  ArrowRight,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  FolderOpen,
+  Users,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -5,21 +18,9 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
-import { projects, type Project } from "~/data/mockData";
-import {
-  FolderOpen,
-  ArrowRight,
-  Calendar,
-  Users,
-  CheckCircle2,
-  AlertCircle,
-  Clock,
-} from "lucide-react";
-import { type FC } from "react";
-import { Link } from "react-router-dom";
+import { projects } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
+import type { Project } from "~/data/mockData";
 
 const getStatusColor = (status: Project["status"]) => {
   switch (status) {
@@ -64,9 +65,9 @@ export const Projects: FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <FolderOpen className="h-5 w-5" />
             Projects & Tasks
           </CardTitle>
@@ -78,7 +79,7 @@ export const Projects: FC = () => {
           <Button
             variant="outline"
             size="sm"
-            className="gap-2 w-full sm:w-auto"
+            className="w-full gap-2 sm:w-auto"
           >
             View All
             <ArrowRight className="h-4 w-4" />
@@ -87,10 +88,10 @@ export const Projects: FC = () => {
       </CardHeader>
       <CardContent ref={containerRef}>
         {displayProjects.length === 0 ? (
-          <div className="text-center text-muted-foreground py-8">
-            <FolderOpen className="h-8 w-8 mx-auto mb-2 opacity-50" />
+          <div className="text-muted-foreground py-8 text-center">
+            <FolderOpen className="mx-auto mb-2 h-8 w-8 opacity-50" />
             <p className="text-sm">No active projects.</p>
-            <p className="text-xs mt-1">
+            <p className="mt-1 text-xs">
               Create your first project to get started!
             </p>
           </div>
@@ -100,7 +101,7 @@ export const Projects: FC = () => {
               <div
                 key={project.id}
                 className={getItemClassName(
-                  "p-4 rounded-lg border hover:bg-muted/50",
+                  "hover:bg-muted/50 rounded-lg border p-4",
                 )}
                 style={getItemStyle(index)}
               >
@@ -112,14 +113,14 @@ export const Projects: FC = () => {
                     {/* Project Header */}
                     <div className="flex items-start justify-between">
                       <div className="space-y-1">
-                        <h4 className="text-sm font-medium leading-none">
+                        <h4 className="text-sm leading-none font-medium">
                           {project.name}
                         </h4>
-                        <p className="text-xs text-muted-foreground line-clamp-2">
+                        <p className="text-muted-foreground line-clamp-2 text-xs">
                           {project.description}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1 ml-2">
+                      <div className="ml-2 flex items-center gap-1">
                         <Badge
                           variant="outline"
                           className={
@@ -137,7 +138,7 @@ export const Projects: FC = () => {
                         <span className="text-muted-foreground">Progress</span>
                         <span className="font-medium">{project.progress}%</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+                      <div className="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
                         <div
                           className={`h-1.5 rounded-full transition-all duration-300 ${getProgressColor(project.progress)}`}
                           style={{ width: `${project.progress}%` }}
@@ -146,7 +147,7 @@ export const Projects: FC = () => {
                     </div>
 
                     {/* Project Meta Info */}
-                    <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                    <div className="text-muted-foreground flex flex-wrap items-center gap-3 text-xs">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         <span>Due: {project.endDate.toLocaleDateString()}</span>
@@ -167,12 +168,12 @@ export const Projects: FC = () => {
 
             {/* Show remaining count if there are more projects */}
             {projects.length > 3 && (
-              <div className="pt-2 border-t">
+              <div className="border-t pt-2">
                 <Link to="/projects">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-full gap-2 text-muted-foreground hover:text-foreground"
+                    className="text-muted-foreground hover:text-foreground w-full gap-2"
                   >
                     <span>View {projects.length - 3} more projects</span>
                     <ArrowRight className="h-3 w-3" />

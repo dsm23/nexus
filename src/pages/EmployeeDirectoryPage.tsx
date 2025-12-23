@@ -1,5 +1,21 @@
-import { Button } from "~/components/ui/button";
+import { useState } from "react";
+import type { FC } from "react";
+import {
+  ArrowLeft,
+  Filter,
+  Mail,
+  MapPin,
+  Network,
+  Phone,
+  Search,
+  Users,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Header } from "~/components/Header";
+import { OrganizationChart } from "~/components/OrganizationChart";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import {
@@ -10,22 +26,7 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { Header } from "~/components/Header";
-import { OrganizationChart } from "~/components/OrganizationChart";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
 import { employees } from "~/data/mockData";
-import {
-  ArrowLeft,
-  Search,
-  Filter,
-  Mail,
-  Phone,
-  MapPin,
-  Users,
-  Network,
-} from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
 
 const getDepartmentBadgeColor = (department: string) => {
   switch (department) {
@@ -73,14 +74,14 @@ export const EmployeeDirectoryPage: FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0}>
           <div className="mb-6">
-            <div className="flex items-center gap-4 mb-4">
+            <div className="mb-4 flex items-center gap-4">
               <Link to="/">
                 <Button variant="ghost" size="sm" className="gap-2">
                   <ArrowLeft className="h-4 w-4" />
@@ -103,13 +104,13 @@ export const EmployeeDirectoryPage: FC = () => {
         {/* Tabs for Directory and Org Chart */}
         <PageSection index={1}>
           <Tabs defaultValue="directory" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-2 max-w-md">
+            <TabsList className="grid w-full max-w-md grid-cols-2">
               <TabsTrigger value="directory" className="gap-2">
-                <Users className="h-4 w-4 hidden sm:inline" />
+                <Users className="hidden h-4 w-4 sm:inline" />
                 Directory
               </TabsTrigger>
               <TabsTrigger value="orgchart" className="gap-2">
-                <Network className="h-4 w-4 hidden sm:inline" />
+                <Network className="hidden h-4 w-4 sm:inline" />
                 Org Chart
               </TabsTrigger>
             </TabsList>
@@ -122,11 +123,11 @@ export const EmployeeDirectoryPage: FC = () => {
                   <CardTitle className="text-lg">Search & Filter</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col gap-4 sm:flex-row">
                     {/* Search Input */}
                     <div className="flex-1">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                         <Input
                           placeholder="Search by name, role, department, or email..."
                           value={searchQuery}
@@ -159,7 +160,7 @@ export const EmployeeDirectoryPage: FC = () => {
                   </div>
 
                   {/* Results Count */}
-                  <div className="mt-4 text-sm text-muted-foreground">
+                  <div className="text-muted-foreground mt-4 text-sm">
                     Showing {filteredEmployees.length} of {employees.length}{" "}
                     employees
                   </div>
@@ -172,12 +173,12 @@ export const EmployeeDirectoryPage: FC = () => {
                   <PageSection index={2}>
                     <Card>
                       <CardContent className="flex flex-col items-center justify-center py-12">
-                        <div className="text-center space-y-2">
-                          <div className="h-12 w-12 mx-auto bg-muted rounded-full flex items-center justify-center">
-                            <Search className="h-6 w-6 text-muted-foreground" />
+                        <div className="space-y-2 text-center">
+                          <div className="bg-muted mx-auto flex h-12 w-12 items-center justify-center rounded-full">
+                            <Search className="text-muted-foreground h-6 w-6" />
                           </div>
                           <h3 className="font-medium">No employees found</h3>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-muted-foreground text-sm">
                             Try adjusting your search or filter criteria
                           </p>
                         </div>
@@ -185,26 +186,26 @@ export const EmployeeDirectoryPage: FC = () => {
                     </Card>
                   </PageSection>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
                     {filteredEmployees.map((employee, index) => (
                       <PageSection key={employee.id} index={index + 2}>
-                        <Card className="hover:shadow-md transition-shadow">
+                        <Card className="transition-shadow hover:shadow-md">
                           <CardContent className="p-6">
                             <div className="flex items-start gap-4">
                               <div className="flex-shrink-0">
                                 <img
                                   src={employee.avatar}
                                   alt={employee.name}
-                                  className="w-12 h-12 rounded-full bg-muted"
+                                  className="bg-muted h-12 w-12 rounded-full"
                                 />
                               </div>
-                              <div className="flex-1 min-w-0">
+                              <div className="min-w-0 flex-1">
                                 <div className="space-y-3">
                                   <div>
-                                    <h3 className="font-medium truncate">
+                                    <h3 className="truncate font-medium">
                                       {employee.name}
                                     </h3>
-                                    <p className="text-sm text-muted-foreground truncate">
+                                    <p className="text-muted-foreground truncate text-sm">
                                       {employee.role}
                                     </p>
                                   </div>
@@ -223,7 +224,7 @@ export const EmployeeDirectoryPage: FC = () => {
                                   {/* Contact Information */}
                                   <div className="space-y-2">
                                     {employee.email && (
-                                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
                                         <Mail className="h-3 w-3" />
                                         <span className="truncate">
                                           {employee.email}
@@ -231,13 +232,13 @@ export const EmployeeDirectoryPage: FC = () => {
                                       </div>
                                     )}
                                     {employee.phone && (
-                                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
                                         <Phone className="h-3 w-3" />
                                         <span>{employee.phone}</span>
                                       </div>
                                     )}
                                     {employee.location && (
-                                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
                                         <MapPin className="h-3 w-3" />
                                         <span>{employee.location}</span>
                                       </div>
@@ -299,7 +300,7 @@ export const EmployeeDirectoryPage: FC = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                    <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                       {departments.map((dept) => {
                         const count = filteredEmployees.filter(
                           (emp) => emp.department === dept,
@@ -308,14 +309,14 @@ export const EmployeeDirectoryPage: FC = () => {
                           (emp) => emp.department === dept,
                         ).length;
                         return (
-                          <div key={dept} className="text-center space-y-1">
+                          <div key={dept} className="space-y-1 text-center">
                             <Badge
                               variant="outline"
                               className={getDepartmentBadgeColor(dept)}
                             >
                               {dept}
                             </Badge>
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-muted-foreground text-xs">
                               {count} / {total}
                             </p>
                           </div>
@@ -332,7 +333,7 @@ export const EmployeeDirectoryPage: FC = () => {
                   <Button variant="outline" disabled>
                     Load More Employees
                   </Button>
-                  <p className="text-xs text-muted-foreground mt-2">
+                  <p className="text-muted-foreground mt-2 text-xs">
                     All employees loaded
                   </p>
                 </div>

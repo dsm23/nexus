@@ -1,3 +1,14 @@
+import { type FC } from "react";
+import {
+  ArrowRight,
+  Bell,
+  CheckSquare,
+  FileText,
+  Info,
+  Sparkles,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -5,20 +16,10 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Button } from "~/components/ui/button";
-import { forYouFeed, type FeedItem } from "~/data/mockData";
-import { formatRelativeTime } from "~/lib/utils";
-import {
-  FileText,
-  Bell,
-  CheckSquare,
-  Info,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
-import { type FC } from "react";
-import { Link } from "react-router-dom";
+import { forYouFeed } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
+import { formatRelativeTime } from "~/lib/utils";
+import type { FeedItem } from "~/data/mockData";
 
 const getTypeIcon = (type: FeedItem["type"]) => {
   switch (type) {
@@ -58,9 +59,9 @@ export const ForYouFeed: FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Sparkles className="h-5 w-5" />
             For You
           </CardTitle>
@@ -72,7 +73,7 @@ export const ForYouFeed: FC = () => {
           <Button
             variant="outline"
             size="sm"
-            className="gap-2 w-full sm:w-auto"
+            className="w-full gap-2 sm:w-auto"
           >
             View All
             <ArrowRight className="h-4 w-4" />
@@ -85,7 +86,7 @@ export const ForYouFeed: FC = () => {
             <div
               key={item.id}
               className={getItemClassName(
-                "flex gap-3 p-3 rounded-lg border hover:bg-muted/50",
+                "hover:bg-muted/50 flex gap-3 rounded-lg border p-3",
               )}
               style={getItemStyle(index)}
             >
@@ -94,18 +95,18 @@ export const ForYouFeed: FC = () => {
               </div>
               <div className="flex-1 space-y-1">
                 <div className="flex items-start justify-between">
-                  <h4 className="text-sm font-medium leading-none">
+                  <h4 className="text-sm leading-none font-medium">
                     {item.title}
                   </h4>
-                  <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                  <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
                     {formatRelativeTime(item.timestamp)}
                   </span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {item.description}
                 </p>
                 {item.author && (
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     by {item.author}
                   </p>
                 )}
@@ -116,14 +117,14 @@ export const ForYouFeed: FC = () => {
           {/* Show remaining count if there are more items */}
           {forYouFeed.length > 3 && (
             <div
-              className={getItemClassName("pt-2 border-t")}
+              className={getItemClassName("border-t pt-2")}
               style={getItemStyle(displayItems.length)}
             >
               <Link to="/for-you">
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground w-full gap-2"
                 >
                   <span>View {forYouFeed.length - 3} more items</span>
                   <ArrowRight className="h-3 w-3" />

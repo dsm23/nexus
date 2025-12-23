@@ -1,3 +1,15 @@
+import { useState } from "react";
+import type { FC } from "react";
+import {
+  AlertCircle,
+  FileText,
+  Headphones,
+  MessageSquare,
+  Phone,
+  Plus,
+  X,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent } from "~/components/ui/card";
 import {
@@ -12,17 +24,6 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { helpdeskTickets } from "~/data/mockData";
-import {
-  MessageSquare,
-  Phone,
-  FileText,
-  Plus,
-  AlertCircle,
-  X,
-  Headphones,
-} from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
 
 export const FloatingHelpButton: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,14 +49,14 @@ export const FloatingHelpButton: FC = () => {
   return (
     <>
       {/* Floating Help Button */}
-      <div className="fixed bottom-26 right-6 z-40">
+      <div className="fixed right-6 bottom-26 z-40">
         <Dialog open={isOpen} onOpenChange={handleDialogOpenChange}>
           <Tooltip open={tooltipOpen} onOpenChange={setTooltipOpen}>
             <TooltipTrigger asChild>
               <Button
                 size="sm"
                 variant="outline"
-                className="h-14 w-14 rounded-full shadow-md hover:shadow-lg transition-all duration-300 relative border-primary bg-background/90 backdrop-blur-sm hover:bg-accent text-foreground hover:text-foreground hover:-translate-y-1 hover:scale-105"
+                className="border-primary bg-background/90 hover:bg-accent text-foreground hover:text-foreground relative h-14 w-14 rounded-full shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
                 onClick={handleButtonClick}
               >
                 <Headphones
@@ -65,8 +66,8 @@ export const FloatingHelpButton: FC = () => {
                 />
                 {/* Notification Badge */}
                 {hasOpenTickets && (
-                  <div className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full flex items-center justify-center">
-                    <span className="text-xs text-white font-bold">
+                  <div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500">
+                    <span className="text-xs font-bold text-white">
                       {openTickets}
                     </span>
                   </div>
@@ -89,7 +90,7 @@ export const FloatingHelpButton: FC = () => {
             <div className="space-y-4">
               {/* Quick Stats */}
               {hasOpenTickets && (
-                <Card className="bg-blue-50 border-blue-200 p-0">
+                <Card className="border-blue-200 bg-blue-50 p-0">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-3">
                       <AlertCircle className="h-5 w-5 text-blue-600" />
@@ -115,12 +116,12 @@ export const FloatingHelpButton: FC = () => {
                 >
                   <Button
                     variant="outline"
-                    className="w-full justify-start gap-3 h-12"
+                    className="h-12 w-full justify-start gap-3"
                   >
                     <Plus className="h-4 w-4 text-blue-600" />
                     <div className="text-left">
                       <p className="font-medium">Create New Ticket</p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         Report an issue or request help
                       </p>
                     </div>
@@ -133,12 +134,12 @@ export const FloatingHelpButton: FC = () => {
                 >
                   <Button
                     variant="outline"
-                    className="w-full justify-start gap-3 h-12"
+                    className="h-12 w-full justify-start gap-3"
                   >
                     <MessageSquare className="h-4 w-4 text-green-600" />
                     <div className="text-left">
                       <p className="font-medium">My Tickets</p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         View and track your support requests
                       </p>
                     </div>
@@ -151,12 +152,12 @@ export const FloatingHelpButton: FC = () => {
                 >
                   <Button
                     variant="outline"
-                    className="w-full justify-start gap-3 h-12"
+                    className="h-12 w-full justify-start gap-3"
                   >
                     <FileText className="h-4 w-4 text-purple-600" />
                     <div className="text-left">
                       <p className="font-medium">Knowledge Base</p>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         Browse help articles and guides
                       </p>
                     </div>
@@ -165,7 +166,7 @@ export const FloatingHelpButton: FC = () => {
               </div>
 
               {/* Emergency Contact */}
-              <Card className="bg-red-50 border-red-200 p-0">
+              <Card className="border-red-200 bg-red-50 p-0">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-3">
                     <Phone className="h-5 w-5 text-red-600" />
@@ -188,7 +189,7 @@ export const FloatingHelpButton: FC = () => {
                 onClick={() => setIsOpen(false)}
                 className="w-full"
               >
-                <X className="h-4 w-4 mr-2" />
+                <X className="mr-2 h-4 w-4" />
                 Close
               </Button>
             </div>

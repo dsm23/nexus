@@ -1,3 +1,8 @@
+import { type FC } from "react";
+import { ArrowRight, Award, Cake, Calendar, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -5,14 +10,10 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
-import { calendarEvents, type CalendarEvent } from "~/data/mockData";
-import { formatEventDate } from "~/lib/utils";
-import { Calendar, Users, Cake, Award, ArrowRight } from "lucide-react";
-import { type FC } from "react";
-import { Link } from "react-router-dom";
+import { calendarEvents } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
+import { formatEventDate } from "~/lib/utils";
+import type { CalendarEvent } from "~/data/mockData";
 
 const getEventIcon = (type: CalendarEvent["type"]) => {
   switch (type) {
@@ -64,9 +65,9 @@ export const TeamCalendar: FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Users className="h-5 w-5" />
             Team Calendar
           </CardTitle>
@@ -78,7 +79,7 @@ export const TeamCalendar: FC = () => {
           <Button
             variant="outline"
             size="sm"
-            className="gap-2 w-full sm:w-auto"
+            className="w-full gap-2 sm:w-auto"
           >
             View All
             <ArrowRight className="h-4 w-4" />
@@ -91,7 +92,7 @@ export const TeamCalendar: FC = () => {
             <div
               key={event.id}
               className={getItemClassName(
-                `p-3 rounded-lg border ${getEventBgColor(event.type)}`,
+                `rounded-lg border p-3 ${getEventBgColor(event.type)}`,
               )}
               style={getItemStyle(index)}
             >
@@ -101,15 +102,15 @@ export const TeamCalendar: FC = () => {
                 </div>
                 <div className="flex-1 space-y-1">
                   <div className="flex items-start justify-between">
-                    <h4 className="text-sm font-medium leading-none">
+                    <h4 className="text-sm leading-none font-medium">
                       {event.title}
                     </h4>
-                    <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                    <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
                       {formatEventDate(event.date)}
                     </span>
                   </div>
                   {event.description && (
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-muted-foreground text-xs">
                       {event.description}
                     </p>
                   )}
@@ -134,8 +135,8 @@ export const TeamCalendar: FC = () => {
         </div>
 
         {/* Summary */}
-        <div className="mt-6 pt-4 border-t">
-          <p className="text-xs text-muted-foreground text-center">
+        <div className="mt-6 border-t pt-4">
+          <p className="text-muted-foreground text-center text-xs">
             Showing {displayEvents.length} of {sortedEvents.length} upcoming
             events
           </p>
@@ -147,7 +148,7 @@ export const TeamCalendar: FC = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground w-full gap-2"
                 >
                   <span>
                     View {sortedEvents.length - 3} more{" "}

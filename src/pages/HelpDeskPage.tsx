@@ -1,17 +1,32 @@
+import { useEffect, useState } from "react";
+import type { FC } from "react";
+import {
+  AlertCircle,
+  ArrowLeft,
+  CheckCircle,
+  Clock,
+  Eye,
+  FileText,
+  HelpCircle,
+  Mail,
+  MessageSquare,
+  Monitor,
+  Phone,
+  Plus,
+  Search,
+  Settings,
+  Smartphone,
+  ThumbsUp,
+  Wifi,
+  XCircle,
+} from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
+import { toast } from "sonner";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
+import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { Input } from "~/components/ui/input";
-import { Label } from "~/components/ui/label";
-import { Textarea } from "~/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select";
-import { Badge } from "~/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
 import {
   Dialog,
   DialogContent,
@@ -19,38 +34,23 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import {
-  helpdeskTickets,
-  helpdeskKnowledgeBase,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { Textarea } from "~/components/ui/textarea";
+import {
   helpdeskCategories,
-  type HelpdeskTicket,
-  type HelpdeskKnowledgeBase,
+  helpdeskKnowledgeBase,
+  helpdeskTickets,
 } from "~/data/mockData";
-import {
-  ArrowLeft,
-  HelpCircle,
-  MessageSquare,
-  Phone,
-  Mail,
-  Plus,
-  Search,
-  Clock,
-  CheckCircle,
-  XCircle,
-  AlertCircle,
-  ThumbsUp,
-  Eye,
-  FileText,
-  Monitor,
-  Wifi,
-  Settings,
-  Smartphone,
-} from "lucide-react";
-import { useState, useEffect, type FC } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { toast } from "sonner";
+import type { HelpdeskKnowledgeBase, HelpdeskTicket } from "~/data/mockData";
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -129,20 +129,20 @@ const TicketCard: FC<{ ticket: HelpdeskTicket; index?: number }> = ({
   index = 0,
 }) => (
   <Card
-    className="hover:shadow-md transition-shadow animate-in fade-in slide-in-from-bottom-4 duration-300"
+    className="animate-in fade-in slide-in-from-bottom-4 transition-shadow duration-300 hover:shadow-md"
     style={{ animationDelay: `${(index + 1) * 100}ms` }}
   >
     <CardContent className="p-4">
       <div className="space-y-3">
         <div className="flex items-start justify-between">
-          <div className="space-y-1 min-w-0 flex-1">
+          <div className="min-w-0 flex-1 space-y-1">
             <div className="flex items-center gap-2">
               {getCategoryIcon(ticket.category)}
-              <h3 className="font-medium truncate">{ticket.title}</h3>
+              <h3 className="truncate font-medium">{ticket.title}</h3>
             </div>
-            <p className="text-sm text-muted-foreground">#{ticket.id}</p>
+            <p className="text-muted-foreground text-sm">#{ticket.id}</p>
           </div>
-          <div className="flex flex-col gap-2 items-end">
+          <div className="flex flex-col items-end gap-2">
             <Badge
               className={`${getStatusColor(ticket.status)} border text-xs`}
             >
@@ -157,9 +157,9 @@ const TicketCard: FC<{ ticket: HelpdeskTicket; index?: number }> = ({
           </div>
         </div>
 
-        <p className="text-sm line-clamp-2">{ticket.description}</p>
+        <p className="line-clamp-2 text-sm">{ticket.description}</p>
 
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex items-center justify-between text-xs">
           <span>Created {formatDate(ticket.submittedAt)}</span>
           {ticket.assignedTo && <span>Assigned to {ticket.assignedTo}</span>}
         </div>
@@ -173,16 +173,16 @@ const KnowledgeBaseCard: FC<{
   index?: number;
 }> = ({ article, index = 0 }) => (
   <Card
-    className="hover:shadow-md transition-shadow cursor-pointer animate-in fade-in slide-in-from-bottom-4 duration-300"
+    className="animate-in fade-in slide-in-from-bottom-4 cursor-pointer transition-shadow duration-300 hover:shadow-md"
     style={{ animationDelay: `${(index + 1) * 100}ms` }}
   >
     <CardContent className="p-4">
       <div className="space-y-3">
         <div className="flex items-start justify-between">
-          <div className="space-y-1 min-w-0 flex-1">
+          <div className="min-w-0 flex-1 space-y-1">
             <div className="flex items-center gap-2">
               <FileText className="h-4 w-4 text-blue-600" />
-              <h3 className="font-medium line-clamp-1">{article.title}</h3>
+              <h3 className="line-clamp-1 font-medium">{article.title}</h3>
             </div>
             <Badge variant="outline" className="text-xs capitalize">
               {article.category}
@@ -190,11 +190,11 @@ const KnowledgeBaseCard: FC<{
           </div>
         </div>
 
-        <p className="text-sm text-muted-foreground line-clamp-2">
+        <p className="text-muted-foreground line-clamp-2 text-sm">
           {article.content}
         </p>
 
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex items-center justify-between text-xs">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Eye className="h-3 w-3" />
@@ -413,13 +413,13 @@ export const HelpDeskPage: FC = () => {
   ).length;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0} className="mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
@@ -428,12 +428,12 @@ export const HelpDeskPage: FC = () => {
             </Link>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div className="space-y-2">
-              <h1 className="text-xl sm:text-2xl font-bold tracking-tight">
+              <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
                 Help Desk & Support
               </h1>
-              <p className="text-sm sm:text-base text-muted-foreground">
+              <p className="text-muted-foreground text-sm sm:text-base">
                 Get assistance with IT issues, submit tickets, and access
                 support resources
               </p>
@@ -448,7 +448,7 @@ export const HelpDeskPage: FC = () => {
         {/* Summary Stats */}
         <PageSection
           index={1}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"
+          className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-3"
         >
           <Card
             className="animate-in fade-in slide-in-from-bottom-4 duration-300"
@@ -458,7 +458,7 @@ export const HelpDeskPage: FC = () => {
               <div className="text-2xl font-bold text-blue-600">
                 {openTickets}
               </div>
-              <p className="text-sm text-muted-foreground">Open Tickets</p>
+              <p className="text-muted-foreground text-sm">Open Tickets</p>
             </CardContent>
           </Card>
           <Card
@@ -469,7 +469,7 @@ export const HelpDeskPage: FC = () => {
               <div className="text-2xl font-bold text-yellow-600">
                 {inProgressTickets}
               </div>
-              <p className="text-sm text-muted-foreground">In Progress</p>
+              <p className="text-muted-foreground text-sm">In Progress</p>
             </CardContent>
           </Card>
           <Card
@@ -480,7 +480,7 @@ export const HelpDeskPage: FC = () => {
               <div className="text-2xl font-bold text-green-600">
                 {resolvedTickets}
               </div>
-              <p className="text-sm text-muted-foreground">Resolved Today</p>
+              <p className="text-muted-foreground text-sm">Resolved Today</p>
             </CardContent>
           </Card>
         </PageSection>
@@ -488,7 +488,7 @@ export const HelpDeskPage: FC = () => {
         {/* Search Bar */}
         <PageSection index={2} className="mb-6">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
             <Input
               placeholder="Search tickets and knowledge base..."
               value={searchQuery}
@@ -504,24 +504,24 @@ export const HelpDeskPage: FC = () => {
             onValueChange={setActiveTab}
             className="space-y-6"
           >
-            <TabsList className="grid w-full grid-cols-3 max-w-md">
+            <TabsList className="grid w-full max-w-md grid-cols-3">
               <TabsTrigger value="tickets" className="gap-2">
-                <MessageSquare className="h-4 w-4 hidden sm:inline" />
+                <MessageSquare className="hidden h-4 w-4 sm:inline" />
                 My Tickets
               </TabsTrigger>
               <TabsTrigger value="knowledge" className="gap-2">
-                <FileText className="h-4 w-4 hidden sm:inline" />
+                <FileText className="hidden h-4 w-4 sm:inline" />
                 Knowledge Base
               </TabsTrigger>
               <TabsTrigger value="contact" className="gap-2">
-                <Phone className="h-4 w-4 hidden sm:inline" />
+                <Phone className="hidden h-4 w-4 sm:inline" />
                 Contact
               </TabsTrigger>
             </TabsList>
 
             {/* Tickets Tab */}
             <TabsContent value="tickets" className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <h2 className="text-lg font-semibold">Support Tickets</h2>
                 <Select value={ticketFilter} onValueChange={setTicketFilter}>
                   <SelectTrigger className="w-full sm:w-48">
@@ -538,7 +538,7 @@ export const HelpDeskPage: FC = () => {
               </div>
 
               <PageSection index={4}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {filteredTickets.map((ticket, index) => (
                     <TicketCard key={ticket.id} ticket={ticket} index={index} />
                   ))}
@@ -549,8 +549,8 @@ export const HelpDeskPage: FC = () => {
                 <PageSection index={7}>
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
-                      <MessageSquare className="h-12 w-12 text-muted-foreground mb-4" />
-                      <h3 className="text-lg font-medium mb-2">
+                      <MessageSquare className="text-muted-foreground mb-4 h-12 w-12" />
+                      <h3 className="mb-2 text-lg font-medium">
                         No tickets found
                       </h3>
                       <p className="text-muted-foreground text-center">
@@ -566,16 +566,16 @@ export const HelpDeskPage: FC = () => {
 
             {/* Knowledge Base Tab */}
             <TabsContent value="knowledge" className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <h2 className="text-lg font-semibold">Knowledge Base</h2>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="text-muted-foreground flex items-center gap-2 text-sm">
                   <FileText className="h-4 w-4" />
                   <span>{helpdeskKnowledgeBase.length} articles</span>
                 </div>
               </div>
 
               <PageSection index={5}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {filteredKnowledgeBase.map((article, index) => (
                     <KnowledgeBaseCard
                       key={article.id}
@@ -590,8 +590,8 @@ export const HelpDeskPage: FC = () => {
                 <PageSection index={8}>
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
-                      <FileText className="h-12 w-12 text-muted-foreground mb-4" />
-                      <h3 className="text-lg font-medium mb-2">
+                      <FileText className="text-muted-foreground mb-4 h-12 w-12" />
+                      <h3 className="mb-2 text-lg font-medium">
                         No articles found
                       </h3>
                       <p className="text-muted-foreground text-center">
@@ -606,7 +606,7 @@ export const HelpDeskPage: FC = () => {
             {/* Contact Tab */}
             <TabsContent value="contact" className="space-y-6">
               <PageSection index={9}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <Card
                     className="animate-in fade-in slide-in-from-bottom-4 duration-300"
                     style={{ animationDelay: "100ms" }}
@@ -618,7 +618,7 @@ export const HelpDeskPage: FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         For critical issues that require immediate attention
                       </p>
                       <div className="space-y-2">
@@ -649,7 +649,7 @@ export const HelpDeskPage: FC = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         For non-urgent issues and general inquiries
                       </p>
                       <div className="space-y-2">
@@ -681,7 +681,7 @@ export const HelpDeskPage: FC = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       Chat with our support team for real-time assistance
                     </p>
                     <div className="grid grid-cols-2 gap-4 text-sm">

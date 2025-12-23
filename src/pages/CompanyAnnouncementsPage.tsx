@@ -1,5 +1,18 @@
-import { Button } from "~/components/ui/button";
+import { useState } from "react";
+import type { FC } from "react";
+import {
+  AlertCircle,
+  ArrowLeft,
+  Filter,
+  Info,
+  Megaphone,
+  Search,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Header } from "~/components/Header";
+import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import {
@@ -9,20 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { Header } from "~/components/Header";
-import { PageWrapper, PageSection } from "~/components/PageWrapper";
-import { announcements, type Announcement } from "~/data/mockData";
+import { announcements } from "~/data/mockData";
 import { formatRelativeTime } from "~/lib/utils";
-import {
-  AlertCircle,
-  Info,
-  Megaphone,
-  ArrowLeft,
-  Search,
-  Filter,
-} from "lucide-react";
-import { useState, type FC } from "react";
-import { Link } from "react-router-dom";
+import type { Announcement } from "~/data/mockData";
 
 const getPriorityIcon = (priority: Announcement["priority"]) => {
   switch (priority) {
@@ -67,13 +69,13 @@ export const CompanyAnnouncementsPage: FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <PageWrapper className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-6">
+      <PageWrapper className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Header Section */}
         <PageSection index={0} className="mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
@@ -99,11 +101,11 @@ export const CompanyAnnouncementsPage: FC = () => {
               <CardTitle className="text-lg">Filter & Search</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 {/* Search Input */}
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                     <Input
                       placeholder="Search announcements..."
                       value={searchQuery}
@@ -134,7 +136,7 @@ export const CompanyAnnouncementsPage: FC = () => {
               </div>
 
               {/* Results Count */}
-              <div className="mt-4 text-sm text-muted-foreground">
+              <div className="text-muted-foreground mt-4 text-sm">
                 Showing {filteredAnnouncements.length} of {announcements.length}{" "}
                 announcements
               </div>
@@ -148,12 +150,12 @@ export const CompanyAnnouncementsPage: FC = () => {
             <PageSection index={2}>
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-12">
-                  <div className="text-center space-y-2">
-                    <div className="h-12 w-12 mx-auto bg-muted rounded-full flex items-center justify-center">
-                      <Search className="h-6 w-6 text-muted-foreground" />
+                  <div className="space-y-2 text-center">
+                    <div className="bg-muted mx-auto flex h-12 w-12 items-center justify-center rounded-full">
+                      <Search className="text-muted-foreground h-6 w-6" />
                     </div>
                     <h3 className="font-medium">No announcements found</h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       Try adjusting your search or filter criteria
                     </p>
                   </div>
@@ -164,7 +166,7 @@ export const CompanyAnnouncementsPage: FC = () => {
             filteredAnnouncements.map((announcement, index) => (
               <PageSection key={announcement.id} index={index + 3}>
                 <div
-                  className={`p-6 rounded-lg border ${getPriorityColor(announcement.priority)}`}
+                  className={`rounded-lg border p-6 ${getPriorityColor(announcement.priority)}`}
                 >
                   <div className="flex items-start gap-4">
                     <div
@@ -174,14 +176,14 @@ export const CompanyAnnouncementsPage: FC = () => {
                     </div>
                     <div className="flex-1 space-y-3">
                       <div className="flex items-start justify-between">
-                        <h3 className="font-medium leading-none text-foreground">
+                        <h3 className="text-foreground leading-none font-medium">
                           {announcement.title}
                         </h3>
-                        <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                        <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
                           {formatRelativeTime(announcement.date)}
                         </span>
                       </div>
-                      <p className="text-sm leading-relaxed text-foreground">
+                      <p className="text-foreground text-sm leading-relaxed">
                         {announcement.body}
                       </p>
                       <div className="flex items-center gap-2">
@@ -216,7 +218,7 @@ export const CompanyAnnouncementsPage: FC = () => {
             <Button variant="outline" disabled>
               Load More Announcements
             </Button>
-            <p className="text-xs text-muted-foreground mt-2">
+            <p className="text-muted-foreground mt-2 text-xs">
               All announcements loaded
             </p>
           </div>

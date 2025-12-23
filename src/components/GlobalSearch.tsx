@@ -1,3 +1,7 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { FC } from "react";
+import { Command, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -6,10 +10,8 @@ import {
   DialogTitle,
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
-import { Search, Command } from "lucide-react";
-import { useState, useEffect, useMemo, useCallback, type FC } from "react";
-import { SearchService, type SearchResult } from "~/lib/searchService";
-import { useNavigate } from "react-router-dom";
+import { SearchService } from "~/lib/searchService";
+import type { SearchResult } from "~/lib/searchService";
 
 const typeLabels = {
   employee: "Employee",
@@ -151,13 +153,13 @@ export const GlobalSearch: FC = () => {
       <Button
         variant="outline"
         onClick={() => setIsOpen(true)}
-        className="h-10 w-48 justify-between text-muted-foreground hover:text-foreground"
+        className="text-muted-foreground hover:text-foreground h-10 w-48 justify-between"
       >
         <div className="flex items-center gap-2">
           <Search className="h-4 w-4" />
           <span className="text-sm">Search...</span>
         </div>
-        <div className="flex items-center gap-1 text-xs bg-muted px-1.5 py-0.5 rounded">
+        <div className="bg-muted flex items-center gap-1 rounded px-1.5 py-0.5 text-xs">
           <Command className="h-3 w-3" />
           <span>K</span>
         </div>
@@ -165,7 +167,7 @@ export const GlobalSearch: FC = () => {
 
       {/* Search Dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-2xl p-0 overflow-hidden">
+        <DialogContent className="overflow-hidden p-0 sm:max-w-2xl">
           <DialogHeader className="px-6 pt-6 pb-0">
             <DialogTitle>Search Nexus</DialogTitle>
           </DialogHeader>
@@ -174,7 +176,7 @@ export const GlobalSearch: FC = () => {
             {/* Search Input */}
             <form onSubmit={handleSubmit} className="px-6 pb-4">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
                 <Input
                   placeholder="Search employees, announcements, events, and more..."
                   value={searchQuery}
@@ -188,33 +190,33 @@ export const GlobalSearch: FC = () => {
             {/* Results */}
             <div className="max-h-96 overflow-y-auto border-t">
               {searchQuery.trim() === "" ? (
-                <div className="p-6 space-y-4">
+                <div className="space-y-4 p-6">
                   <div>
-                    <h4 className="text-sm font-medium mb-3">Quick Actions</h4>
+                    <h4 className="mb-3 text-sm font-medium">Quick Actions</h4>
                     <div className="space-y-1">
                       <div
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
+                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
                         onClick={() => handleQuickAction("employees")}
                       >
                         <span className="text-lg">👤</span>
                         <span className="text-sm">Search employees</span>
                       </div>
                       <div
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
+                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
                         onClick={() => handleQuickAction("announcements")}
                       >
                         <span className="text-lg">📢</span>
                         <span className="text-sm">Search announcements</span>
                       </div>
                       <div
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
+                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
                         onClick={() => handleQuickAction("events")}
                       >
                         <span className="text-lg">📅</span>
                         <span className="text-sm">Search calendar events</span>
                       </div>
                       <div
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent cursor-pointer"
+                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
                         onClick={() => handleQuickAction("kudos")}
                       >
                         <span className="text-lg">❤️</span>
@@ -224,19 +226,19 @@ export const GlobalSearch: FC = () => {
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-medium mb-2">
+                    <h4 className="mb-2 text-sm font-medium">
                       Recent Searches
                     </h4>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-muted-foreground text-sm">
                       No recent searches
                     </div>
                   </div>
                 </div>
               ) : results.length === 0 ? (
-                <div className="p-6 text-center text-muted-foreground">
-                  <Search className="h-8 w-8 mx-auto mb-3 opacity-50" />
+                <div className="text-muted-foreground p-6 text-center">
+                  <Search className="mx-auto mb-3 h-8 w-8 opacity-50" />
                   <p>No results found for "{searchQuery}"</p>
-                  <p className="text-xs mt-1">
+                  <p className="mt-1 text-xs">
                     Try searching for employees, announcements, events, or kudos
                   </p>
                 </div>
@@ -245,24 +247,24 @@ export const GlobalSearch: FC = () => {
                   {results.map((result, index) => (
                     <div
                       key={`${result.type}-${result.id}`}
-                      className={`flex items-start px-6 py-3 cursor-pointer hover:bg-accent ${
+                      className={`hover:bg-accent flex cursor-pointer items-start px-6 py-3 ${
                         index === selectedIndex ? "bg-accent" : ""
                       }`}
                       onClick={() => handleResultClick(result)}
                     >
-                      <div className="mr-3 mt-0.5 text-lg">
+                      <div className="mt-0.5 mr-3 text-lg">
                         {typeIcons[result.type]}
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="font-medium truncate">
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-1 flex items-center gap-2">
+                          <span className="truncate font-medium">
                             {result.title}
                           </span>
-                          <span className="text-xs px-2 py-0.5 bg-muted rounded-full text-muted-foreground flex-shrink-0">
+                          <span className="bg-muted text-muted-foreground flex-shrink-0 rounded-full px-2 py-0.5 text-xs">
                             {typeLabels[result.type]}
                           </span>
                         </div>
-                        <div className="text-sm text-muted-foreground line-clamp-2">
+                        <div className="text-muted-foreground line-clamp-2 text-sm">
                           {result.description}
                         </div>
                       </div>
@@ -274,7 +276,7 @@ export const GlobalSearch: FC = () => {
 
             {/* Footer */}
             {(searchQuery.trim() || results.length > 0) && (
-              <div className="border-t px-6 py-3 text-xs text-muted-foreground bg-muted/30 flex justify-between">
+              <div className="text-muted-foreground bg-muted/30 flex justify-between border-t px-6 py-3 text-xs">
                 <span>
                   {results.length > 0
                     ? "Use ↑↓ to navigate • Enter to select"

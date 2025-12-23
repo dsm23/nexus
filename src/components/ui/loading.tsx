@@ -31,9 +31,9 @@ export const PageLoader = ({
   size = "lg",
 }: PageLoaderProps) => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[200px] space-y-4">
+    <div className="flex min-h-[200px] flex-col items-center justify-center space-y-4">
       <LoadingSpinner size={size} />
-      <p className="text-sm text-muted-foreground">{message}</p>
+      <p className="text-muted-foreground text-sm">{message}</p>
     </div>
   );
 };
@@ -44,9 +44,9 @@ export const FullPageLoader = ({
   message?: string;
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
+    <div className="flex min-h-screen flex-col items-center justify-center space-y-4">
       <LoadingSpinner size="lg" />
-      <p className="text-lg text-muted-foreground">{message}</p>
+      <p className="text-muted-foreground text-lg">{message}</p>
     </div>
   );
 };

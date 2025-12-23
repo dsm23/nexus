@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import type { FC } from "react";
 import { Analytics } from "~/components/Analytics";
 import { CompanyAnnouncements } from "~/components/CompanyAnnouncements";
 import { DraggableCard } from "~/components/DraggableCard";
@@ -12,7 +14,6 @@ import { TimeOff } from "~/components/TimeOff";
 import { WelcomeChecklist } from "~/components/WelcomeChecklist";
 import { useFocusMode } from "~/contexts/FocusModeContext";
 import { storage } from "~/lib/utils";
-import { useState, useEffect, type FC } from "react";
 
 export const Dashboard: FC = () => {
   const { isFocusMode } = useFocusMode();
@@ -141,12 +142,12 @@ export const Dashboard: FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <Header />
 
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div
-          className={`grid gap-4 sm:gap-6 transition-all duration-300 ${
+          className={`grid gap-4 transition-all duration-300 sm:gap-6 ${
             isFocusMode ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-12"
           }`}
         >

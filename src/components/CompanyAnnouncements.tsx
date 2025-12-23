@@ -1,3 +1,8 @@
+import { type FC } from "react";
+import { AlertCircle, ArrowRight, Info, Megaphone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -5,14 +10,10 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
-import { announcements, type Announcement } from "~/data/mockData";
-import { formatRelativeTime } from "~/lib/utils";
-import { AlertCircle, Info, Megaphone, ArrowRight } from "lucide-react";
-import { type FC } from "react";
-import { Link } from "react-router-dom";
+import { announcements } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
+import { formatRelativeTime } from "~/lib/utils";
+import type { Announcement } from "~/data/mockData";
 
 const getPriorityIcon = (priority: Announcement["priority"]) => {
   switch (priority) {
@@ -48,9 +49,9 @@ export const CompanyAnnouncements: FC = () => {
 
   return (
     <Card className="w-full">
-      <CardHeader className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0 pb-2">
+      <CardHeader className="flex flex-col space-y-2 pb-2 sm:flex-row sm:items-start sm:justify-between sm:space-y-0">
         <div>
-          <CardTitle className="text-lg flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-lg">
             <Megaphone className="h-5 w-5" />
             Company Announcements
           </CardTitle>
@@ -62,7 +63,7 @@ export const CompanyAnnouncements: FC = () => {
           <Button
             variant="outline"
             size="sm"
-            className="gap-2 w-full sm:w-auto"
+            className="w-full gap-2 sm:w-auto"
           >
             View All
             <ArrowRight className="h-4 w-4" />
@@ -75,7 +76,7 @@ export const CompanyAnnouncements: FC = () => {
             <div
               key={announcement.id}
               className={getItemClassName(
-                `p-4 rounded-lg border ${getPriorityColor(announcement.priority)}`,
+                `rounded-lg border p-4 ${getPriorityColor(announcement.priority)}`,
               )}
               style={getItemStyle(index)}
             >
@@ -87,14 +88,14 @@ export const CompanyAnnouncements: FC = () => {
                 </div>
                 <div className="flex-1 space-y-2">
                   <div className="flex items-start justify-between">
-                    <h4 className="font-medium leading-none text-foreground">
+                    <h4 className="text-foreground leading-none font-medium">
                       {announcement.title}
                     </h4>
-                    <span className="text-xs text-muted-foreground whitespace-nowrap ml-2">
+                    <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
                       {formatRelativeTime(announcement.date)}
                     </span>
                   </div>
-                  <p className="text-sm leading-relaxed text-foreground">
+                  <p className="text-foreground text-sm leading-relaxed">
                     {announcement.body}
                   </p>
                   <div className="flex items-center gap-2">
@@ -122,12 +123,12 @@ export const CompanyAnnouncements: FC = () => {
 
           {/* Show remaining count if there are more announcements */}
           {announcements.length > 3 && (
-            <div className="pt-2 border-t">
+            <div className="border-t pt-2">
               <Link to="/announcements">
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground w-full gap-2"
                 >
                   <span>
                     View {announcements.length - 3} more announcements

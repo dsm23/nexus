@@ -1,3 +1,23 @@
+import { type FC } from "react";
+import {
+  BarChart3,
+  Building2,
+  Calendar,
+  ChevronDown,
+  Clock,
+  Eye,
+  FileText,
+  Focus,
+  FolderOpen,
+  Headphones,
+  Heart,
+  HelpCircle,
+  Home,
+  Megaphone,
+  Settings,
+  Users,
+} from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -8,30 +28,10 @@ import {
 import { useFocusMode } from "~/contexts/FocusModeContext";
 import { currentUser } from "~/data/mockData";
 import { getTimeBasedGreeting } from "~/lib/utils";
-import {
-  Focus,
-  Eye,
-  Home,
-  FolderOpen,
-  Users,
-  Calendar,
-  Heart,
-  Megaphone,
-  BarChart3,
-  FileText,
-  HelpCircle,
-  Headphones,
-  Clock,
-  ChevronDown,
-  Building2,
-  Settings,
-} from "lucide-react";
-import { type FC } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ThemeToggle } from "./ThemeToggle";
-import { Profile } from "./Profile";
 import { GlobalSearch } from "./GlobalSearch";
 import { NotificationDropdown } from "./NotificationDropdown";
+import { Profile } from "./Profile";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Header: FC = () => {
   const { isFocusMode, toggleFocusMode } = useFocusMode();
@@ -66,18 +66,18 @@ export const Header: FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
+      <header className="bg-background/80 supports-[backdrop-filter]:bg-background/70 sticky top-0 z-50 w-full border-b backdrop-blur">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Left side - Logo */}
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
+              <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold">
                 N
               </div>
-              <span className="font-semibold text-lg">Nexus</span>
+              <span className="text-lg font-semibold">Nexus</span>
             </Link>
             <div className="hidden sm:block">
-              <span className="text-lg font-medium text-muted-foreground">
+              <span className="text-muted-foreground text-lg font-medium">
                 {greeting}, {currentUser.name}! 👋
               </span>
             </div>
@@ -93,7 +93,7 @@ export const Header: FC = () => {
                 variant={isFocusMode ? "default" : "outline"}
                 size="sm"
                 onClick={toggleFocusMode}
-                className="gap-2 h-10"
+                className="h-10 gap-2"
               >
                 {isFocusMode ? (
                   <Eye className="h-4 w-4" />
@@ -114,7 +114,7 @@ export const Header: FC = () => {
 
       {/* Navigation Bar */}
       {/* Navigation Bar */}
-      <div className="sticky top-16 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+      <div className="bg-background/80 supports-[backdrop-filter]:bg-background/70 sticky top-16 z-40 w-full border-b backdrop-blur">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center py-2">
             {/* Main Navigation - Cleaner with dropdowns */}
@@ -127,7 +127,7 @@ export const Header: FC = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                    className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
                       isActive
                         ? "bg-primary/10 text-primary shadow-sm"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
@@ -144,7 +144,7 @@ export const Header: FC = () => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                    className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
                       peopleNavItems.some(
                         (item) => location.pathname === item.path,
                       )
@@ -164,7 +164,7 @@ export const Header: FC = () => {
                       <DropdownMenuItem key={item.path} asChild>
                         <Link
                           to={item.path}
-                          className="flex items-center gap-2 w-full"
+                          className="flex w-full items-center gap-2"
                         >
                           <Icon className="h-4 w-4" />
                           {item.label}
@@ -180,7 +180,7 @@ export const Header: FC = () => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                    className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
                       workspaceNavItems.some(
                         (item) => location.pathname === item.path,
                       )
@@ -200,7 +200,7 @@ export const Header: FC = () => {
                       <DropdownMenuItem key={item.path} asChild>
                         <Link
                           to={item.path}
-                          className="flex items-center gap-2 w-full"
+                          className="flex w-full items-center gap-2"
                         >
                           <Icon className="h-4 w-4" />
                           {item.label}
@@ -216,7 +216,7 @@ export const Header: FC = () => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                    className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
                       supportNavItems.some(
                         (item) => location.pathname === item.path,
                       )
@@ -236,7 +236,7 @@ export const Header: FC = () => {
                       <DropdownMenuItem key={item.path} asChild>
                         <Link
                           to={item.path}
-                          className="flex items-center gap-2 w-full"
+                          className="flex w-full items-center gap-2"
                         >
                           <Icon className="h-4 w-4" />
                           {item.label}
@@ -252,8 +252,8 @@ export const Header: FC = () => {
       </div>
 
       {/* Mobile greeting */}
-      <div className="sm:hidden mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-3 pt-3 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-        <p className="text-sm text-muted-foreground">
+      <div className="bg-background/80 supports-[backdrop-filter]:bg-background/70 mx-auto max-w-7xl border-b px-4 pt-3 pb-3 backdrop-blur sm:hidden sm:px-6 lg:px-8">
+        <p className="text-muted-foreground text-sm">
           {greeting}, {currentUser.name}! 👋
         </p>
       </div>
