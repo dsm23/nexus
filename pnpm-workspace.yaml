@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - lefthook
+
+savePrefix: ""
+
+sideEffectsCache: false
