@@ -248,7 +248,7 @@ const NewTicketDialog: FC<{
     }
 
     // Handle form submission
-    console.log("New ticket:", formData);
+    console.info("New ticket:", formData);
     toast.success("Support ticket created successfully!");
     handleOpenChange(false);
 

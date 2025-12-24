@@ -291,7 +291,7 @@ export const ResourcesPage: FC = () => {
                         <SelectContent>
                           <SelectItem value="all">All Departments</SelectItem>
                           {departments.map((dept) => (
-                            <SelectItem key={dept} value={dept!}>
+                            <SelectItem key={dept} value={dept as string}>
                               {dept}
                             </SelectItem>
                           ))}

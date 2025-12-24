@@ -238,7 +238,7 @@ const NewRequestDialog: FC = () => {
     }
 
     // Handle form submission
-    console.log("New request:", formData);
+    console.info("New request:", formData);
     toast.success("Time off request submitted successfully!");
     setOpen(false);
     // Reset form

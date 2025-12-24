@@ -72,13 +72,13 @@ export const storage = {
       // Restore preserved data
       keysToPreserve.forEach((key) => {
         if (preservedData[key] !== null) {
-          localStorage.setItem(key, preservedData[key]!);
+          localStorage.setItem(key, preservedData[key] as string);
         }
       });
 
       // Set new version
       localStorage.setItem("app-version", currentVersion);
-      console.log(
+      console.info(
         `App version updated to ${currentVersion}. LocalStorage cleared.`,
       );
       return false; // Version was updated

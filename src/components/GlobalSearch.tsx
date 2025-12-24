@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
-import { SearchService } from "~/lib/searchService";
+import { search } from "~/lib/searchService";
 import type { SearchResult } from "~/lib/searchService";
 
 const typeLabels = {
@@ -51,7 +51,7 @@ export const GlobalSearch: FC = () => {
   }, []);
 
   const results = useMemo(() => {
-    return SearchService.search(searchQuery);
+    return search(searchQuery);
   }, [searchQuery]);
 
   const handleResultClick = useCallback(

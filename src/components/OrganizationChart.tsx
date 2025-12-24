@@ -145,7 +145,7 @@ const buildHierarchy = (employees: Employee[]): OrgNode | null => {
     if (!departmentGroups.has(emp.department)) {
       departmentGroups.set(emp.department, []);
     }
-    departmentGroups.get(emp.department)!.push(emp);
+    departmentGroups.get(emp.department)?.push(emp);
   });
 
   // Build org tree

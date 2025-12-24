@@ -25,39 +25,39 @@ export const Profile: FC = () => {
   const handleProfileAction = (action: string) => {
     switch (action) {
       case "profile":
-        console.log("Navigate to profile");
+        console.info("Navigate to profile");
         // TODO: Implement navigation to profile page
         break;
       case "settings":
-        console.log("Navigate to settings");
+        console.info("Navigate to settings");
         // TODO: Implement navigation to settings page
         break;
       case "notifications":
-        console.log("Navigate to notifications");
+        console.info("Navigate to notifications");
         // TODO: Implement navigation to notifications page
         break;
       case "privacy":
-        console.log("Navigate to privacy settings");
+        console.info("Navigate to privacy settings");
         // TODO: Implement navigation to privacy page
         break;
       case "help":
-        console.log("Navigate to help center");
+        console.info("Navigate to help center");
         // TODO: Implement navigation to help page
         break;
       case "feedback":
-        console.log("Navigate to feedback");
+        console.info("Navigate to feedback");
         // TODO: Implement feedback form
         break;
       case "docs":
-        console.log("Navigate to documentation");
+        console.info("Navigate to documentation");
         // TODO: Implement navigation to docs
         break;
       case "support":
-        console.log("Navigate to support");
+        console.info("Navigate to support");
         // TODO: Implement navigation to support
         break;
       case "logout":
-        console.log("Logout user");
+        console.info("Logout user");
         // TODO: Implement logout functionality
         break;
       default:
