@@ -65,7 +65,7 @@ export const useWaveAnimation = (options: UseWaveAnimationOptions = {}) => {
     willChange: "transform, opacity",
   });
 
-  const getItemClassName = (baseClasses: string = "") =>
+  const getItemClassName = (baseClasses = "") =>
     `${baseClasses} transition-all transform ${
       isVisible
         ? "translate-y-0 opacity-100 scale-100"
