@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import type { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import type { QuickLink } from "~/data/mockData";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -97,9 +98,9 @@ export const storage = {
   },
 
   // Get user's quick links
-  getQuickLinks: () => {
+  getQuickLinks: (): QuickLink[] => {
     const links = localStorage.getItem("nexus-quick-links");
-    return links ? JSON.parse(links) : [];
+    return links ? (JSON.parse(links) as QuickLink[]) : [];
   },
 
   // Save user's quick links

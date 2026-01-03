@@ -51,7 +51,7 @@ export const Dashboard: FC = () => {
 
     if (savedMainOrder) {
       try {
-        setMainCardOrder(JSON.parse(savedMainOrder));
+        setMainCardOrder(JSON.parse(savedMainOrder) as typeof mainCardOrder);
       } catch (error) {
         console.error("Error parsing saved main card order:", error);
       }
@@ -59,7 +59,9 @@ export const Dashboard: FC = () => {
 
     if (savedSidebarOrder) {
       try {
-        setSidebarCardOrder(JSON.parse(savedSidebarOrder));
+        setSidebarCardOrder(
+          JSON.parse(savedSidebarOrder) as typeof sidebarCardOrder,
+        );
       } catch (error) {
         console.error("Error parsing saved sidebar card order:", error);
       }
