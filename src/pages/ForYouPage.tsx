@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   ArrowLeft,
   Bell,
@@ -71,7 +71,7 @@ const getTypeBadge = (type: FeedItem["type"]) => {
   }
 };
 
-export const ForYouPage: FC = () => {
+export const ForYouPage: FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState<string>("all");
 

@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import type { DragEvent, DragEventHandler } from "react";
 
 interface DragItem {
   id: string;
@@ -8,16 +9,16 @@ interface DragItem {
 interface UseDragAndDropResult {
   draggedItem: DragItem | null;
   isDragging: boolean;
-  handleDragStart: (item: DragItem) => (e: React.DragEvent) => void;
+  handleDragStart: (item: DragItem) => DragEventHandler<HTMLElement>;
   handleDragEnd: () => void;
-  handleDragOver: (e: React.DragEvent) => void;
+  handleDragOver: DragEventHandler<HTMLElement>;
   handleDrop: (
     targetId: string,
     onDrop: (draggedId: string, targetId: string) => void,
-  ) => (e: React.DragEvent) => void;
+  ) => (e: DragEvent<HTMLElement>) => void;
   getDragHandleProps: (item: DragItem) => {
     draggable: boolean;
-    onDragStart: (e: React.DragEvent) => void;
+    onDragStart: (e: DragEvent<HTMLElement>) => void;
     onDragEnd: () => void;
     className: string;
     "data-drag-handle": string;
@@ -28,7 +29,7 @@ export const useDragAndDrop = (): UseDragAndDropResult => {
   const [draggedItem, setDraggedItem] = useState<DragItem | null>(null);
 
   const handleDragStart = useCallback(
-    (item: DragItem) => (e: React.DragEvent) => {
+    (item: DragItem) => (e: DragEvent<HTMLElement>) => {
       setDraggedItem(item);
       e.dataTransfer.effectAllowed = "move";
       e.dataTransfer.setData("text/plain", JSON.stringify(item));
@@ -52,14 +53,14 @@ export const useDragAndDrop = (): UseDragAndDropResult => {
     });
   }, []);
 
-  const handleDragOver = useCallback((e: React.DragEvent) => {
+  const handleDragOver = useCallback((e: DragEvent<HTMLElement>) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
   }, []);
 
   const handleDrop = useCallback(
     (targetId: string, onDrop: (draggedId: string, targetId: string) => void) =>
-      (e: React.DragEvent) => {
+      (e: DragEvent<HTMLElement>) => {
         e.preventDefault();
 
         try {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import { ArrowLeft, Heart, Plus, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Header } from "~/components/Header";
@@ -22,7 +22,7 @@ import { currentUser, kudos as initialKudos } from "~/data/mockData";
 import { formatRelativeTime, generateId } from "~/lib/utils";
 import type { Kudo } from "~/data/mockData";
 
-export const KudosFeedPage: FC = () => {
+export const KudosFeedPage: FunctionComponent = () => {
   const [kudosList, setKudosList] = useState<Kudo[]>(initialKudos);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [newKudoTo, setNewKudoTo] = useState("");

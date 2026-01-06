@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import { ArrowRight, Bell, CheckSquare, FileText, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
@@ -42,7 +42,7 @@ const getTypeColor = (type: FeedItem["type"]) => {
   }
 };
 
-export const NotificationDropdown: FC = () => {
+export const NotificationDropdown: FunctionComponent = () => {
   // Show only first 5 items in dropdown
   const displayItems = forYouFeed.slice(0, 5);
   // For demo purposes, assume first 3 items are unread

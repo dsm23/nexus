@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import { Sparkles, X } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
@@ -23,7 +23,9 @@ interface WelcomeChecklistProps {
   onDismiss: () => void;
 }
 
-export const WelcomeChecklist: FC<WelcomeChecklistProps> = ({ onDismiss }) => {
+export const WelcomeChecklist: FunctionComponent<WelcomeChecklistProps> = ({
+  onDismiss,
+}) => {
   const [items, setItems] = useState<ChecklistItem[]>([
     {
       id: "quick-links",

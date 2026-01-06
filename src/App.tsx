@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "~/components/ui/tooltip";
@@ -18,7 +18,7 @@ import { ProjectsPage } from "./pages/ProjectsPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { TimeOffPage } from "./pages/TimeOffPage";
 
-const AppRoutes: FC = () => {
+const AppRoutes: FunctionComponent = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
@@ -36,7 +36,7 @@ const AppRoutes: FC = () => {
   );
 };
 
-const App: FC = () => {
+const App: FunctionComponent = () => {
   return (
     <ThemeProvider defaultTheme="system" storageKey="nexus-ui-theme">
       <FocusModeProvider>

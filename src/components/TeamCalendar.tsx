@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import { ArrowRight, Award, Cake, Calendar, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
@@ -54,7 +54,7 @@ const getEventBgColor = (type: CalendarEvent["type"]) => {
   }
 };
 
-export const TeamCalendar: FC = () => {
+export const TeamCalendar: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
   // Sort events by date and limit to first 3 for dashboard

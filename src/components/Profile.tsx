@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   Bell,
   FileText,
@@ -21,7 +21,7 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { currentUser } from "~/data/mockData";
 
-export const Profile: FC = () => {
+export const Profile: FunctionComponent = () => {
   const handleProfileAction = (action: string) => {
     switch (action) {
       case "profile":

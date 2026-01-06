@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import type { ReactNode } from "react";
 import { ThemeProviderContext } from "~/contexts/ThemeProviderContext";
 
 type Theme = "dark" | "light" | "system";
 
 type ThemeProviderProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   defaultTheme?: Theme;
   storageKey?: string;
 };

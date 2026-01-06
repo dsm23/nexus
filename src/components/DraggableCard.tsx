@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 import { GripVertical } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { useDragAndDrop } from "~/hooks/useDragAndDrop";
@@ -10,7 +10,7 @@ interface DraggableCardProps {
   className?: string;
 }
 
-export const DraggableCard: FC<DraggableCardProps> = ({
+export const DraggableCard: FunctionComponent<DraggableCardProps> = ({
   id,
   children,
   onReorder,

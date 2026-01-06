@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   AlertCircle,
   ArrowRight,
@@ -14,7 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { helpdeskTickets } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
-export const Helpdesk: FC = () => {
+export const Helpdesk: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
   const userTickets = helpdeskTickets.filter(

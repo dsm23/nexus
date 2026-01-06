@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   AlertCircle,
   FileText,
@@ -25,7 +25,7 @@ import {
 } from "~/components/ui/tooltip";
 import { helpdeskTickets } from "~/data/mockData";
 
-export const FloatingHelpButton: FC = () => {
+export const FloatingHelpButton: FunctionComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
 

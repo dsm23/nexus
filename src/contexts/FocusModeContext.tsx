@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import type { FC, ReactNode } from "react";
+import type { FunctionComponent, ReactNode } from "react";
 import { storage } from "~/lib/utils";
 
 interface FocusModeContextType {
@@ -23,7 +23,9 @@ interface FocusModeProviderProps {
   children: ReactNode;
 }
 
-export const FocusModeProvider: FC<FocusModeProviderProps> = ({ children }) => {
+export const FocusModeProvider: FunctionComponent<FocusModeProviderProps> = ({
+  children,
+}) => {
   const [isFocusMode, setIsFocusMode] = useState(() => storage.getFocusMode());
 
   const toggleFocusMode = () => {

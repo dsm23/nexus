@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import { Analytics } from "~/components/Analytics";
 import { CompanyAnnouncements } from "~/components/CompanyAnnouncements";
 import { DraggableCard } from "~/components/DraggableCard";
@@ -15,7 +15,7 @@ import { WelcomeChecklist } from "~/components/WelcomeChecklist";
 import { useFocusMode } from "~/contexts/FocusModeContext";
 import { storage } from "~/lib/utils";
 
-export const Dashboard: FC = () => {
+export const Dashboard: FunctionComponent = () => {
   const { isFocusMode } = useFocusMode();
   const [showWelcome, setShowWelcome] = useState(false);
 

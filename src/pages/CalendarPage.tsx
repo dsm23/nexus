@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   ArrowLeft,
   Award,
@@ -65,7 +65,7 @@ const getEventBgColor = (type: CalendarEvent["type"]) => {
   }
 };
 
-export const CalendarPage: FC = () => {
+export const CalendarPage: FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState<string>("all");
   const [currentDate, setCurrentDate] = useState(new Date());

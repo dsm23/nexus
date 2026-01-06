@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { FC } from "react";
+import type { FormEventHandler, FunctionComponent } from "react";
 import {
   AlertCircle,
   ArrowLeft,
@@ -124,10 +124,10 @@ const formatDate = (date: Date) => {
   }).format(date);
 };
 
-const TicketCard: FC<{ ticket: HelpdeskTicket; index?: number }> = ({
-  ticket,
-  index = 0,
-}) => (
+const TicketCard: FunctionComponent<{
+  ticket: HelpdeskTicket;
+  index?: number;
+}> = ({ ticket, index = 0 }) => (
   <Card
     className="animate-in fade-in slide-in-from-bottom-4 transition-shadow duration-300 hover:shadow-md"
     style={{ animationDelay: `${(index + 1) * 100}ms` }}
@@ -168,7 +168,7 @@ const TicketCard: FC<{ ticket: HelpdeskTicket; index?: number }> = ({
   </Card>
 );
 
-const KnowledgeBaseCard: FC<{
+const KnowledgeBaseCard: FunctionComponent<{
   article: HelpdeskKnowledgeBase;
   index?: number;
 }> = ({ article, index = 0 }) => (
@@ -212,7 +212,7 @@ const KnowledgeBaseCard: FC<{
   </Card>
 );
 
-const NewTicketDialog: FC<{
+const NewTicketDialog: FunctionComponent<{
   autoOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
 }> = ({ autoOpen = false, onOpenChange }) => {
@@ -235,7 +235,7 @@ const NewTicketDialog: FC<{
     onOpenChange?.(newOpen);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     if (
@@ -362,7 +362,7 @@ const NewTicketDialog: FC<{
   );
 };
 
-export const HelpDeskPage: FC = () => {
+export const HelpDeskPage: FunctionComponent = () => {
   const [searchParams] = useSearchParams();
   const [ticketFilter, setTicketFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");

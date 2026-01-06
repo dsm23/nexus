@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   ArrowLeft,
   Calendar,
@@ -82,7 +82,9 @@ const getMetricIcon = (iconName: string) => {
   }
 };
 
-const MetricCard: FC<{ metric: AnalyticsMetric }> = ({ metric }) => (
+const MetricCard: FunctionComponent<{ metric: AnalyticsMetric }> = ({
+  metric,
+}) => (
   <Card>
     <CardContent className="p-4 sm:p-6">
       <div className="flex items-center justify-between">
@@ -134,7 +136,7 @@ const MetricCard: FC<{ metric: AnalyticsMetric }> = ({ metric }) => (
   </Card>
 );
 
-export const AnalyticsPage: FC = () => {
+export const AnalyticsPage: FunctionComponent = () => {
   const [dateRange, setDateRange] = useState("7d");
 
   return (

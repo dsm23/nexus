@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import { ArrowRight, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
@@ -16,7 +16,7 @@ import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const departments = ["All", "Engineering", "Design", "Product", "Marketing"];
 
-export const EmployeeDirectory: FC = () => {
+export const EmployeeDirectory: FunctionComponent = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("All");
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 

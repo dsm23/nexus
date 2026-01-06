@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   AlertCircle,
   ArrowLeft,
@@ -52,7 +52,7 @@ const getPriorityColor = (priority: Announcement["priority"]) => {
   }
 };
 
-export const CompanyAnnouncementsPage: FC = () => {
+export const CompanyAnnouncementsPage: FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterPriority, setFilterPriority] = useState<string>("all");
 

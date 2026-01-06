@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import type { FC } from "react";
+import type { CSSProperties, FunctionComponent } from "react";
 import {
   ArrowLeft,
   BookOpen,
@@ -72,11 +72,11 @@ const getCategoryIcon = (iconName: string) => {
   }
 };
 
-const ResourceCard: FC<{
+const ResourceCard: FunctionComponent<{
   resource: Resource;
   onToggleFavorite: (id: string) => void;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }> = ({ resource, onToggleFavorite, className = "", style }) => (
   <Card
     className={`transition-shadow hover:shadow-md ${className}`}
@@ -141,7 +141,7 @@ const ResourceCard: FC<{
   </Card>
 );
 
-export const ResourcesPage: FC = () => {
+export const ResourcesPage: FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [selectedDepartment, setSelectedDepartment] = useState<string>("all");
