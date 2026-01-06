@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { FC } from "react";
+import type { FormEventHandler, FunctionComponent } from "react";
 import { Command, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "~/components/ui/button";
@@ -31,7 +31,7 @@ const typeIcons = {
   "quick-link": "🔗",
 };
 
-export const GlobalSearch: FC = () => {
+export const GlobalSearch: FunctionComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -140,7 +140,7 @@ export const GlobalSearch: FC = () => {
     }
   }, [isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (searchQuery.trim() && results[selectedIndex]) {
       handleResultClick(results[selectedIndex]);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   AlertCircle,
   ArrowLeft,
@@ -84,7 +84,7 @@ const getPriorityIcon = (priority: Project["priority"]) => {
   }
 };
 
-export const ProjectsPage: FC = () => {
+export const ProjectsPage: FunctionComponent = () => {
   const [projectsList, setProjectsList] = useState<Project[]>(projects);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");

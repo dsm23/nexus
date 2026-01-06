@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import { ArrowRight, Download, FileText, Star, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { resourcesData } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
-export const Resources: FC = () => {
+export const Resources: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
   // Get recent and popular resources

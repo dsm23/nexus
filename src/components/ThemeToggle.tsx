@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
@@ -12,7 +13,7 @@ export function ThemeToggle() {
   const { setTheme } = useTheme();
 
   const handleSetTheme = (
-    event: React.MouseEvent,
+    event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
     theme: "light" | "dark" | "system",
   ) => {
     if (

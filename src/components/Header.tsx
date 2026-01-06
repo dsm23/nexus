@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   BarChart3,
   Building2,
@@ -33,7 +33,7 @@ import { NotificationDropdown } from "./NotificationDropdown";
 import { Profile } from "./Profile";
 import { ThemeToggle } from "./ThemeToggle";
 
-export const Header: FC = () => {
+export const Header: FunctionComponent = () => {
   const { isFocusMode, toggleFocusMode } = useFocusMode();
   const location = useLocation();
   const greeting = getTimeBasedGreeting();

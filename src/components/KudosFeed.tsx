@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import { ArrowRight, Heart, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "~/components/ui/button";
@@ -27,7 +27,7 @@ import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { formatRelativeTime, generateId } from "~/lib/utils";
 import type { Kudo } from "~/data/mockData";
 
-export const KudosFeed: FC = () => {
+export const KudosFeed: FunctionComponent = () => {
   const [kudosList, setKudosList] = useState<Kudo[]>(initialKudos);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [newKudoTo, setNewKudoTo] = useState("");

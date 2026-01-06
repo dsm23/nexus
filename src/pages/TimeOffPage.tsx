@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { CSSProperties, FormEventHandler, FunctionComponent } from "react";
 import {
   AlertCircle,
   ArrowLeft,
@@ -104,11 +104,11 @@ const formatDate = (date: Date) => {
   }).format(date);
 };
 
-const BalanceCard: FC<{
+const BalanceCard: FunctionComponent<{
   balance: TimeOffBalance;
   policy: TimeOffPolicy | undefined;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }> = ({ balance, policy, className = "", style }) => (
   <Card className={className} style={style}>
     <CardContent className="p-4">
@@ -148,10 +148,10 @@ const BalanceCard: FC<{
   </Card>
 );
 
-const RequestCard: FC<{
+const RequestCard: FunctionComponent<{
   request: TimeOffRequest;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }> = ({ request, className = "", style }) => (
   <Card
     className={`transition-shadow hover:shadow-md ${className}`}
@@ -196,7 +196,7 @@ const RequestCard: FC<{
   </Card>
 );
 
-const NewRequestDialog: FC = () => {
+const NewRequestDialog: FunctionComponent = () => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
     type: "",
@@ -218,7 +218,7 @@ const NewRequestDialog: FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     // Basic validation
@@ -389,7 +389,7 @@ const NewRequestDialog: FC = () => {
   );
 };
 
-export const TimeOffPage: FC = () => {
+export const TimeOffPage: FunctionComponent = () => {
   const [filter, setFilter] = useState<string>("all");
 
   const filteredRequests = timeOffRequests.filter((request) => {

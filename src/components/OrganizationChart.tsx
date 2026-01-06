@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import type { FC } from "react";
+import type { FunctionComponent, ReactElement } from "react";
 import { Crown, Shield, User, Users } from "lucide-react";
 import { Tree, TreeNode } from "react-organizational-chart";
 import { Badge } from "~/components/ui/badge";
@@ -73,7 +73,10 @@ interface EmployeeNodeProps {
   isRoot?: boolean;
 }
 
-const EmployeeNode: FC<EmployeeNodeProps> = ({ employee, isRoot = false }) => {
+const EmployeeNode: FunctionComponent<EmployeeNodeProps> = ({
+  employee,
+  isRoot = false,
+}) => {
   const level = getHierarchyLevel(employee.role);
   const HierarchyIcon = getHierarchyIcon(level);
 
@@ -181,7 +184,7 @@ const buildHierarchy = (employees: Employee[]): OrgNode | null => {
   return buildNode(ceo);
 };
 
-const renderOrgNode = (node: OrgNode, isRoot = false): React.ReactElement => {
+const renderOrgNode = (node: OrgNode, isRoot = false): ReactElement => {
   if (node.children.length === 0) {
     return (
       <TreeNode
@@ -201,7 +204,7 @@ const renderOrgNode = (node: OrgNode, isRoot = false): React.ReactElement => {
   );
 };
 
-export const OrganizationChart: FC = () => {
+export const OrganizationChart: FunctionComponent = () => {
   const orgHierarchy = buildHierarchy(employees);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 

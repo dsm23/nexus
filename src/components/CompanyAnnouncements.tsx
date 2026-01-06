@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import { AlertCircle, ArrowRight, Info, Megaphone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
@@ -41,7 +41,7 @@ const getPriorityColor = (priority: Announcement["priority"]) => {
   }
 };
 
-export const CompanyAnnouncements: FC = () => {
+export const CompanyAnnouncements: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
   // Show only first 3 announcements on dashboard

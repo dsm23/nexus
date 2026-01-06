@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import type { FC, ReactNode } from "react";
+import type { CSSProperties, FunctionComponent, ReactNode } from "react";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 interface PageWrapperProps {
@@ -8,13 +8,13 @@ interface PageWrapperProps {
 }
 
 interface AnimationContextType {
-  getItemStyle: (index: number) => React.CSSProperties;
+  getItemStyle: (index: number) => CSSProperties;
   getItemClassName: (baseClasses?: string) => string;
 }
 
 const AnimationContext = createContext<AnimationContextType | null>(null);
 
-export const PageWrapper: FC<PageWrapperProps> = ({
+export const PageWrapper: FunctionComponent<PageWrapperProps> = ({
   children,
   className = "",
 }) => {
@@ -38,7 +38,7 @@ interface PageSectionProps {
   className?: string;
 }
 
-export const PageSection: FC<PageSectionProps> = ({
+export const PageSection: FunctionComponent<PageSectionProps> = ({
   children,
   index,
   className = "",

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { FC } from "react";
+import type { DragEvent, FunctionComponent } from "react";
 import {
   FileText,
   Globe,
@@ -35,7 +35,7 @@ import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { generateId, storage } from "~/lib/utils";
 import type { QuickLink } from "~/data/mockData";
 
-export const QuickLinks: FC = () => {
+export const QuickLinks: FunctionComponent = () => {
   const [links, setLinks] = useState<QuickLink[]>([]);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [newLinkName, setNewLinkName] = useState("");
@@ -126,12 +126,12 @@ export const QuickLinks: FC = () => {
   };
 
   // Drag and drop handlers
-  const handleDragStart = (e: React.DragEvent, linkId: string) => {
+  const handleDragStart = (e: DragEvent<HTMLElement>, linkId: string) => {
     setDraggedItem(linkId);
     e.dataTransfer.effectAllowed = "move";
   };
 
-  const handleDragOver = (e: React.DragEvent, linkId: string) => {
+  const handleDragOver = (e: DragEvent<HTMLElement>, linkId: string) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
     setDragOverItem(linkId);
@@ -141,7 +141,7 @@ export const QuickLinks: FC = () => {
     setDragOverItem(null);
   };
 
-  const handleDrop = (e: React.DragEvent, targetId: string) => {
+  const handleDrop = (e: DragEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
 
     if (!draggedItem || draggedItem === targetId) {

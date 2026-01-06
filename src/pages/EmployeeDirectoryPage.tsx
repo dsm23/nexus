@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   ArrowLeft,
   Filter,
@@ -49,7 +49,7 @@ const getDepartmentBadgeColor = (department: string) => {
   }
 };
 
-export const EmployeeDirectoryPage: FC = () => {
+export const EmployeeDirectoryPage: FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDepartment, setFilterDepartment] = useState<string>("all");
 

@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   AlertCircle,
   ArrowRight,
@@ -57,7 +57,7 @@ const getProgressColor = (progress: number) => {
   return "bg-gray-500";
 };
 
-export const Projects: FC = () => {
+export const Projects: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
   // Show only first 3 projects on dashboard

@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FunctionComponent } from "react";
 import {
   ArrowRight,
   Bell,
@@ -51,7 +51,7 @@ const getTypeColor = (type: FeedItem["type"]) => {
   }
 };
 
-export const ForYouFeed: FC = () => {
+export const ForYouFeed: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
   // Show only first 3 items on dashboard
