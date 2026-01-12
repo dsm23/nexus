@@ -1,0 +1,11 @@
+# Dist Folder
+dist
+
+# Public Folder
+public
+
+# Jest
+coverage
+
+# Storybook
+storybook-static
