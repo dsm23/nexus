@@ -1,4 +1,4 @@
-name: Build
+name: Smoke test
 
 on:
   push:
@@ -16,8 +16,11 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  smoke-test:
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.57.0@sha256:3bed4b1a12f2338642f3d8cba28e291deef3c66bd4a964bbeb3e57bbff511dbd
+      options: --user 1001
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
@@ -32,8 +35,7 @@ jobs:
       - name: Node setup
         uses: ./.github/actions/setup
 
-      - name: Build
-        run: pnpm run build
-
-      - name: Storybook build check
-        run: pnpm run build-storybook
+      - name: Smoke & Acceptance tests
+        run: pnpm test run --project storybook
+        env:
+          FORCE_COLOR: "1"

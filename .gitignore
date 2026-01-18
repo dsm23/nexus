@@ -29,3 +29,7 @@ lefthook-local.yml
 
 # Local Netlify folder
 .netlify
+
+# Storybook
+*storybook.log
+storybook-static
