@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Coverage
+.vitest-reports/
+coverage/
+
 # Lefthook
 lefthook-local.yml
 

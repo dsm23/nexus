@@ -1,0 +1,125 @@
+name: Unit Testing
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  LEFTHOOK: 0
+
+permissions:
+  contents: read
+
+jobs:
+  unit-testing-shard:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2]
+        shardTotal: [2]
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
+      - name: Git Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Node setup
+        uses: ./.github/actions/setup
+
+      - name: Unit & Integration tests
+        run: >
+          pnpm exec vitest run
+          --project unit
+          --reporter blob
+          --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+          --coverage.enabled
+          --coverage.reporter=json
+          --coverage.reporter=json-summary
+          --coverage.thresholds.branches 0
+          --coverage.thresholds.functions 0
+          --coverage.thresholds.lines 0
+          --coverage.thresholds.statements 0
+
+      - name: Upload blob report to GitHub Actions Artifacts
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: blob-report-${{ matrix.shardIndex }}
+          path: .vitest-reports/*
+          include-hidden-files: true
+          retention-days: 1
+
+  unit-testing:
+    runs-on: ubuntu-24.04
+    needs:
+      - unit-testing-shard
+    permissions:
+      pull-requests: write
+    steps:
+      - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: exit 1
+
+      - name: Harden Runner
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
+      - name: Git Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+
+      - name: Node setup
+        uses: ./.github/actions/setup
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          path: .vitest-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge reports
+        run: >
+          pnpm exec vitest
+          --coverage.enabled
+          --coverage.reporter=json
+          --coverage.reporter=json-summary
+          --coverage.reporter=text
+          --merge-reports
+        env:
+          FORCE_COLOR: 1
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: coverage-prev
+          path: coverage/coverage-summary.json
+
+      - name: Download previous coverage report
+        # renovate: datasource=github-releases depName=dawidd6/action-download-artifact
+        uses: dawidd6/action-download-artifact@0bd50d53a6d7fb5cb921e607957e9cc12b4ce392 # v12
+        if: success() && github.event.number
+        with:
+          name: coverage-prev
+          workflow: unit-testing.yml
+          branch: ${{ github.event.pull_request.base.ref || github.event.repository.default_branch }}
+          path: ./coverage-prev
+
+      - name: Coverage in GitHub PR comment
+        uses: davelosert/vitest-coverage-report-action@5b6122e3a819a3be7b27fc961b7faafb3bf00e4d # v2.9.0
+        with:
+          file-coverage-mode: all
+          json-summary-compare-path: |
+            ${{ github.event_name == 'pull_request' && 'coverage-prev/coverage-summary.json' || null }}
