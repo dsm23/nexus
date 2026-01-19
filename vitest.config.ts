@@ -9,7 +9,34 @@ export default mergeConfig(
   viteConfig,
   defineConfig({
     test: {
+      coverage: {
+        include: ["src/**/*.[jt]s?(x)"],
+        exclude: [
+          "src/**/*.stories.[jt]s?(x)",
+          "src/test-utils/**",
+          "src/mocks/**",
+          "**/*.d.ts",
+        ],
+        thresholds: {
+          lines: 0.1,
+          functions: 0.1,
+          branches: 0.1,
+          statements: 0.1,
+        },
+      },
+      environment: "jsdom",
+      setupFiles: ["./vitest.setup.ts"],
+      globals: false,
+      logHeapUsage: true,
+      watch: false,
       projects: [
+        {
+          extends: true,
+          test: {
+            name: "unit",
+            include: ["src/**/?(*.)+(spec|test).[jt]s?(x)"],
+          },
+        },
         {
           extends: true,
           plugins: [
