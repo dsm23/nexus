@@ -34,6 +34,12 @@ lefthook-local.yml
 # Local Netlify folder
 .netlify
 
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
 # Storybook
 *storybook.log
 storybook-static

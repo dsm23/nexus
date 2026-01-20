@@ -148,6 +148,7 @@ export const Dashboard: FunctionComponent = () => {
       <Header />
 
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <h1 className="sr-only">Dashboard</h1>
         <div
           className={`grid gap-4 transition-all duration-300 sm:gap-6 ${
             isFocusMode ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-12"
