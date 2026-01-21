@@ -1,6 +1,6 @@
 import { fn } from "storybook/test";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button } from "./button";
+import { Button } from ".";
 
 const meta = {
   title: "Components/Shadcn/Button",
