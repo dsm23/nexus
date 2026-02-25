@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { render } from "~/test-utils/render";
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -15,6 +17,9 @@ describe("component", () => {
       render(
         <Card>
           <CardHeader>
+            <CardAction>
+              <span>Featured</span>
+            </CardAction>
             <CardTitle>Card Title</CardTitle>
             <CardDescription>Card Description</CardDescription>
           </CardHeader>

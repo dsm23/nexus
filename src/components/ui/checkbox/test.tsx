@@ -1,9 +1,15 @@
 import { describe, expect, it, vi } from "vitest";
-import { render } from "@testing-library/react";
+import { render } from "~/test-utils/render";
 import { Checkbox } from ".";
 
 class ResizeObserverMock {
+  disconnect() {
+    return vi.fn();
+  }
   observe() {
+    return vi.fn();
+  }
+  unobserve() {
     return vi.fn();
   }
 }
