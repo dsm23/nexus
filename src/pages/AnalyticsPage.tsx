@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   Calendar,
@@ -10,7 +11,6 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import {
   Area,
   AreaChart,

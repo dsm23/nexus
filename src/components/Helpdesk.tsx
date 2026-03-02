@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   AlertCircle,
   ArrowRight,
@@ -7,7 +8,6 @@ import {
   Headphones,
   MessageSquare,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";

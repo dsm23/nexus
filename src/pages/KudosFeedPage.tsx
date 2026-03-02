@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
-import { ArrowLeft, Heart, Plus, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowLeft, Heart, Plus, Search } from "lucide-react";
 import { Header } from "~/components/Header";
 import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Button } from "~/components/ui/button";
@@ -19,8 +19,8 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import { currentUser, kudos as initialKudos } from "~/data/mockData";
-import { formatRelativeTime, generateId } from "~/lib/utils";
 import type { Kudo } from "~/data/mockData";
+import { formatRelativeTime, generateId } from "~/lib/utils";
 
 export const KudosFeedPage: FunctionComponent = () => {
   const [kudosList, setKudosList] = useState<Kudo[]>(initialKudos);

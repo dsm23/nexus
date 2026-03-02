@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import type { CSSProperties, FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   BookOpen,
@@ -18,7 +19,6 @@ import {
   User,
   Video,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "~/components/Header";
 import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Badge } from "~/components/ui/badge";

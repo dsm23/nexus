@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Bell,
@@ -7,7 +8,6 @@ import {
   Info,
   Sparkles,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -17,9 +17,9 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { forYouFeed } from "~/data/mockData";
+import type { FeedItem } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { formatRelativeTime } from "~/lib/utils";
-import type { FeedItem } from "~/data/mockData";
 
 const getTypeIcon = (type: FeedItem["type"]) => {
   switch (type) {

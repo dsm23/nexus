@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
-import { AlertCircle, ArrowRight, Info, Megaphone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AlertCircle, ArrowRight, Info, Megaphone } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
@@ -11,9 +11,9 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { announcements } from "~/data/mockData";
+import type { Announcement } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { formatRelativeTime } from "~/lib/utils";
-import type { Announcement } from "~/data/mockData";
 
 const getPriorityIcon = (priority: Announcement["priority"]) => {
   switch (priority) {

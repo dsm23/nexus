@@ -31,9 +31,9 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { defaultQuickLinks } from "~/data/mockData";
+import type { QuickLink } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { generateId, storage } from "~/lib/utils";
-import type { QuickLink } from "~/data/mockData";
 
 export const QuickLinks: FunctionComponent = () => {
   const [links, setLinks] = useState<QuickLink[]>([]);

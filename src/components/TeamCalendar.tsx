@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
-import { ArrowRight, Award, Cake, Calendar, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Award, Cake, Calendar, Users } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
@@ -11,9 +11,9 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { calendarEvents } from "~/data/mockData";
+import type { CalendarEvent } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { formatEventDate } from "~/lib/utils";
-import type { CalendarEvent } from "~/data/mockData";
 
 const getEventIcon = (type: CalendarEvent["type"]) => {
   switch (type) {

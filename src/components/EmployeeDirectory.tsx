@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
-import { ArrowRight, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Users } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {

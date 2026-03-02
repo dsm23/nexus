@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   AlertCircle,
   ArrowLeft,
@@ -14,7 +15,6 @@ import {
   Target,
   Users,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "~/components/Header";
 import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Badge } from "~/components/ui/badge";
@@ -40,8 +40,8 @@ import {
 } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
 import { projects } from "~/data/mockData";
-import { generateId } from "~/lib/utils";
 import type { Project } from "~/data/mockData";
+import { generateId } from "~/lib/utils";
 
 const getStatusColor = (status: Project["status"]) => {
   switch (status) {
