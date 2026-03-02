@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
-import { ArrowRight, Heart, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Heart, Plus } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -23,9 +23,9 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import { currentUser, kudos as initialKudos } from "~/data/mockData";
+import type { Kudo } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { formatRelativeTime, generateId } from "~/lib/utils";
-import type { Kudo } from "~/data/mockData";
 
 export const KudosFeed: FunctionComponent = () => {
   const [kudosList, setKudosList] = useState<Kudo[]>(initialKudos);

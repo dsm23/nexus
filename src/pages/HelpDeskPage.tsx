@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { FormEventHandler, FunctionComponent } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   AlertCircle,
   ArrowLeft,
@@ -20,7 +21,6 @@ import {
   Wifi,
   XCircle,
 } from "lucide-react";
-import { Link, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import { Header } from "~/components/Header";
 import { PageSection, PageWrapper } from "~/components/PageWrapper";

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   Award,
@@ -10,7 +11,6 @@ import {
   Filter,
   Search,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "~/components/Header";
 import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Button } from "~/components/ui/button";

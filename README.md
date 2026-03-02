@@ -227,7 +227,7 @@ npm run lint     # Run ESLint
 ### Code Style
 
 - **ESLint**: Configured for React and TypeScript
-- **Prettier**: Automatic code formatting
+- **Oxfmt**: Automatic code formatting
 - **TypeScript**: Strict type checking enabled
 
 ## 🤝 Contributing

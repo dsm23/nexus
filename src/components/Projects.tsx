@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   AlertCircle,
   ArrowRight,
@@ -8,7 +9,6 @@ import {
   FolderOpen,
   Users,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
@@ -19,8 +19,8 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { projects } from "~/data/mockData";
-import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import type { Project } from "~/data/mockData";
+import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
 const getStatusColor = (status: Project["status"]) => {
   switch (status) {

@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
-import { ArrowRight, Bell, CheckSquare, FileText, Info } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Bell, CheckSquare, FileText, Info } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
@@ -9,8 +9,8 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { forYouFeed } from "~/data/mockData";
-import { formatRelativeTime } from "~/lib/utils";
 import type { FeedItem } from "~/data/mockData";
+import { formatRelativeTime } from "~/lib/utils";
 
 const getTypeIcon = (type: FeedItem["type"]) => {
   switch (type) {

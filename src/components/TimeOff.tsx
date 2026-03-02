@@ -1,6 +1,6 @@
 import type { FunctionComponent } from "react";
-import { AlertCircle, ArrowRight, Calendar, Clock, Plane } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AlertCircle, ArrowRight, Calendar, Clock, Plane } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";

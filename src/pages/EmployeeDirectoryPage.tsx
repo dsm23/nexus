@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   ArrowLeft,
   Filter,
@@ -10,7 +11,6 @@ import {
   Search,
   Users,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "~/components/Header";
 import { OrganizationChart } from "~/components/OrganizationChart";
 import { PageSection, PageWrapper } from "~/components/PageWrapper";

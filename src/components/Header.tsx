@@ -1,4 +1,5 @@
 import type { FunctionComponent } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   BarChart3,
   Building2,
@@ -17,7 +18,6 @@ import {
   Settings,
   Users,
 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,

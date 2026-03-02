@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FunctionComponent } from "react";
+import { Link } from "react-router-dom";
 import {
   AlertCircle,
   ArrowLeft,
@@ -8,7 +9,6 @@ import {
   Megaphone,
   Search,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "~/components/Header";
 import { PageSection, PageWrapper } from "~/components/PageWrapper";
 import { Badge } from "~/components/ui/badge";
@@ -23,8 +23,8 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { announcements } from "~/data/mockData";
-import { formatRelativeTime } from "~/lib/utils";
 import type { Announcement } from "~/data/mockData";
+import { formatRelativeTime } from "~/lib/utils";
 
 const getPriorityIcon = (priority: Announcement["priority"]) => {
   switch (priority) {
