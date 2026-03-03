@@ -70,11 +70,11 @@ export const Profile: FunctionComponent = () => {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="hover:bg-accent relative h-10 w-10 rounded-full p-0"
+          className="relative h-10 w-10 rounded-full p-0 hover:bg-accent"
           aria-label="Profile menu"
         >
           <img
-            className="border-border hover:border-primary h-10 w-10 rounded-full border-2 object-cover transition-colors"
+            className="h-10 w-10 rounded-full border-2 border-border object-cover transition-colors hover:border-primary"
             src={currentUser.avatar}
             alt={`${currentUser.name}'s avatar`}
           />
@@ -86,10 +86,10 @@ export const Profile: FunctionComponent = () => {
             <p className="text-sm leading-none font-medium">
               {currentUser.name}
             </p>
-            <p className="text-muted-foreground text-xs leading-none">
+            <p className="text-xs leading-none text-muted-foreground">
               {currentUser.role}
             </p>
-            <p className="text-muted-foreground text-xs leading-none">
+            <p className="text-xs leading-none text-muted-foreground">
               {currentUser.department}
             </p>
           </div>

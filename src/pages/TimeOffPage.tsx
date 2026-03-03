@@ -131,7 +131,7 @@ const BalanceCard: FunctionComponent<{
             />
           </div>
 
-          <div className="text-muted-foreground flex justify-between text-xs">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>{balance.used} used</span>
             <span>{balance.total} total</span>
           </div>
@@ -165,7 +165,7 @@ const RequestCard: FunctionComponent<{
               {getTypeIcon(request.type)}
               <h3 className="font-medium capitalize">{request.type} Request</h3>
             </div>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-sm text-muted-foreground">
               {formatDate(request.startDate)} - {formatDate(request.endDate)}
             </p>
           </div>
@@ -179,7 +179,7 @@ const RequestCard: FunctionComponent<{
 
         <p className="text-sm">{request.reason}</p>
 
-        <div className="text-muted-foreground flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span>
             {request.totalDays} day{request.totalDays !== 1 ? "s" : ""}
           </span>
@@ -187,7 +187,7 @@ const RequestCard: FunctionComponent<{
         </div>
 
         {request.comments && (
-          <div className="bg-muted rounded p-2 text-xs">
+          <div className="rounded bg-muted p-2 text-xs">
             <strong>Manager:</strong> {request.comments}
           </div>
         )}
@@ -407,7 +407,7 @@ export const TimeOffPage: FunctionComponent = () => {
   );
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -427,7 +427,7 @@ export const TimeOffPage: FunctionComponent = () => {
               <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
                 Time Off Management
               </h1>
-              <p className="text-muted-foreground text-sm sm:text-base">
+              <p className="text-sm text-muted-foreground sm:text-base">
                 Submit vacation requests, check your balance, and manage time
                 off
               </p>
@@ -446,10 +446,10 @@ export const TimeOffPage: FunctionComponent = () => {
             style={{ animationDelay: "100ms" }}
           >
             <CardContent className="p-4 text-center">
-              <div className="text-primary text-2xl font-bold">
+              <div className="text-2xl font-bold text-primary">
                 {totalDaysRemaining}
               </div>
-              <p className="text-muted-foreground text-sm">Days Remaining</p>
+              <p className="text-sm text-muted-foreground">Days Remaining</p>
             </CardContent>
           </Card>
           <Card
@@ -460,7 +460,7 @@ export const TimeOffPage: FunctionComponent = () => {
               <div className="text-2xl font-bold text-orange-600">
                 {totalDaysUsed}
               </div>
-              <p className="text-muted-foreground text-sm">Days Used</p>
+              <p className="text-sm text-muted-foreground">Days Used</p>
             </CardContent>
           </Card>
           <Card
@@ -471,7 +471,7 @@ export const TimeOffPage: FunctionComponent = () => {
               <div className="text-2xl font-bold text-green-600">
                 {timeOffRequests.filter((r) => r.status === "pending").length}
               </div>
-              <p className="text-muted-foreground text-sm">Pending Requests</p>
+              <p className="text-sm text-muted-foreground">Pending Requests</p>
             </CardContent>
           </Card>
         </PageSection>
@@ -550,11 +550,11 @@ export const TimeOffPage: FunctionComponent = () => {
               <PageSection index={5}>
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center py-12">
-                    <Calendar className="text-muted-foreground mb-4 h-12 w-12" />
+                    <Calendar className="mb-4 h-12 w-12 text-muted-foreground" />
                     <h3 className="mb-2 text-lg font-medium">
                       No requests found
                     </h3>
-                    <p className="text-muted-foreground text-center">
+                    <p className="text-center text-muted-foreground">
                       {filter === "all"
                         ? "You haven't submitted any time off requests yet."
                         : `No ${filter} requests found.`}
@@ -584,7 +584,7 @@ export const TimeOffPage: FunctionComponent = () => {
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         {policy.description}
                       </p>
 

@@ -88,14 +88,14 @@ export const CompanyAnnouncements: FunctionComponent = () => {
                 </div>
                 <div className="flex-1 space-y-2">
                   <div className="flex items-start justify-between">
-                    <h4 className="text-foreground leading-none font-medium">
+                    <h4 className="leading-none font-medium text-foreground">
                       {announcement.title}
                     </h4>
-                    <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
+                    <span className="ml-2 text-xs whitespace-nowrap text-muted-foreground">
                       {formatRelativeTime(announcement.date)}
                     </span>
                   </div>
-                  <p className="text-foreground text-sm leading-relaxed">
+                  <p className="text-sm leading-relaxed text-foreground">
                     {announcement.body}
                   </p>
                   <div className="flex items-center gap-2">
@@ -128,7 +128,7 @@ export const CompanyAnnouncements: FunctionComponent = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-foreground w-full gap-2"
+                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
                 >
                   <span>
                     View {announcements.length - 3} more announcements

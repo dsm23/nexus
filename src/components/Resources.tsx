@@ -101,7 +101,7 @@ export const Resources: FunctionComponent = () => {
           {/* Recent Resources */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <FileText className="text-primary h-5 w-5" />
+              <FileText className="h-5 w-5 text-primary" />
               <h4 className="text-base font-semibold">Recent Uploads</h4>
             </div>
             <div className="space-y-3">
@@ -118,7 +118,7 @@ export const Resources: FunctionComponent = () => {
                     <p className="truncate text-sm font-medium">
                       {resource.title}
                     </p>
-                    <div className="text-muted-foreground mt-1 flex items-center gap-2 text-sm">
+                    <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
                       <span>{resource.uploadedBy}</span>
                       {resource.isFavorite && (
                         <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
@@ -153,7 +153,7 @@ export const Resources: FunctionComponent = () => {
                     <p className="truncate text-sm font-medium">
                       {resource.title}
                     </p>
-                    <div className="text-muted-foreground mt-1 flex items-center gap-2 text-sm">
+                    <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
                       <Download className="h-3 w-3" />
                       <span>{resource.downloadCount} downloads</span>
                     </div>

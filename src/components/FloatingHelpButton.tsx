@@ -56,7 +56,7 @@ export const FloatingHelpButton: FunctionComponent = () => {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-primary bg-background/90 hover:bg-accent text-foreground hover:text-foreground relative h-14 w-14 rounded-full shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
+                className="relative h-14 w-14 rounded-full border-primary bg-background/90 text-foreground shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-accent hover:text-foreground hover:shadow-lg"
                 onClick={handleButtonClick}
               >
                 <Headphones
@@ -121,7 +121,7 @@ export const FloatingHelpButton: FunctionComponent = () => {
                     <Plus className="h-4 w-4 text-blue-600" />
                     <div className="text-left">
                       <p className="font-medium">Create New Ticket</p>
-                      <p className="text-muted-foreground text-xs">
+                      <p className="text-xs text-muted-foreground">
                         Report an issue or request help
                       </p>
                     </div>
@@ -139,7 +139,7 @@ export const FloatingHelpButton: FunctionComponent = () => {
                     <MessageSquare className="h-4 w-4 text-green-600" />
                     <div className="text-left">
                       <p className="font-medium">My Tickets</p>
-                      <p className="text-muted-foreground text-xs">
+                      <p className="text-xs text-muted-foreground">
                         View and track your support requests
                       </p>
                     </div>
@@ -157,7 +157,7 @@ export const FloatingHelpButton: FunctionComponent = () => {
                     <FileText className="h-4 w-4 text-purple-600" />
                     <div className="text-left">
                       <p className="font-medium">Knowledge Base</p>
-                      <p className="text-muted-foreground text-xs">
+                      <p className="text-xs text-muted-foreground">
                         Browse help articles and guides
                       </p>
                     </div>

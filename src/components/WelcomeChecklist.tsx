@@ -124,7 +124,7 @@ export const WelcomeChecklist: FunctionComponent<WelcomeChecklistProps> = ({
                 >
                   {item.label}
                 </label>
-                <p className="text-muted-foreground text-xs">
+                <p className="text-xs text-muted-foreground">
                   {item.description}
                 </p>
               </div>

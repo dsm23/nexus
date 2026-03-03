@@ -61,16 +61,16 @@ export const TimeOff: FunctionComponent = () => {
           style={getItemStyle(0)}
         >
           <div className="space-y-1">
-            <p className="text-primary text-lg font-bold">
+            <p className="text-lg font-bold text-primary">
               {totalDaysRemaining}
             </p>
-            <p className="text-muted-foreground text-xs">Days Available</p>
+            <p className="text-xs text-muted-foreground">Days Available</p>
           </div>
           <div className="space-y-1">
             <p className="text-lg font-bold text-orange-600">
               {pendingRequests.length}
             </p>
-            <p className="text-muted-foreground text-xs">Pending</p>
+            <p className="text-xs text-muted-foreground">Pending</p>
           </div>
         </div>
 
@@ -103,7 +103,7 @@ export const TimeOff: FunctionComponent = () => {
         {/* Upcoming Time Off */}
         <div className={getItemClassName("space-y-3")} style={getItemStyle(2)}>
           <div className="flex items-center gap-2">
-            <Calendar className="text-muted-foreground h-4 w-4" />
+            <Calendar className="h-4 w-4 text-muted-foreground" />
             <h4 className="text-sm font-medium">Upcoming Time Off</h4>
           </div>
 
@@ -123,7 +123,7 @@ export const TimeOff: FunctionComponent = () => {
                       <p className="truncate text-xs font-medium capitalize">
                         {request.type}
                       </p>
-                      <p className="text-muted-foreground text-xs">
+                      <p className="text-xs text-muted-foreground">
                         {formatDate(request.startDate)} -{" "}
                         {formatDate(request.endDate)}
                       </p>
@@ -140,8 +140,8 @@ export const TimeOff: FunctionComponent = () => {
               className={getItemClassName("py-4 text-center")}
               style={getItemStyle(3)}
             >
-              <Calendar className="text-muted-foreground mx-auto mb-2 h-8 w-8" />
-              <p className="text-muted-foreground text-xs">
+              <Calendar className="mx-auto mb-2 h-8 w-8 text-muted-foreground" />
+              <p className="text-xs text-muted-foreground">
                 No upcoming time off
               </p>
             </div>

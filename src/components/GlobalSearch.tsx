@@ -153,13 +153,13 @@ export const GlobalSearch: FunctionComponent = () => {
       <Button
         variant="outline"
         onClick={() => setIsOpen(true)}
-        className="text-muted-foreground hover:text-foreground h-10 w-48 justify-between"
+        className="h-10 w-48 justify-between text-muted-foreground hover:text-foreground"
       >
         <div className="flex items-center gap-2">
           <Search className="h-4 w-4" />
           <span className="text-sm">Search...</span>
         </div>
-        <div className="bg-muted flex items-center gap-1 rounded px-1.5 py-0.5 text-xs">
+        <div className="flex items-center gap-1 rounded bg-muted px-1.5 py-0.5 text-xs">
           <Command className="h-3 w-3" />
           <span>K</span>
         </div>
@@ -176,7 +176,7 @@ export const GlobalSearch: FunctionComponent = () => {
             {/* Search Input */}
             <form onSubmit={handleSubmit} className="px-6 pb-4">
               <div className="relative">
-                <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
+                <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                 <Input
                   placeholder="Search employees, announcements, events, and more..."
                   value={searchQuery}
@@ -195,28 +195,28 @@ export const GlobalSearch: FunctionComponent = () => {
                     <h4 className="mb-3 text-sm font-medium">Quick Actions</h4>
                     <div className="space-y-1">
                       <div
-                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
+                        className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
                         onClick={() => handleQuickAction("employees")}
                       >
                         <span className="text-lg">👤</span>
                         <span className="text-sm">Search employees</span>
                       </div>
                       <div
-                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
+                        className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
                         onClick={() => handleQuickAction("announcements")}
                       >
                         <span className="text-lg">📢</span>
                         <span className="text-sm">Search announcements</span>
                       </div>
                       <div
-                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
+                        className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
                         onClick={() => handleQuickAction("events")}
                       >
                         <span className="text-lg">📅</span>
                         <span className="text-sm">Search calendar events</span>
                       </div>
                       <div
-                        className="hover:bg-accent flex cursor-pointer items-center gap-3 rounded-lg p-3"
+                        className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
                         onClick={() => handleQuickAction("kudos")}
                       >
                         <span className="text-lg">❤️</span>
@@ -229,13 +229,13 @@ export const GlobalSearch: FunctionComponent = () => {
                     <h4 className="mb-2 text-sm font-medium">
                       Recent Searches
                     </h4>
-                    <div className="text-muted-foreground text-sm">
+                    <div className="text-sm text-muted-foreground">
                       No recent searches
                     </div>
                   </div>
                 </div>
               ) : results.length === 0 ? (
-                <div className="text-muted-foreground p-6 text-center">
+                <div className="p-6 text-center text-muted-foreground">
                   <Search className="mx-auto mb-3 h-8 w-8 opacity-50" />
                   <p>No results found for "{searchQuery}"</p>
                   <p className="mt-1 text-xs">
@@ -247,7 +247,7 @@ export const GlobalSearch: FunctionComponent = () => {
                   {results.map((result, index) => (
                     <div
                       key={`${result.type}-${result.id}`}
-                      className={`hover:bg-accent flex cursor-pointer items-start px-6 py-3 ${
+                      className={`flex cursor-pointer items-start px-6 py-3 hover:bg-accent ${
                         index === selectedIndex ? "bg-accent" : ""
                       }`}
                       onClick={() => handleResultClick(result)}
@@ -260,11 +260,11 @@ export const GlobalSearch: FunctionComponent = () => {
                           <span className="truncate font-medium">
                             {result.title}
                           </span>
-                          <span className="bg-muted text-muted-foreground flex-shrink-0 rounded-full px-2 py-0.5 text-xs">
+                          <span className="flex-shrink-0 rounded-full bg-muted px-2 py-0.5 text-xs text-muted-foreground">
                             {typeLabels[result.type]}
                           </span>
                         </div>
-                        <div className="text-muted-foreground line-clamp-2 text-sm">
+                        <div className="line-clamp-2 text-sm text-muted-foreground">
                           {result.description}
                         </div>
                       </div>
@@ -276,7 +276,7 @@ export const GlobalSearch: FunctionComponent = () => {
 
             {/* Footer */}
             {(searchQuery.trim() || results.length > 0) && (
-              <div className="text-muted-foreground bg-muted/30 flex justify-between border-t px-6 py-3 text-xs">
+              <div className="flex justify-between border-t bg-muted/30 px-6 py-3 text-xs text-muted-foreground">
                 <span>
                   {results.length > 0
                     ? "Use ↑↓ to navigate • Enter to select"

@@ -105,12 +105,12 @@ export const TeamCalendar: FunctionComponent = () => {
                     <h4 className="text-sm leading-none font-medium">
                       {event.title}
                     </h4>
-                    <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
+                    <span className="ml-2 text-xs whitespace-nowrap text-muted-foreground">
                       {formatEventDate(event.date)}
                     </span>
                   </div>
                   {event.description && (
-                    <p className="text-muted-foreground text-xs">
+                    <p className="text-xs text-muted-foreground">
                       {event.description}
                     </p>
                   )}
@@ -136,7 +136,7 @@ export const TeamCalendar: FunctionComponent = () => {
 
         {/* Summary */}
         <div className="mt-6 border-t pt-4">
-          <p className="text-muted-foreground text-center text-xs">
+          <p className="text-center text-xs text-muted-foreground">
             Showing {displayEvents.length} of {sortedEvents.length} upcoming
             events
           </p>
@@ -148,7 +148,7 @@ export const TeamCalendar: FunctionComponent = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-foreground w-full gap-2"
+                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
                 >
                   <span>
                     View {sortedEvents.length - 3} more{" "}

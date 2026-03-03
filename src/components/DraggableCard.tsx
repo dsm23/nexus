@@ -31,9 +31,9 @@ export const DraggableCard: FunctionComponent<DraggableCardProps> = ({
           size="sm"
           {...getDragHandleProps({ id, type: "card" })}
           title="Drag to reorder"
-          className="hover:bg-background/80 border-border/50 h-8 w-8 cursor-grab border p-0 backdrop-blur-sm active:cursor-grabbing"
+          className="h-8 w-8 cursor-grab border border-border/50 p-0 backdrop-blur-sm hover:bg-background/80 active:cursor-grabbing"
         >
-          <GripVertical className="text-muted-foreground h-4 w-4" />
+          <GripVertical className="h-4 w-4 text-muted-foreground" />
         </Button>
       </div>
 

@@ -33,7 +33,7 @@ export const PageLoader = ({
   return (
     <div className="flex min-h-[200px] flex-col items-center justify-center space-y-4">
       <LoadingSpinner size={size} />
-      <p className="text-muted-foreground text-sm">{message}</p>
+      <p className="text-sm text-muted-foreground">{message}</p>
     </div>
   );
 };
@@ -46,7 +46,7 @@ export const FullPageLoader = ({
   return (
     <div className="flex min-h-screen flex-col items-center justify-center space-y-4">
       <LoadingSpinner size="lg" />
-      <p className="text-muted-foreground text-lg">{message}</p>
+      <p className="text-lg text-muted-foreground">{message}</p>
     </div>
   );
 };

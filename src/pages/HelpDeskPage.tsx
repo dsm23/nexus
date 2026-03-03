@@ -140,7 +140,7 @@ const TicketCard: FunctionComponent<{
               {getCategoryIcon(ticket.category)}
               <h3 className="truncate font-medium">{ticket.title}</h3>
             </div>
-            <p className="text-muted-foreground text-sm">#{ticket.id}</p>
+            <p className="text-sm text-muted-foreground">#{ticket.id}</p>
           </div>
           <div className="flex flex-col items-end gap-2">
             <Badge
@@ -159,7 +159,7 @@ const TicketCard: FunctionComponent<{
 
         <p className="line-clamp-2 text-sm">{ticket.description}</p>
 
-        <div className="text-muted-foreground flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span>Created {formatDate(ticket.submittedAt)}</span>
           {ticket.assignedTo && <span>Assigned to {ticket.assignedTo}</span>}
         </div>
@@ -190,11 +190,11 @@ const KnowledgeBaseCard: FunctionComponent<{
           </div>
         </div>
 
-        <p className="text-muted-foreground line-clamp-2 text-sm">
+        <p className="line-clamp-2 text-sm text-muted-foreground">
           {article.content}
         </p>
 
-        <div className="text-muted-foreground flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
               <Eye className="h-3 w-3" />
@@ -413,7 +413,7 @@ export const HelpDeskPage: FunctionComponent = () => {
   ).length;
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -433,7 +433,7 @@ export const HelpDeskPage: FunctionComponent = () => {
               <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
                 Help Desk & Support
               </h1>
-              <p className="text-muted-foreground text-sm sm:text-base">
+              <p className="text-sm text-muted-foreground sm:text-base">
                 Get assistance with IT issues, submit tickets, and access
                 support resources
               </p>
@@ -458,7 +458,7 @@ export const HelpDeskPage: FunctionComponent = () => {
               <div className="text-2xl font-bold text-blue-600">
                 {openTickets}
               </div>
-              <p className="text-muted-foreground text-sm">Open Tickets</p>
+              <p className="text-sm text-muted-foreground">Open Tickets</p>
             </CardContent>
           </Card>
           <Card
@@ -469,7 +469,7 @@ export const HelpDeskPage: FunctionComponent = () => {
               <div className="text-2xl font-bold text-yellow-600">
                 {inProgressTickets}
               </div>
-              <p className="text-muted-foreground text-sm">In Progress</p>
+              <p className="text-sm text-muted-foreground">In Progress</p>
             </CardContent>
           </Card>
           <Card
@@ -480,7 +480,7 @@ export const HelpDeskPage: FunctionComponent = () => {
               <div className="text-2xl font-bold text-green-600">
                 {resolvedTickets}
               </div>
-              <p className="text-muted-foreground text-sm">Resolved Today</p>
+              <p className="text-sm text-muted-foreground">Resolved Today</p>
             </CardContent>
           </Card>
         </PageSection>
@@ -488,7 +488,7 @@ export const HelpDeskPage: FunctionComponent = () => {
         {/* Search Bar */}
         <PageSection index={2} className="mb-6">
           <div className="relative">
-            <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
+            <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
             <Input
               placeholder="Search tickets and knowledge base..."
               value={searchQuery}
@@ -549,11 +549,11 @@ export const HelpDeskPage: FunctionComponent = () => {
                 <PageSection index={7}>
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
-                      <MessageSquare className="text-muted-foreground mb-4 h-12 w-12" />
+                      <MessageSquare className="mb-4 h-12 w-12 text-muted-foreground" />
                       <h3 className="mb-2 text-lg font-medium">
                         No tickets found
                       </h3>
-                      <p className="text-muted-foreground text-center">
+                      <p className="text-center text-muted-foreground">
                         {ticketFilter === "all"
                           ? "You haven't submitted any support tickets yet."
                           : `No ${ticketFilter} tickets found.`}
@@ -568,7 +568,7 @@ export const HelpDeskPage: FunctionComponent = () => {
             <TabsContent value="knowledge" className="space-y-6">
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <h2 className="text-lg font-semibold">Knowledge Base</h2>
-                <div className="text-muted-foreground flex items-center gap-2 text-sm">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <FileText className="h-4 w-4" />
                   <span>{helpdeskKnowledgeBase.length} articles</span>
                 </div>
@@ -590,11 +590,11 @@ export const HelpDeskPage: FunctionComponent = () => {
                 <PageSection index={8}>
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
-                      <FileText className="text-muted-foreground mb-4 h-12 w-12" />
+                      <FileText className="mb-4 h-12 w-12 text-muted-foreground" />
                       <h3 className="mb-2 text-lg font-medium">
                         No articles found
                       </h3>
-                      <p className="text-muted-foreground text-center">
+                      <p className="text-center text-muted-foreground">
                         No knowledge base articles match your search.
                       </p>
                     </CardContent>
@@ -618,7 +618,7 @@ export const HelpDeskPage: FunctionComponent = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         For critical issues that require immediate attention
                       </p>
                       <div className="space-y-2">
@@ -649,7 +649,7 @@ export const HelpDeskPage: FunctionComponent = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         For non-urgent issues and general inquiries
                       </p>
                       <div className="space-y-2">
@@ -681,7 +681,7 @@ export const HelpDeskPage: FunctionComponent = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       Chat with our support team for real-time assistance
                     </p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
