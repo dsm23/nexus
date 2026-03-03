@@ -98,15 +98,15 @@ export const ForYouFeed: FunctionComponent = () => {
                   <h4 className="text-sm leading-none font-medium">
                     {item.title}
                   </h4>
-                  <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
+                  <span className="ml-2 text-xs whitespace-nowrap text-muted-foreground">
                     {formatRelativeTime(item.timestamp)}
                   </span>
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-sm leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
                 {item.author && (
-                  <p className="text-muted-foreground text-xs">
+                  <p className="text-xs text-muted-foreground">
                     by {item.author}
                   </p>
                 )}
@@ -124,7 +124,7 @@ export const ForYouFeed: FunctionComponent = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-foreground w-full gap-2"
+                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
                 >
                   <span>View {forYouFeed.length - 3} more items</span>
                   <ArrowRight className="h-3 w-3" />

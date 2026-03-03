@@ -86,14 +86,14 @@ export const EmployeeDirectory: FunctionComponent = () => {
                   <img
                     src={employee.avatar}
                     alt={employee.name}
-                    className="bg-muted h-10 w-10 rounded-full"
+                    className="h-10 w-10 rounded-full bg-muted"
                   />
                 </div>
                 <div className="min-w-0 flex-1">
                   <h4 className="truncate text-sm font-medium">
                     {employee.name}
                   </h4>
-                  <p className="text-muted-foreground truncate text-sm">
+                  <p className="truncate text-sm text-muted-foreground">
                     {employee.role}
                   </p>
                   <div className="mt-1">
@@ -121,7 +121,7 @@ export const EmployeeDirectory: FunctionComponent = () => {
         </div>
 
         {filteredEmployees.length === 0 && (
-          <div className="text-muted-foreground py-8 text-center">
+          <div className="py-8 text-center text-muted-foreground">
             <Users className="mx-auto mb-2 h-8 w-8 opacity-50" />
             <p className="text-sm">
               No employees found in {selectedDepartment} department.
@@ -131,7 +131,7 @@ export const EmployeeDirectory: FunctionComponent = () => {
 
         {/* Summary */}
         <div className="mt-6 border-t pt-4">
-          <p className="text-muted-foreground text-center text-xs">
+          <p className="text-center text-xs text-muted-foreground">
             Showing {filteredEmployees.length} of {employees.length} employees
             {selectedDepartment !== "All" && ` in ${selectedDepartment}`}
           </p>
@@ -143,7 +143,7 @@ export const EmployeeDirectory: FunctionComponent = () => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-foreground w-full gap-2"
+                  className="w-full gap-2 text-muted-foreground hover:text-foreground"
                 >
                   <span>View {employees.length - 6} more employees</span>
                   <ArrowRight className="h-3 w-3" />

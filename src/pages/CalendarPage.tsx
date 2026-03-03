@@ -153,7 +153,7 @@ export const CalendarPage: FunctionComponent = () => {
       days.push(
         <div
           key={`header-${i}`}
-          className="text-muted-foreground border-r border-b p-2 text-center text-sm font-medium"
+          className="border-r border-b p-2 text-center text-sm font-medium text-muted-foreground"
         >
           {dayNames[i]}
         </div>,
@@ -165,7 +165,7 @@ export const CalendarPage: FunctionComponent = () => {
       days.push(
         <div
           key={`empty-${i}`}
-          className="bg-muted/20 border-r border-b p-2"
+          className="border-r border-b bg-muted/20 p-2"
         ></div>,
       );
     }
@@ -178,10 +178,10 @@ export const CalendarPage: FunctionComponent = () => {
       days.push(
         <div
           key={day}
-          className="bg-background hover:bg-muted/30 min-h-[120px] border-r border-b p-2 transition-colors"
+          className="min-h-[120px] border-r border-b bg-background p-2 transition-colors hover:bg-muted/30"
         >
           <div
-            className={`mb-1 text-sm font-medium ${isCurrentDay ? "bg-primary text-primary-foreground flex h-6 w-6 items-center justify-center rounded-full" : ""}`}
+            className={`mb-1 text-sm font-medium ${isCurrentDay ? "flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground" : ""}`}
           >
             {day}
           </div>
@@ -201,7 +201,7 @@ export const CalendarPage: FunctionComponent = () => {
               </div>
             ))}
             {dayEvents.length > 3 && (
-              <div className="text-muted-foreground text-xs">
+              <div className="text-xs text-muted-foreground">
                 +{dayEvents.length - 3} more
               </div>
             )}
@@ -214,7 +214,7 @@ export const CalendarPage: FunctionComponent = () => {
   };
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -244,7 +244,7 @@ export const CalendarPage: FunctionComponent = () => {
               {/* Search and Filters */}
               <div className="mb-6 flex flex-col gap-4 sm:flex-row">
                 <div className="relative flex-1">
-                  <Search className="text-muted-foreground absolute top-3 left-3 h-4 w-4" />
+                  <Search className="absolute top-3 left-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     placeholder="Search events..."
                     value={searchQuery}
@@ -253,7 +253,7 @@ export const CalendarPage: FunctionComponent = () => {
                   />
                 </div>
                 <div className="flex items-center gap-2">
-                  <Filter className="text-muted-foreground h-4 w-4" />
+                  <Filter className="h-4 w-4 text-muted-foreground" />
                   <Select value={filterType} onValueChange={setFilterType}>
                     <SelectTrigger className="w-40">
                       <SelectValue placeholder="Filter by type" />
@@ -341,7 +341,7 @@ export const CalendarPage: FunctionComponent = () => {
         {filteredEvents.length !== calendarEvents.length && (
           <PageSection index={3}>
             <div className="mt-6 border-t pt-4 text-center">
-              <p className="text-muted-foreground text-xs">
+              <p className="text-xs text-muted-foreground">
                 Showing {filteredEvents.length} of {calendarEvents.length}{" "}
                 events
                 {searchQuery && ` matching "${searchQuery}"`}

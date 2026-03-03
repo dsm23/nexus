@@ -69,7 +69,7 @@ export const CompanyAnnouncementsPage: FunctionComponent = () => {
   });
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
@@ -105,7 +105,7 @@ export const CompanyAnnouncementsPage: FunctionComponent = () => {
                 {/* Search Input */}
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
+                    <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                     <Input
                       placeholder="Search announcements..."
                       value={searchQuery}
@@ -136,7 +136,7 @@ export const CompanyAnnouncementsPage: FunctionComponent = () => {
               </div>
 
               {/* Results Count */}
-              <div className="text-muted-foreground mt-4 text-sm">
+              <div className="mt-4 text-sm text-muted-foreground">
                 Showing {filteredAnnouncements.length} of {announcements.length}{" "}
                 announcements
               </div>
@@ -151,11 +151,11 @@ export const CompanyAnnouncementsPage: FunctionComponent = () => {
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-12">
                   <div className="space-y-2 text-center">
-                    <div className="bg-muted mx-auto flex h-12 w-12 items-center justify-center rounded-full">
-                      <Search className="text-muted-foreground h-6 w-6" />
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+                      <Search className="h-6 w-6 text-muted-foreground" />
                     </div>
                     <h3 className="font-medium">No announcements found</h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       Try adjusting your search or filter criteria
                     </p>
                   </div>
@@ -176,14 +176,14 @@ export const CompanyAnnouncementsPage: FunctionComponent = () => {
                     </div>
                     <div className="flex-1 space-y-3">
                       <div className="flex items-start justify-between">
-                        <h3 className="text-foreground leading-none font-medium">
+                        <h3 className="leading-none font-medium text-foreground">
                           {announcement.title}
                         </h3>
-                        <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
+                        <span className="ml-2 text-xs whitespace-nowrap text-muted-foreground">
                           {formatRelativeTime(announcement.date)}
                         </span>
                       </div>
-                      <p className="text-foreground text-sm leading-relaxed">
+                      <p className="text-sm leading-relaxed text-foreground">
                         {announcement.body}
                       </p>
                       <div className="flex items-center gap-2">
@@ -218,7 +218,7 @@ export const CompanyAnnouncementsPage: FunctionComponent = () => {
             <Button variant="outline" disabled>
               Load More Announcements
             </Button>
-            <p className="text-muted-foreground mt-2 text-xs">
+            <p className="mt-2 text-xs text-muted-foreground">
               All announcements loaded
             </p>
           </div>

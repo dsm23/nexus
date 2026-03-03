@@ -83,7 +83,7 @@ const EmployeeNode: FunctionComponent<EmployeeNodeProps> = ({
   return (
     <div className="flex justify-center">
       <Card
-        className={`relative cursor-pointer transition-all duration-200 hover:shadow-lg ${isRoot ? "border-primary border-2 shadow-lg" : ""} ${level <= 1 ? "from-background to-muted/20 bg-gradient-to-br" : ""} w-[240px] max-w-[240px] min-w-[240px] flex-shrink-0`}
+        className={`relative cursor-pointer transition-all duration-200 hover:shadow-lg ${isRoot ? "border-2 border-primary shadow-lg" : ""} ${level <= 1 ? "bg-gradient-to-br from-background to-muted/20" : ""} w-[240px] max-w-[240px] min-w-[240px] flex-shrink-0`}
       >
         <CardContent className="p-4">
           <div className="flex flex-col items-center space-y-3 text-center">
@@ -91,7 +91,7 @@ const EmployeeNode: FunctionComponent<EmployeeNodeProps> = ({
               <img
                 src={employee.avatar}
                 alt={employee.name}
-                className="bg-muted border-background h-16 w-16 rounded-full border-2 shadow-sm"
+                className="h-16 w-16 rounded-full border-2 border-background bg-muted shadow-sm"
               />
               <div
                 className={`absolute -right-1 -bottom-1 flex h-6 w-6 items-center justify-center rounded-full text-xs ${
@@ -114,7 +114,7 @@ const EmployeeNode: FunctionComponent<EmployeeNodeProps> = ({
               >
                 {employee.name}
               </h4>
-              <p className="text-muted-foreground line-clamp-2 text-xs leading-tight">
+              <p className="line-clamp-2 text-xs leading-tight text-muted-foreground">
                 {employee.role}
               </p>
               <Badge
@@ -235,11 +235,11 @@ export const OrganizationChart: FunctionComponent = () => {
       <Card>
         <CardContent className="flex flex-col items-center justify-center py-12">
           <div className="space-y-2 text-center">
-            <div className="bg-muted mx-auto flex h-12 w-12 items-center justify-center rounded-full">
-              <Users className="text-muted-foreground h-6 w-6" />
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+              <Users className="h-6 w-6 text-muted-foreground" />
             </div>
             <h3 className="font-medium">No organization structure found</h3>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-sm text-muted-foreground">
               Unable to build organization chart from employee data
             </p>
           </div>
@@ -273,10 +273,10 @@ export const OrganizationChart: FunctionComponent = () => {
         <CardContent>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             <div className="text-center">
-              <div className="text-primary text-2xl font-bold">
+              <div className="text-2xl font-bold text-primary">
                 {totalEmployees}
               </div>
-              <div className="text-muted-foreground text-sm">
+              <div className="text-sm text-muted-foreground">
                 Total Employees
               </div>
             </div>
@@ -284,19 +284,19 @@ export const OrganizationChart: FunctionComponent = () => {
               <div className="text-2xl font-bold text-blue-600">
                 {departmentCount}
               </div>
-              <div className="text-muted-foreground text-sm">Departments</div>
+              <div className="text-sm text-muted-foreground">Departments</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-green-600">
                 {levelCounts[3] || 0}
               </div>
-              <div className="text-muted-foreground text-sm">Managers</div>
+              <div className="text-sm text-muted-foreground">Managers</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-purple-600">
                 {(levelCounts[1] || 0) + (levelCounts[2] || 0)}
               </div>
-              <div className="text-muted-foreground text-sm">Leadership</div>
+              <div className="text-sm text-muted-foreground">Leadership</div>
             </div>
           </div>
         </CardContent>

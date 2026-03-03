@@ -65,14 +65,14 @@ export const NotificationDropdown: FunctionComponent = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-96 border p-0 shadow-lg">
-        <div className="bg-muted/30 border-b p-4">
+        <div className="border-b bg-muted/30 p-4">
           <div className="flex items-center justify-between">
             <h4 className="text-base font-semibold">Notifications</h4>
             <Link to="/for-you">
               <Button
                 variant="ghost"
                 size="sm"
-                className="hover:bg-background h-7 px-3 text-xs"
+                className="h-7 px-3 text-xs hover:bg-background"
               >
                 View All
               </Button>
@@ -82,7 +82,7 @@ export const NotificationDropdown: FunctionComponent = () => {
 
         <div className="max-h-80 overflow-y-auto">
           {displayItems.length === 0 ? (
-            <div className="text-muted-foreground py-12 text-center">
+            <div className="py-12 text-center text-muted-foreground">
               <Bell className="mx-auto mb-3 h-12 w-12 opacity-30" />
               <p className="text-sm font-medium">No notifications</p>
               <p className="mt-1 text-xs opacity-75">You're all caught up!</p>
@@ -92,7 +92,7 @@ export const NotificationDropdown: FunctionComponent = () => {
               {displayItems.map((item, index) => (
                 <div
                   key={item.id}
-                  className="hover:bg-muted/200 bg-primary/3 flex cursor-pointer gap-3 p-4 transition-colors"
+                  className="flex cursor-pointer gap-3 bg-primary/3 p-4 transition-colors hover:bg-muted/200"
                 >
                   <div
                     className={`mt-1 flex-shrink-0 ${getTypeColor(item.type)}`}
@@ -102,15 +102,15 @@ export const NotificationDropdown: FunctionComponent = () => {
                   <div className="min-w-0 flex-1 space-y-2">
                     <div className="flex items-start justify-between gap-3">
                       <h5
-                        className={`text-sm leading-5 ${index < 3 ? "text-foreground font-semibold" : "text-foreground/90 font-medium"}`}
+                        className={`text-sm leading-5 ${index < 3 ? "font-semibold text-foreground" : "font-medium text-foreground/90"}`}
                       >
                         {item.title}
                       </h5>
-                      <span className="text-muted-foreground mt-0.5 text-xs whitespace-nowrap">
+                      <span className="mt-0.5 text-xs whitespace-nowrap text-muted-foreground">
                         {formatRelativeTime(item.timestamp)}
                       </span>
                     </div>
-                    <p className="text-muted-foreground text-xs leading-relaxed">
+                    <p className="text-xs leading-relaxed text-muted-foreground">
                       {item.description}
                     </p>
                     {item.author && (
@@ -124,7 +124,7 @@ export const NotificationDropdown: FunctionComponent = () => {
                   </div>
                   {index < 3 && (
                     <div className="flex-shrink-0">
-                      <div className="bg-primary h-2 w-2 rounded-full"></div>
+                      <div className="h-2 w-2 rounded-full bg-primary"></div>
                     </div>
                   )}
                 </div>
@@ -134,7 +134,7 @@ export const NotificationDropdown: FunctionComponent = () => {
         </div>
 
         {forYouFeed.length > 5 && (
-          <div className="bg-muted/20 border-t p-3">
+          <div className="border-t bg-muted/20 p-3">
             <Link to="/for-you" className="block">
               <Button
                 variant="outline"

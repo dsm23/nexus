@@ -130,7 +130,7 @@ export const KudosFeed: FunctionComponent = () => {
       </CardHeader>
       <CardContent ref={containerRef}>
         {displayKudos.length === 0 ? (
-          <div className="text-muted-foreground py-8 text-center">
+          <div className="py-8 text-center text-muted-foreground">
             <Heart className="mx-auto mb-2 h-8 w-8 opacity-50" />
             <p className="text-sm">No kudos yet.</p>
             <p className="mt-1 text-xs">
@@ -163,11 +163,11 @@ export const KudosFeed: FunctionComponent = () => {
                             {kudo.to}
                           </span>
                         </p>
-                        <p className="text-foreground text-sm leading-relaxed">
+                        <p className="text-sm leading-relaxed text-foreground">
                           {kudo.message}
                         </p>
                       </div>
-                      <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
+                      <span className="ml-2 text-xs whitespace-nowrap text-muted-foreground">
                         {formatRelativeTime(kudo.timestamp)}
                       </span>
                     </div>
@@ -183,7 +183,7 @@ export const KudosFeed: FunctionComponent = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-muted-foreground hover:text-foreground w-full gap-2"
+                    className="w-full gap-2 text-muted-foreground hover:text-foreground"
                   >
                     <span>View {kudosList.length - 3} more kudos</span>
                     <ArrowRight className="h-3 w-3" />

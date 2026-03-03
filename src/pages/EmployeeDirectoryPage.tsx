@@ -74,7 +74,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
   });
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
@@ -127,7 +127,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                     {/* Search Input */}
                     <div className="flex-1">
                       <div className="relative">
-                        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
+                        <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                         <Input
                           placeholder="Search by name, role, department, or email..."
                           value={searchQuery}
@@ -160,7 +160,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                   </div>
 
                   {/* Results Count */}
-                  <div className="text-muted-foreground mt-4 text-sm">
+                  <div className="mt-4 text-sm text-muted-foreground">
                     Showing {filteredEmployees.length} of {employees.length}{" "}
                     employees
                   </div>
@@ -174,11 +174,11 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                     <Card>
                       <CardContent className="flex flex-col items-center justify-center py-12">
                         <div className="space-y-2 text-center">
-                          <div className="bg-muted mx-auto flex h-12 w-12 items-center justify-center rounded-full">
-                            <Search className="text-muted-foreground h-6 w-6" />
+                          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+                            <Search className="h-6 w-6 text-muted-foreground" />
                           </div>
                           <h3 className="font-medium">No employees found</h3>
-                          <p className="text-muted-foreground text-sm">
+                          <p className="text-sm text-muted-foreground">
                             Try adjusting your search or filter criteria
                           </p>
                         </div>
@@ -196,7 +196,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                                 <img
                                   src={employee.avatar}
                                   alt={employee.name}
-                                  className="bg-muted h-12 w-12 rounded-full"
+                                  className="h-12 w-12 rounded-full bg-muted"
                                 />
                               </div>
                               <div className="min-w-0 flex-1">
@@ -205,7 +205,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                                     <h3 className="truncate font-medium">
                                       {employee.name}
                                     </h3>
-                                    <p className="text-muted-foreground truncate text-sm">
+                                    <p className="truncate text-sm text-muted-foreground">
                                       {employee.role}
                                     </p>
                                   </div>
@@ -224,7 +224,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                                   {/* Contact Information */}
                                   <div className="space-y-2">
                                     {employee.email && (
-                                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
+                                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                         <Mail className="h-3 w-3" />
                                         <span className="truncate">
                                           {employee.email}
@@ -232,13 +232,13 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                                       </div>
                                     )}
                                     {employee.phone && (
-                                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
+                                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                         <Phone className="h-3 w-3" />
                                         <span>{employee.phone}</span>
                                       </div>
                                     )}
                                     {employee.location && (
-                                      <div className="text-muted-foreground flex items-center gap-2 text-xs">
+                                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                         <MapPin className="h-3 w-3" />
                                         <span>{employee.location}</span>
                                       </div>
@@ -316,7 +316,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                             >
                               {dept}
                             </Badge>
-                            <p className="text-muted-foreground text-xs">
+                            <p className="text-xs text-muted-foreground">
                               {count} / {total}
                             </p>
                           </div>
@@ -333,7 +333,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                   <Button variant="outline" disabled>
                     Load More Employees
                   </Button>
-                  <p className="text-muted-foreground mt-2 text-xs">
+                  <p className="mt-2 text-xs text-muted-foreground">
                     All employees loaded
                   </p>
                 </div>

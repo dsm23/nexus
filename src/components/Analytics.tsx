@@ -40,7 +40,7 @@ export const Analytics: FunctionComponent = () => {
               style={getItemStyle(index)}
             >
               <div className="flex items-center justify-between">
-                <p className="text-muted-foreground text-sm font-medium">
+                <p className="text-sm font-medium text-muted-foreground">
                   {metric.name}
                 </p>
                 {metric.changeType === "increase" ? (
@@ -74,7 +74,7 @@ export const Analytics: FunctionComponent = () => {
         >
           <div className="space-y-4">
             <h4 className="flex items-center gap-2 text-base font-semibold">
-              <TrendingUp className="text-primary h-5 w-5" />
+              <TrendingUp className="h-5 w-5 text-primary" />
               Activity Trends (7 days)
             </h4>
             <div className="h-32">
@@ -114,14 +114,14 @@ export const Analytics: FunctionComponent = () => {
                   className="h-3 w-3 rounded-full"
                   style={{ backgroundColor: chartColors.primary }}
                 ></div>
-                <span className="text-muted-foreground text-sm">Projects</span>
+                <span className="text-sm text-muted-foreground">Projects</span>
               </div>
               <div className="flex items-center gap-2">
                 <div
                   className="h-3 w-3 rounded-full"
                   style={{ backgroundColor: chartColors.secondary }}
                 ></div>
-                <span className="text-muted-foreground text-sm">Kudos</span>
+                <span className="text-sm text-muted-foreground">Kudos</span>
               </div>
             </div>
           </div>

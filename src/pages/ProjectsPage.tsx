@@ -141,7 +141,7 @@ export const ProjectsPage: FunctionComponent = () => {
   };
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
@@ -160,7 +160,7 @@ export const ProjectsPage: FunctionComponent = () => {
             <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
               Projects & Tasks
             </h1>
-            <p className="text-muted-foreground text-sm sm:text-base">
+            <p className="text-sm text-muted-foreground sm:text-base">
               Manage your projects, track progress, and collaborate with your
               team
             </p>
@@ -180,7 +180,7 @@ export const ProjectsPage: FunctionComponent = () => {
               <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
+                    <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                     <Input
                       placeholder="Search projects..."
                       value={searchQuery}
@@ -320,7 +320,7 @@ export const ProjectsPage: FunctionComponent = () => {
               </div>
 
               {/* Results Count */}
-              <div className="text-muted-foreground text-xs sm:text-sm">
+              <div className="text-xs text-muted-foreground sm:text-sm">
                 Showing {filteredProjects.length} of {projectsList.length}{" "}
                 projects
               </div>
@@ -335,13 +335,13 @@ export const ProjectsPage: FunctionComponent = () => {
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-8 sm:py-12">
                   <div className="mx-auto max-w-sm space-y-3 px-4 text-center">
-                    <div className="bg-muted mx-auto flex h-10 w-10 items-center justify-center rounded-full sm:h-12 sm:w-12">
-                      <FolderOpen className="text-muted-foreground h-5 w-5 sm:h-6 sm:w-6" />
+                    <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-muted sm:h-12 sm:w-12">
+                      <FolderOpen className="h-5 w-5 text-muted-foreground sm:h-6 sm:w-6" />
                     </div>
                     <h3 className="text-sm font-medium sm:text-base">
                       {searchQuery ? "No projects found" : "No projects yet"}
                     </h3>
-                    <p className="text-muted-foreground text-xs sm:text-sm">
+                    <p className="text-xs text-muted-foreground sm:text-sm">
                       {searchQuery
                         ? "Try adjusting your search or filter criteria"
                         : "Create your first project to get started"}
@@ -400,7 +400,7 @@ export const ProjectsPage: FunctionComponent = () => {
                                 </Badge>
                               </div>
                             </div>
-                            <p className="text-muted-foreground text-xs leading-relaxed sm:text-sm">
+                            <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
                               {project.description}
                             </p>
                           </div>
@@ -431,7 +431,7 @@ export const ProjectsPage: FunctionComponent = () => {
                         </div>
 
                         {/* Project Meta Info */}
-                        <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-xs sm:gap-4">
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground sm:gap-4">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-3 w-3 flex-shrink-0" />
                             <span className="truncate">
@@ -450,7 +450,7 @@ export const ProjectsPage: FunctionComponent = () => {
 
                         {/* Team Members Preview */}
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-                          <span className="text-muted-foreground flex-shrink-0 text-xs sm:text-sm">
+                          <span className="flex-shrink-0 text-xs text-muted-foreground sm:text-sm">
                             Team:
                           </span>
                           <div className="flex flex-wrap gap-1">
@@ -487,7 +487,7 @@ export const ProjectsPage: FunctionComponent = () => {
             <Button variant="outline" disabled className="w-full sm:w-auto">
               Load More Projects
             </Button>
-            <p className="text-muted-foreground mt-2 text-xs">
+            <p className="mt-2 text-xs text-muted-foreground">
               All projects loaded
             </p>
           </div>

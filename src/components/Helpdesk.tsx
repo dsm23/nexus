@@ -96,23 +96,23 @@ export const Helpdesk: FunctionComponent = () => {
           style={getItemStyle(0)}
         >
           <div className="space-y-1">
-            <p className="text-primary text-lg font-bold">
+            <p className="text-lg font-bold text-primary">
               {openTickets.length}
             </p>
-            <p className="text-muted-foreground text-xs">Open Tickets</p>
+            <p className="text-xs text-muted-foreground">Open Tickets</p>
           </div>
           <div className="space-y-1">
             <p className="text-lg font-bold text-green-600">
               {userTickets.filter((t) => t.status === "resolved").length}
             </p>
-            <p className="text-muted-foreground text-xs">Resolved</p>
+            <p className="text-xs text-muted-foreground">Resolved</p>
           </div>
         </div>
 
         {/* Recent Tickets */}
         <div className={getItemClassName("space-y-3")} style={getItemStyle(1)}>
           <div className="flex items-center gap-2">
-            <Headphones className="text-muted-foreground h-4 w-4" />
+            <Headphones className="h-4 w-4 text-muted-foreground" />
             <h4 className="text-sm font-medium">Recent Tickets</h4>
           </div>
 
@@ -131,7 +131,7 @@ export const Helpdesk: FunctionComponent = () => {
                       <p className="truncate text-xs font-medium">
                         {ticket.title}
                       </p>
-                      <p className="text-muted-foreground text-xs">
+                      <p className="text-xs text-muted-foreground">
                         {ticket.id} • {formatDate(ticket.submittedAt)}
                       </p>
                     </div>
@@ -153,7 +153,7 @@ export const Helpdesk: FunctionComponent = () => {
                     >
                       {ticket.priority} Priority
                     </span>
-                    <span className="text-muted-foreground text-xs capitalize">
+                    <span className="text-xs text-muted-foreground capitalize">
                       {ticket.category}
                     </span>
                   </div>
@@ -165,8 +165,8 @@ export const Helpdesk: FunctionComponent = () => {
               className={getItemClassName("py-4 text-center")}
               style={getItemStyle(2)}
             >
-              <MessageSquare className="text-muted-foreground mx-auto mb-2 h-8 w-8" />
-              <p className="text-muted-foreground text-xs">
+              <MessageSquare className="mx-auto mb-2 h-8 w-8 text-muted-foreground" />
+              <p className="text-xs text-muted-foreground">
                 No support tickets
               </p>
             </div>

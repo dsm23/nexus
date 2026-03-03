@@ -238,7 +238,7 @@ export const QuickLinks: FunctionComponent = () => {
       </CardHeader>
       <CardContent ref={containerRef}>
         {links.length === 0 ? (
-          <div className="text-muted-foreground py-8 text-center">
+          <div className="py-8 text-center text-muted-foreground">
             <p className="text-sm">No quick links yet.</p>
             <p className="mt-1 text-xs">
               Add your most-used tools and resources.
@@ -253,7 +253,7 @@ export const QuickLinks: FunctionComponent = () => {
                 onDragLeave={handleDragLeave}
                 onDrop={(e) => handleDrop(e, link.id)}
                 className={getItemClassName(
-                  `hover:bg-muted/50 flex items-center justify-between rounded-lg border p-2 ${
+                  `flex items-center justify-between rounded-lg border p-2 hover:bg-muted/50 ${
                     dragOverItem === link.id
                       ? "border-primary bg-primary/10"
                       : ""
@@ -266,9 +266,9 @@ export const QuickLinks: FunctionComponent = () => {
                     draggable
                     onDragStart={(e) => handleDragStart(e, link.id)}
                     onDragEnd={handleDragEnd}
-                    className="hover:bg-muted cursor-move rounded p-1"
+                    className="cursor-move rounded p-1 hover:bg-muted"
                   >
-                    <GripVertical className="text-muted-foreground h-4 w-4" />
+                    <GripVertical className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <button
                     onClick={() => handleLinkClick(link.url)}
@@ -282,7 +282,7 @@ export const QuickLinks: FunctionComponent = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => removeLink(link.id)}
-                  className="text-muted-foreground hover:text-destructive h-8 w-8 p-0"
+                  className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
                 >
                   <Trash2 className="h-3 w-3" />
                 </Button>

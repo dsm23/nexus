@@ -88,7 +88,7 @@ export const Projects: FunctionComponent = () => {
       </CardHeader>
       <CardContent ref={containerRef}>
         {displayProjects.length === 0 ? (
-          <div className="text-muted-foreground py-8 text-center">
+          <div className="py-8 text-center text-muted-foreground">
             <FolderOpen className="mx-auto mb-2 h-8 w-8 opacity-50" />
             <p className="text-sm">No active projects.</p>
             <p className="mt-1 text-xs">
@@ -116,7 +116,7 @@ export const Projects: FunctionComponent = () => {
                         <h4 className="text-sm leading-none font-medium">
                           {project.name}
                         </h4>
-                        <p className="text-muted-foreground line-clamp-2 text-xs">
+                        <p className="line-clamp-2 text-xs text-muted-foreground">
                           {project.description}
                         </p>
                       </div>
@@ -147,7 +147,7 @@ export const Projects: FunctionComponent = () => {
                     </div>
 
                     {/* Project Meta Info */}
-                    <div className="text-muted-foreground flex flex-wrap items-center gap-3 text-xs">
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
                         <span>Due: {project.endDate.toLocaleDateString()}</span>
@@ -173,7 +173,7 @@ export const Projects: FunctionComponent = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-muted-foreground hover:text-foreground w-full gap-2"
+                    className="w-full gap-2 text-muted-foreground hover:text-foreground"
                   >
                     <span>View {projects.length - 3} more projects</span>
                     <ArrowRight className="h-3 w-3" />

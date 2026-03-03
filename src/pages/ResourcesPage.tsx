@@ -101,7 +101,7 @@ const ResourceCard: FunctionComponent<{
           </Button>
         </div>
 
-        <p className="text-muted-foreground line-clamp-2 text-xs">
+        <p className="line-clamp-2 text-xs text-muted-foreground">
           {resource.description}
         </p>
 
@@ -118,7 +118,7 @@ const ResourceCard: FunctionComponent<{
           )}
         </div>
 
-        <div className="text-muted-foreground flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-1">
             <User className="h-3 w-3" />
             <span>{resource.uploadedBy}</span>
@@ -127,7 +127,7 @@ const ResourceCard: FunctionComponent<{
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="text-muted-foreground flex items-center gap-1 text-xs">
+          <div className="flex items-center gap-1 text-xs text-muted-foreground">
             <Eye className="h-3 w-3" />
             <span>{resource.downloadCount} views</span>
           </div>
@@ -196,7 +196,7 @@ export const ResourcesPage: FunctionComponent = () => {
   };
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -215,7 +215,7 @@ export const ResourcesPage: FunctionComponent = () => {
             <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
               Company Resources & Documents
             </h1>
-            <p className="text-muted-foreground text-sm sm:text-base">
+            <p className="text-sm text-muted-foreground sm:text-base">
               Access company policies, documents, templates, and resources
             </p>
           </div>
@@ -244,7 +244,7 @@ export const ResourcesPage: FunctionComponent = () => {
                   <div className="space-y-4">
                     <div className="flex flex-col gap-4 sm:flex-row">
                       <div className="relative flex-1">
-                        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
+                        <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                         <Input
                           placeholder="Search resources, documents, and files..."
                           value={searchQuery}
@@ -309,7 +309,7 @@ export const ResourcesPage: FunctionComponent = () => {
                 <h2 className="text-lg font-semibold">
                   {filteredResources.length} Resources Found
                 </h2>
-                <div className="text-muted-foreground text-sm">
+                <div className="text-sm text-muted-foreground">
                   Total: {resources.length} resources
                 </div>
               </div>
@@ -329,11 +329,11 @@ export const ResourcesPage: FunctionComponent = () => {
               {filteredResources.length === 0 && (
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center py-12">
-                    <Search className="text-muted-foreground mb-4 h-12 w-12" />
+                    <Search className="mb-4 h-12 w-12 text-muted-foreground" />
                     <h3 className="mb-2 text-lg font-medium">
                       No resources found
                     </h3>
-                    <p className="text-muted-foreground text-center">
+                    <p className="text-center text-muted-foreground">
                       Try adjusting your search criteria or browse by category
                     </p>
                   </CardContent>
@@ -363,14 +363,14 @@ export const ResourcesPage: FunctionComponent = () => {
                           <CardTitle className="text-base">
                             {category.name}
                           </CardTitle>
-                          <p className="text-muted-foreground text-sm">
+                          <p className="text-sm text-muted-foreground">
                             {category.count} resources
                           </p>
                         </div>
                       </div>
                     </CardHeader>
                     <CardContent className="pt-0">
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         {category.description}
                       </p>
                     </CardContent>

@@ -59,7 +59,7 @@ export const KudosFeedPage: FunctionComponent = () => {
   });
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
@@ -100,7 +100,7 @@ export const KudosFeedPage: FunctionComponent = () => {
                 {/* Search Input */}
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform" />
+                    <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                     <Input
                       placeholder="Search kudos by name or message..."
                       value={searchQuery}
@@ -168,7 +168,7 @@ export const KudosFeedPage: FunctionComponent = () => {
               </div>
 
               {/* Results Count */}
-              <div className="text-muted-foreground mt-4 text-sm">
+              <div className="mt-4 text-sm text-muted-foreground">
                 Showing {filteredKudos.length} of {kudosList.length} kudos
               </div>
             </CardContent>
@@ -182,11 +182,11 @@ export const KudosFeedPage: FunctionComponent = () => {
               <Card>
                 <CardContent className="flex flex-col items-center justify-center py-12">
                   <div className="space-y-2 text-center">
-                    <Heart className="text-muted-foreground mx-auto h-12 w-12 opacity-50" />
+                    <Heart className="mx-auto h-12 w-12 text-muted-foreground opacity-50" />
                     <h3 className="font-medium">
                       {searchQuery ? "No kudos found" : "No kudos yet"}
                     </h3>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-sm text-muted-foreground">
                       {searchQuery
                         ? "Try adjusting your search criteria"
                         : "Be the first to recognize a colleague!"}
@@ -228,11 +228,11 @@ export const KudosFeedPage: FunctionComponent = () => {
                               {kudo.to}
                             </span>
                           </p>
-                          <p className="text-foreground text-sm leading-relaxed">
+                          <p className="text-sm leading-relaxed text-foreground">
                             {kudo.message}
                           </p>
                         </div>
-                        <span className="text-muted-foreground ml-2 text-xs whitespace-nowrap">
+                        <span className="ml-2 text-xs whitespace-nowrap text-muted-foreground">
                           {formatRelativeTime(kudo.timestamp)}
                         </span>
                       </div>
@@ -250,7 +250,7 @@ export const KudosFeedPage: FunctionComponent = () => {
             <Button variant="outline" disabled>
               Load More Kudos
             </Button>
-            <p className="text-muted-foreground mt-2 text-xs">
+            <p className="mt-2 text-xs text-muted-foreground">
               All kudos loaded
             </p>
           </div>

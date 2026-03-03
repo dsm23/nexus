@@ -89,7 +89,7 @@ const MetricCard: FunctionComponent<{ metric: AnalyticsMetric }> = ({
     <CardContent className="p-4 sm:p-6">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <p className="text-muted-foreground text-xs font-medium sm:text-sm">
+          <p className="text-xs font-medium text-muted-foreground sm:text-sm">
             {metric.name}
           </p>
           <p className="text-lg font-bold sm:text-2xl">
@@ -99,7 +99,7 @@ const MetricCard: FunctionComponent<{ metric: AnalyticsMetric }> = ({
               metric.unit !== "projects" &&
               metric.unit !== "members" &&
               metric.unit !== "kudos" && (
-                <span className="text-muted-foreground ml-1 text-xs sm:text-sm">
+                <span className="ml-1 text-xs text-muted-foreground sm:text-sm">
                   {metric.unit}
                 </span>
               )}
@@ -140,7 +140,7 @@ export const AnalyticsPage: FunctionComponent = () => {
   const [dateRange, setDateRange] = useState("7d");
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <PageWrapper className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -180,7 +180,7 @@ export const AnalyticsPage: FunctionComponent = () => {
             <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
               Analytics & Reports
             </h1>
-            <p className="text-muted-foreground text-sm sm:text-base">
+            <p className="text-sm text-muted-foreground sm:text-base">
               Comprehensive insights into team performance, engagement, and
               productivity
             </p>
@@ -376,20 +376,20 @@ export const AnalyticsPage: FunctionComponent = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="text-center">
-                      <p className="text-primary text-2xl font-bold">
+                      <p className="text-2xl font-bold text-primary">
                         {engagementData[engagementData.length - 1]
                           ?.kudosGiven || 0}
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         Kudos Given This Month
                       </p>
                     </div>
                     <div className="text-center">
-                      <p className="text-secondary text-2xl font-bold">
+                      <p className="text-2xl font-bold text-secondary">
                         {engagementData[engagementData.length - 1]
                           ?.kudosReceived || 0}
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         Kudos Received
                       </p>
                     </div>
@@ -398,7 +398,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                         {engagementData[engagementData.length - 1]
                           ?.announcements || 0}
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         Announcements
                       </p>
                     </div>
@@ -483,20 +483,20 @@ export const AnalyticsPage: FunctionComponent = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="text-center">
-                      <p className="text-primary text-2xl font-bold">
+                      <p className="text-2xl font-bold text-primary">
                         {productivityData[productivityData.length - 1]
                           ?.tasksCompleted || 0}
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         Tasks Completed
                       </p>
                     </div>
                     <div className="text-center">
-                      <p className="text-secondary text-2xl font-bold">
+                      <p className="text-2xl font-bold text-secondary">
                         {productivityData[productivityData.length - 1]
                           ?.projectsDelivered || 0}
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         Projects Delivered
                       </p>
                     </div>
@@ -506,7 +506,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                           ?.teamEfficiency || 0}
                         %
                       </p>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-sm text-muted-foreground">
                         Team Efficiency
                       </p>
                     </div>
@@ -707,7 +707,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                       {departmentData.map((dept) => (
                         <tr
                           key={dept.department}
-                          className="hover:bg-muted/50 border-b transition-colors"
+                          className="border-b transition-colors hover:bg-muted/50"
                         >
                           <td className="px-2 py-3 font-medium">
                             {dept.department}
