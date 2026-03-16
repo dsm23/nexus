@@ -8,7 +8,13 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-  globalIgnores(["dist"]),
+  globalIgnores([
+    "coverage/",
+    "dist/",
+    "playwright-report/",
+    "storybook-static/",
+    "test-results/",
+  ]),
   prettier,
   js.configs.recommended,
   tseslint.configs.strict,
