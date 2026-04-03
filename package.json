@@ -75,7 +75,7 @@
     "jsdom": "29.0.1",
     "lefthook": "2.1.4",
     "npm-run-all2": "8.0.4",
-    "oxfmt": "0.42.0",
+    "oxfmt": "0.43.0",
     "storybook": "10.3.3",
     "stylelint": "17.6.0",
     "stylelint-config-standard": "40.0.0",
