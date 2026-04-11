@@ -11,6 +11,7 @@ import type { ToasterProps } from "sonner";
 import { useTheme } from "~/hooks/useTheme";
 
 const Toaster = ({ ...props }: ToasterProps) => {
+  // oxlint-disable-next-line typescript/no-useless-default-assignment
   const { theme = "system" } = useTheme();
 
   return (

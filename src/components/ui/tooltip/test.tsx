@@ -6,13 +6,13 @@ import { Tooltip, TooltipContent, TooltipTrigger } from ".";
 
 class ResizeObserverMock {
   disconnect() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
   observe() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
   unobserve() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
 }
 
@@ -48,7 +48,7 @@ describe("component", () => {
       const button = screen.getByRole("button");
       const user = userEvent.setup();
 
-      user.hover(button);
+      await user.hover(button);
 
       await waitFor(() =>
         expect(screen.getByRole("tooltip")).toBeInTheDocument(),

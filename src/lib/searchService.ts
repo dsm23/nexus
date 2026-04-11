@@ -39,13 +39,13 @@ const calculateRelevance = (query: string, text: string): number => {
   const textWords = normalizedText.split(" ");
   let matchCount = 0;
 
-  queryWords.forEach((queryWord) => {
-    textWords.forEach((textWord) => {
+  for (const queryWord of queryWords) {
+    for (const textWord of textWords) {
       if (textWord.includes(queryWord) || queryWord.includes(textWord)) {
         matchCount++;
       }
-    });
-  });
+    }
+  }
 
   return matchCount > 0 ? (matchCount / queryWords.length) * 40 : 0;
 };
@@ -53,7 +53,7 @@ const calculateRelevance = (query: string, text: string): number => {
 const searchEmployees = (query: string): SearchResult[] => {
   return employees
     .map((employee) => {
-      const searchText = `${employee.name} ${employee.role} ${employee.department} ${employee.email || ""}`;
+      const searchText = `${employee.name} ${employee.role} ${employee.department} ${employee.email ?? ""}`;
       const relevance = calculateRelevance(query, searchText);
 
       return {
@@ -116,7 +116,7 @@ const searchKudos = (query: string): SearchResult[] => {
 const searchEvents = (query: string): SearchResult[] => {
   return calendarEvents
     .map((event) => {
-      const searchText = `${event.title} ${event.description || ""} ${event.type}`;
+      const searchText = `${event.title} ${event.description ?? ""} ${event.type}`;
       const relevance = calculateRelevance(query, searchText);
 
       return {
@@ -136,7 +136,7 @@ const searchEvents = (query: string): SearchResult[] => {
 const searchFeed = (query: string): SearchResult[] => {
   return forYouFeed
     .map((item) => {
-      const searchText = `${item.title} ${item.description} ${item.author || ""}`;
+      const searchText = `${item.title} ${item.description} ${item.author ?? ""}`;
       const relevance = calculateRelevance(query, searchText);
 
       return {

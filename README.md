@@ -221,12 +221,12 @@ The project uses Tailwind CSS v4 with a custom theme configuration. Modify color
 npm run dev      # Start development server
 npm run build    # Build for production
 npm run preview  # Preview production build
-npm run lint     # Run ESLint
+npm run lint     # Run Oxlint
 ```
 
 ### Code Style
 
-- **ESLint**: Configured for React and TypeScript
+- **Oxlint**: Configured for React and TypeScript
 - **Oxfmt**: Automatic code formatting
 - **TypeScript**: Strict type checking enabled
 

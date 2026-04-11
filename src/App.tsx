@@ -2,21 +2,21 @@ import type { FunctionComponent } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "~/components/ui/tooltip";
-import { FloatingHelpButton } from "./components/FloatingHelpButton";
-import { ScrollToTop } from "./components/ScrollToTop";
-import { ThemeProvider } from "./components/ThemeProvider";
-import { FocusModeProvider } from "./contexts/FocusModeContext";
-import { AnalyticsPage } from "./pages/AnalyticsPage";
-import { CalendarPage } from "./pages/CalendarPage";
-import { CompanyAnnouncementsPage } from "./pages/CompanyAnnouncementsPage";
-import { Dashboard } from "./pages/Dashboard";
-import { EmployeeDirectoryPage } from "./pages/EmployeeDirectoryPage";
-import { ForYouPage } from "./pages/ForYouPage";
-import { HelpDeskPage } from "./pages/HelpDeskPage";
-import { KudosFeedPage } from "./pages/KudosFeedPage";
-import { ProjectsPage } from "./pages/ProjectsPage";
-import { ResourcesPage } from "./pages/ResourcesPage";
-import { TimeOffPage } from "./pages/TimeOffPage";
+import { FloatingHelpButton } from "./components/floating-help-button";
+import { ScrollToTop } from "./components/scroll-to-top";
+import { ThemeProvider } from "./components/theme-provider";
+import { FocusModeProvider } from "./contexts/focus-mode";
+import { AnalyticsPage } from "./pages/analytics";
+import { CalendarPage } from "./pages/calendar";
+import { CompanyAnnouncementsPage } from "./pages/company-announcements";
+import { Dashboard } from "./pages/dashboard";
+import { EmployeeDirectoryPage } from "./pages/employee-directory";
+import { ForYouPage } from "./pages/for-you";
+import { HelpDeskPage } from "./pages/help-desk";
+import { KudosFeedPage } from "./pages/kudos-feed";
+import { ProjectsPage } from "./pages/projects";
+import { ResourcesPage } from "./pages/resources";
+import { TimeOffPage } from "./pages/time-off";
 
 const AppRoutes: FunctionComponent = () => {
   return (

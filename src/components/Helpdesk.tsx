@@ -43,14 +43,14 @@ export const Helpdesk: FunctionComponent = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "open":
-        return <AlertCircle className="h-3 w-3" />;
+        return <AlertCircle className="size-3" />;
       case "in-progress":
-        return <Clock className="h-3 w-3" />;
+        return <Clock className="size-3" />;
       case "resolved":
       case "closed":
-        return <CheckCircle className="h-3 w-3" />;
+        return <CheckCircle className="size-3" />;
       default:
-        return <Clock className="h-3 w-3" />;
+        return <Clock className="size-3" />;
     }
   };
 
@@ -85,7 +85,7 @@ export const Helpdesk: FunctionComponent = () => {
         <Link to="/helpdesk">
           <Button variant="ghost" size="sm" className="h-8 gap-2">
             Support
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="size-4" />
           </Button>
         </Link>
       </CardHeader>
@@ -112,7 +112,7 @@ export const Helpdesk: FunctionComponent = () => {
         {/* Recent Tickets */}
         <div className={getItemClassName("space-y-3")} style={getItemStyle(1)}>
           <div className="flex items-center gap-2">
-            <Headphones className="h-4 w-4 text-muted-foreground" />
+            <Headphones className="size-4 text-muted-foreground" />
             <h4 className="text-sm font-medium">Recent Tickets</h4>
           </div>
 
@@ -165,7 +165,7 @@ export const Helpdesk: FunctionComponent = () => {
               className={getItemClassName("py-4 text-center")}
               style={getItemStyle(2)}
             >
-              <MessageSquare className="mx-auto mb-2 h-8 w-8 text-muted-foreground" />
+              <MessageSquare className="mx-auto mb-2 size-8 text-muted-foreground" />
               <p className="text-xs text-muted-foreground">
                 No support tickets
               </p>
@@ -184,7 +184,7 @@ export const Helpdesk: FunctionComponent = () => {
               size="sm"
               className="h-8 w-full justify-center gap-2"
             >
-              <Headphones className="h-3 w-3" />
+              <Headphones className="size-3" />
               <span className="text-xs">Submit Ticket</span>
             </Button>
           </Link>

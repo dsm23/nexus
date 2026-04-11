@@ -7,20 +7,20 @@ import { Toaster } from ".";
 
 class ResizeObserverMock {
   disconnect() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
   observe() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
   unobserve() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
 }
 
 vi.stubGlobal("ResizeObserver", ResizeObserverMock);
 
 vi.mock("~/hooks/useTheme", () => ({
-  useTheme: vi.fn(),
+  useTheme: vi.fn<() => { theme: string }>(),
 }));
 
 type State = Pick<ReturnType<typeof useTheme>, "theme">;

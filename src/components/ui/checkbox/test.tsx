@@ -4,13 +4,13 @@ import { Checkbox } from ".";
 
 class ResizeObserverMock {
   disconnect() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
   observe() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
   unobserve() {
-    return vi.fn();
+    return vi.fn<() => void>();
   }
 }
 
