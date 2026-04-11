@@ -95,7 +95,7 @@ This document summarizes all the icons that have been added to the Nexus dashboa
 
 ## Design Principles
 
-1. **Consistency**: All main component titles use 5x5 icons (`h-5 w-5`)
+1. **Consistency**: All main component titles use 5x5 icons (`size-5`)
 2. **Hierarchy**: Smaller icons (4x4) for secondary actions and content items
 3. **Color Theming**: Icons inherit theme colors and use appropriate semantic colors
 4. **Accessibility**: Icons are always paired with descriptive text

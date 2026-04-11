@@ -55,7 +55,7 @@ describe("component", () => {
       const button = screen.getByRole("button");
       const user = userEvent.setup();
 
-      user.click(button);
+      await user.click(button);
 
       await waitFor(() =>
         expect(

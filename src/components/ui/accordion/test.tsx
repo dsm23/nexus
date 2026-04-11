@@ -16,9 +16,9 @@ describe("component", () => {
           <AccordionItem value="item-1">
             <AccordionTrigger>How do I reset my password?</AccordionTrigger>
             <AccordionContent>
-              Click on 'Forgot Password' on the login page, enter your email
-              address, and we'll send you a link to reset your password. The
-              link will expire in 24 hours.
+              Click on {"'"}Forgot Password{"'"} on the login page, enter your
+              email address, and we{"'"}ll send you a link to reset your
+              password. The link will expire in 24 hours.
             </AccordionContent>
           </AccordionItem>
 

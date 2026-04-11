@@ -21,12 +21,12 @@ export const useWaveAnimation = (options: UseWaveAnimationOptions = {}) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setIsVisible(true);
             observer.disconnect(); // Stop observing once animation is triggered
           }
-        });
+        }
       },
       {
         threshold,

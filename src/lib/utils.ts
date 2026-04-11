@@ -63,19 +63,19 @@ export const storage = {
 
       // Store all values that should be preserved
       const preservedData: Record<string, string | null> = {};
-      keysToPreserve.forEach((key) => {
+      for (const key of keysToPreserve) {
         preservedData[key] = localStorage.getItem(key);
-      });
+      }
 
       // Clear localStorage
       localStorage.clear();
 
       // Restore preserved data
-      keysToPreserve.forEach((key) => {
+      for (const key of keysToPreserve) {
         if (preservedData[key] !== null) {
           localStorage.setItem(key, preservedData[key] as string);
         }
-      });
+      }
 
       // Set new version
       localStorage.setItem("app-version", currentVersion);
