@@ -59,7 +59,7 @@ This project is configured for deployment on **Vercel**.
 ### **Styling & UI**
 
 - **Tailwind CSS v4** - Utility-first CSS with latest features
-- **Radix UI** - Accessible, unstyled UI primitives
+- **Base UI** - Accessible, unstyled UI primitives
 - **shadcn/ui** - Beautiful, reusable UI components
 - **Lucide React** - Beautiful, customizable icons
 
@@ -244,7 +244,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- **Radix UI** for accessible component primitives
+- **Base UI** for accessible component primitives
 - **shadcn/ui** for the beautiful component library
 - **Tailwind CSS** for the utility-first styling approach
 - **Lucide** for the comprehensive icon library

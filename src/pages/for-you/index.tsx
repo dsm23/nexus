@@ -134,7 +134,19 @@ export const ForYouPage: FunctionComponent = () => {
 
               {/* Type Filter */}
               <div className="sm:w-48">
-                <Select value={filterType} onValueChange={setFilterType}>
+                <Select
+                  value={filterType}
+                  items={[
+                    { value: "all", label: "All Types" },
+                    { value: "document", label: "Documents" },
+                    { value: "news", label: "News" },
+                    { value: "task", label: "Tasks" },
+                    { value: "update", label: "Updates" },
+                  ]}
+                  onValueChange={(newValue) =>
+                    setFilterType(newValue as string)
+                  }
+                >
                   <SelectTrigger className="gap-2">
                     <Filter className="size-4" />
                     <SelectValue placeholder="Filter by type" />

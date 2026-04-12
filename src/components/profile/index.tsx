@@ -10,7 +10,7 @@ import {
   Shield,
   User,
 } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import { buttonVariants } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -67,20 +67,20 @@ export const Profile: FunctionComponent = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="relative size-10 rounded-full p-0 hover:bg-accent"
-          aria-label="Profile menu"
-        >
-          <img
-            className="size-10 rounded-full border-2 border-border object-cover transition-colors hover:border-primary"
-            src={currentUser.avatar}
-            alt={`${currentUser.name}'s avatar`}
-          />
-        </Button>
+      <DropdownMenuTrigger
+        className={buttonVariants({
+          variant: "ghost",
+          className: "relative size-10 rounded-full p-0 hover:bg-accent",
+        })}
+        aria-label="Profile menu"
+      >
+        <img
+          className="size-10 rounded-full border-2 border-border object-cover transition-colors hover:border-primary"
+          src={currentUser.avatar}
+          alt={`${currentUser.name}'s avatar`}
+        />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm leading-none font-medium">

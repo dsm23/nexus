@@ -119,7 +119,15 @@ export const CompanyAnnouncementsPage: FunctionComponent = () => {
                 <div className="sm:w-48">
                   <Select
                     value={filterPriority}
-                    onValueChange={setFilterPriority}
+                    items={[
+                      { value: "all", label: "All Priorities" },
+                      { value: "high", label: "High Priority" },
+                      { value: "medium", label: "Medium Priority" },
+                      { value: "low", label: "Low Priority" },
+                    ]}
+                    onValueChange={(newValue) =>
+                      setFilterPriority(newValue as string)
+                    }
                   >
                     <SelectTrigger className="gap-2">
                       <Filter className="size-4" />

@@ -103,7 +103,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
 
         {/* Tabs for Directory and Org Chart */}
         <PageSection index={1}>
-          <Tabs defaultValue="directory" className="space-y-6">
+          <Tabs defaultValue="directory" className="flex-col space-y-6">
             <TabsList className="grid w-full max-w-md grid-cols-2">
               <TabsTrigger value="directory" className="gap-2">
                 <Users className="hidden size-4 sm:inline" />
@@ -141,7 +141,16 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                     <div className="sm:w-48">
                       <Select
                         value={filterDepartment}
-                        onValueChange={setFilterDepartment}
+                        items={[
+                          { value: "all", label: "All Departments" },
+                          ...departments.map((dept) => ({
+                            value: dept,
+                            label: dept,
+                          })),
+                        ]}
+                        onValueChange={(newValue) =>
+                          setFilterDepartment(newValue as string)
+                        }
                       >
                         <SelectTrigger className="gap-2">
                           <Filter className="size-4" />

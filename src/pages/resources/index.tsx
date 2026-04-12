@@ -221,7 +221,7 @@ export const ResourcesPage: FunctionComponent = () => {
           </div>
         </PageSection>
 
-        <Tabs defaultValue="browse" className="space-y-6">
+        <Tabs defaultValue="browse" className="flex-col space-y-6">
           <PageSection index={1}>
             <TabsList className="grid w-full max-w-md grid-cols-2">
               <TabsTrigger value="browse" className="gap-2">
@@ -265,7 +265,13 @@ export const ResourcesPage: FunctionComponent = () => {
                     <div className="flex flex-col gap-4 sm:flex-row">
                       <Select
                         value={selectedCategory}
-                        onValueChange={setSelectedCategory}
+                        items={resourceCategories.map((category) => ({
+                          value: category.id,
+                          label: category.name,
+                        }))}
+                        onValueChange={(newValue) =>
+                          setSelectedCategory(newValue as string)
+                        }
                       >
                         <SelectTrigger className="w-full sm:w-48">
                           <Filter className="mr-2 size-4" />
@@ -283,7 +289,16 @@ export const ResourcesPage: FunctionComponent = () => {
 
                       <Select
                         value={selectedDepartment}
-                        onValueChange={setSelectedDepartment}
+                        items={[
+                          { value: "all", label: "All Departments" },
+                          ...departments.map((dept) => ({
+                            value: dept,
+                            label: dept,
+                          })),
+                        ]}
+                        onValueChange={(newValue) =>
+                          setSelectedDepartment(newValue as string)
+                        }
                       >
                         <SelectTrigger className="w-full sm:w-48">
                           <SelectValue placeholder="All Departments" />

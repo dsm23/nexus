@@ -155,7 +155,17 @@ export const AnalyticsPage: FunctionComponent = () => {
             </Link>
 
             <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
-              <Select value={dateRange} onValueChange={setDateRange}>
+              <Select
+                value={dateRange}
+                defaultValue="7d"
+                items={[
+                  { value: "7d", label: "Last 7 days" },
+                  { value: "30d", label: "Last 30 days" },
+                  { value: "90d", label: "Last 3 months" },
+                  { value: "1y", label: "Last year" },
+                ]}
+                onValueChange={(newValue) => setDateRange(newValue as string)}
+              >
                 <SelectTrigger className="w-full sm:w-40">
                   <Calendar className="size-4" />
                   <SelectValue />
@@ -204,7 +214,7 @@ export const AnalyticsPage: FunctionComponent = () => {
         </PageSection>
 
         {/* Analytics Tabs */}
-        <Tabs defaultValue="overview" className="space-y-6">
+        <Tabs defaultValue="overview" className="flex-col space-y-6">
           <PageSection index={2}>
             <div className="w-full overflow-x-auto">
               <TabsList className="grid w-full grid-cols-4 lg:inline-flex lg:w-auto">

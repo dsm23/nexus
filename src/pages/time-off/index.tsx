@@ -24,7 +24,7 @@ import { toast } from "sonner";
 import { Header } from "~/components/header";
 import { PageSection, PageWrapper } from "~/components/page-wrapper";
 import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Dialog,
@@ -257,11 +257,9 @@ const NewRequestDialog: FunctionComponent = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="gap-2">
-          <Plus className="size-4" />
-          New Request
-        </Button>
+      <DialogTrigger className={buttonVariants({ className: "gap-2" })}>
+        <Plus className="size-4" />
+        New Request
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -272,8 +270,13 @@ const NewRequestDialog: FunctionComponent = () => {
             <Label htmlFor="type">Type of Leave *</Label>
             <Select
               value={formData.type}
+              items={[
+                { value: "vacation", label: "Vacation" },
+                { value: "sick", label: "Sick Leave" },
+                { value: "personal", label: "Personal Day" },
+              ]}
               onValueChange={(value) =>
-                setFormData((prev) => ({ ...prev, type: value }))
+                setFormData((prev) => ({ ...prev, type: value as string }))
               }
             >
               <SelectTrigger>
@@ -480,7 +483,7 @@ export const TimeOffPage: FunctionComponent = () => {
           </Card>
         </PageSection>
 
-        <Tabs defaultValue="balance" className="space-y-6">
+        <Tabs defaultValue="balance" className="flex-col space-y-6">
           <PageSection index={2}>
             <TabsList className="grid w-full max-w-md grid-cols-3">
               <TabsTrigger value="balance" className="gap-2">
@@ -525,7 +528,16 @@ export const TimeOffPage: FunctionComponent = () => {
             <PageSection index={4}>
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <h2 className="text-lg font-semibold">Your Requests</h2>
-                <Select value={filter} onValueChange={setFilter}>
+                <Select
+                  value={filter}
+                  items={[
+                    { value: "all", label: "All Requests" },
+                    { value: "pending", label: "Pending" },
+                    { value: "approved", label: "Approved" },
+                    { value: "denied", label: "Denied" },
+                  ]}
+                  onValueChange={(newValue) => setFilter(newValue as string)}
+                >
                   <SelectTrigger className="w-full sm:w-48">
                     <SelectValue placeholder="Filter by status" />
                   </SelectTrigger>

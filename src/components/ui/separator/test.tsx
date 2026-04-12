@@ -6,7 +6,7 @@ import { Separator } from ".";
 describe("component", () => {
   describe("Separator", () => {
     it("should render correctly", () => {
-      render(<Separator decorative={false} />);
+      render(<Separator />);
 
       expect(screen.getByRole("separator")).toBeInTheDocument();
     });

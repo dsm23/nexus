@@ -19,9 +19,7 @@ describe("component", () => {
     it("should render correctly", () => {
       render(
         <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <button>Show Dialog</button>
-          </AlertDialogTrigger>
+          <AlertDialogTrigger>Show Dialog</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
@@ -44,9 +42,7 @@ describe("component", () => {
     it("should render correctly, after click open", async () => {
       render(
         <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <button>Show Dialog</button>
-          </AlertDialogTrigger>
+          <AlertDialogTrigger>Show Dialog</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

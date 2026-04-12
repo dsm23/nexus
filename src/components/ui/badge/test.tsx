@@ -11,12 +11,8 @@ describe("component", () => {
       expect(screen.getByText("Hello, World!")).toBeInTheDocument();
     });
 
-    it("should render correctly, asChild", () => {
-      render(
-        <Badge asChild>
-          <a href="#">Hello, World!</a>
-        </Badge>,
-      );
+    it("should render correctly, render prop", () => {
+      render(<Badge render={<a href="#">Hello, World!</a>} />);
 
       expect(screen.getByRole("link")).toBeInTheDocument();
     });

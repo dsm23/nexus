@@ -18,7 +18,7 @@ import {
 import { Header } from "~/components/header";
 import { PageSection, PageWrapper } from "~/components/page-wrapper";
 import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Dialog,
@@ -195,12 +195,14 @@ export const ProjectsPage: FunctionComponent = () => {
                   open={isAddDialogOpen}
                   onOpenChange={setIsAddDialogOpen}
                 >
-                  <DialogTrigger asChild>
-                    <Button className="w-full gap-2 whitespace-nowrap sm:w-auto">
-                      <Plus className="size-4" />
-                      <span className="sm:hidden">Create Project</span>
-                      <span className="hidden sm:inline">New Project</span>
-                    </Button>
+                  <DialogTrigger
+                    className={buttonVariants({
+                      className: "w-full gap-2 whitespace-nowrap sm:w-auto",
+                    })}
+                  >
+                    <Plus className="size-4" />
+                    <span className="sm:hidden">Create Project</span>
+                    <span className="hidden sm:inline">New Project</span>
                   </DialogTrigger>
                   <DialogContent className="mx-4 sm:max-w-[500px]">
                     <DialogHeader>
@@ -247,8 +249,13 @@ export const ProjectsPage: FunctionComponent = () => {
                         </Label>
                         <Select
                           value={newProjectPriority}
-                          onValueChange={(value: Project["priority"]) =>
-                            setNewProjectPriority(value)
+                          items={[
+                            { value: "low", label: "Low" },
+                            { value: "medium", label: "Medium" },
+                            { value: "high", label: "High" },
+                          ]}
+                          onValueChange={(value) =>
+                            setNewProjectPriority(value as Project["priority"])
                           }
                         >
                           <SelectTrigger className="sm:col-span-3">
@@ -281,7 +288,19 @@ export const ProjectsPage: FunctionComponent = () => {
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
                 {/* Status Filter */}
                 <div className="w-full sm:w-56">
-                  <Select value={filterStatus} onValueChange={setFilterStatus}>
+                  <Select
+                    value={filterStatus}
+                    items={[
+                      { value: "all", label: "All Statuses" },
+                      { value: "active", label: "Active" },
+                      { value: "completed", label: "Completed" },
+                      { value: "on-hold", label: "On Hold" },
+                      { value: "cancelled", label: "Cancelled" },
+                    ]}
+                    onValueChange={(newValue) =>
+                      setFilterStatus(newValue as string)
+                    }
+                  >
                     <SelectTrigger className="h-10 w-full gap-2">
                       <Filter className="size-4" />
                       <SelectValue placeholder="Filter by status" />
@@ -300,7 +319,15 @@ export const ProjectsPage: FunctionComponent = () => {
                 <div className="w-full sm:w-56">
                   <Select
                     value={filterPriority}
-                    onValueChange={setFilterPriority}
+                    items={[
+                      { value: "all", label: "All Priorities" },
+                      { value: "high", label: "High Priority" },
+                      { value: "medium", label: "Medium Priority" },
+                      { value: "low", label: "Low Priority" },
+                    ]}
+                    onValueChange={(newValue) =>
+                      setFilterPriority(newValue as string)
+                    }
                   >
                     <SelectTrigger className="h-10 w-full gap-2">
                       <Target className="size-4" />
@@ -351,11 +378,13 @@ export const ProjectsPage: FunctionComponent = () => {
                         open={isAddDialogOpen}
                         onOpenChange={setIsAddDialogOpen}
                       >
-                        <DialogTrigger asChild>
-                          <Button className="mt-3 w-full gap-2 sm:mt-4 sm:w-auto">
-                            <Plus className="size-4" />
-                            Create First Project
-                          </Button>
+                        <DialogTrigger
+                          className={buttonVariants({
+                            className: "mt-3 w-full gap-2 sm:mt-4 sm:w-auto",
+                          })}
+                        >
+                          <Plus className="size-4" />
+                          Create First Project
                         </DialogTrigger>
                       </Dialog>
                     )}

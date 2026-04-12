@@ -141,34 +141,39 @@ export const Header: FunctionComponent = () => {
 
               {/* People & Communication Dropdown */}
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
-                      peopleNavItems.some(
-                        (item) => location.pathname === item.path,
-                      )
-                        ? "bg-primary/10 text-primary shadow-sm"
-                        : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
-                    }`}
-                  >
-                    <Building2 className="size-4" />
-                    <span className="hidden sm:inline">People</span>
-                    <ChevronDown className="size-3 opacity-50" />
-                  </Button>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      variant="ghost"
+                      className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                        peopleNavItems.some(
+                          (item) => location.pathname === item.path,
+                        )
+                          ? "bg-primary/10 text-primary shadow-sm"
+                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                      }`}
+                    />
+                  }
+                >
+                  <Building2 className="size-4" />
+                  <span className="hidden sm:inline">People</span>
+                  <ChevronDown className="size-3 opacity-50" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center" className="w-48">
                   {peopleNavItems.map((item) => {
                     const Icon = item.icon;
                     return (
-                      <DropdownMenuItem key={item.path} asChild>
-                        <Link
-                          to={item.path}
-                          className="flex w-full items-center gap-2"
-                        >
-                          <Icon className="size-4" />
-                          {item.label}
-                        </Link>
+                      <DropdownMenuItem
+                        key={item.path}
+                        render={
+                          <Link
+                            to={item.path}
+                            className="flex w-full items-center gap-2"
+                          />
+                        }
+                      >
+                        <Icon className="size-4" />
+                        {item.label}
                       </DropdownMenuItem>
                     );
                   })}
@@ -177,34 +182,39 @@ export const Header: FunctionComponent = () => {
 
               {/* Workspace & Tools Dropdown */}
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
-                      workspaceNavItems.some(
-                        (item) => location.pathname === item.path,
-                      )
-                        ? "bg-primary/10 text-primary shadow-sm"
-                        : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
-                    }`}
-                  >
-                    <Settings className="size-4" />
-                    <span className="hidden sm:inline">Tools</span>
-                    <ChevronDown className="size-3 opacity-50" />
-                  </Button>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      variant="ghost"
+                      className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                        workspaceNavItems.some(
+                          (item) => location.pathname === item.path,
+                        )
+                          ? "bg-primary/10 text-primary shadow-sm"
+                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                      }`}
+                    />
+                  }
+                >
+                  <Settings className="size-4" />
+                  <span className="hidden sm:inline">Tools</span>
+                  <ChevronDown className="size-3 opacity-50" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center" className="w-48">
                   {workspaceNavItems.map((item) => {
                     const Icon = item.icon;
                     return (
-                      <DropdownMenuItem key={item.path} asChild>
-                        <Link
-                          to={item.path}
-                          className="flex w-full items-center gap-2"
-                        >
-                          <Icon className="size-4" />
-                          {item.label}
-                        </Link>
+                      <DropdownMenuItem
+                        key={item.path}
+                        render={
+                          <Link
+                            to={item.path}
+                            className="flex w-full items-center gap-2"
+                          />
+                        }
+                      >
+                        <Icon className="size-4" />
+                        {item.label}
                       </DropdownMenuItem>
                     );
                   })}
@@ -213,34 +223,39 @@ export const Header: FunctionComponent = () => {
 
               {/* Support & Settings Dropdown */}
               <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
-                      supportNavItems.some(
-                        (item) => location.pathname === item.path,
-                      )
-                        ? "bg-primary/10 text-primary shadow-sm"
-                        : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
-                    }`}
-                  >
-                    <HelpCircle className="size-4" />
-                    <span className="hidden sm:inline">Support</span>
-                    <ChevronDown className="size-3 opacity-50" />
-                  </Button>
+                <DropdownMenuTrigger
+                  render={
+                    <Button
+                      variant="ghost"
+                      className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors ${
+                        supportNavItems.some(
+                          (item) => location.pathname === item.path,
+                        )
+                          ? "bg-primary/10 text-primary shadow-sm"
+                          : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                      }`}
+                    />
+                  }
+                >
+                  <HelpCircle className="size-4" />
+                  <span className="hidden sm:inline">Support</span>
+                  <ChevronDown className="size-3 opacity-50" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center" className="w-48">
                   {supportNavItems.map((item) => {
                     const Icon = item.icon;
                     return (
-                      <DropdownMenuItem key={item.path} asChild>
-                        <Link
-                          to={item.path}
-                          className="flex w-full items-center gap-2"
-                        >
-                          <Icon className="size-4" />
-                          {item.label}
-                        </Link>
+                      <DropdownMenuItem
+                        key={item.path}
+                        render={
+                          <Link
+                            to={item.path}
+                            className="flex w-full items-center gap-2"
+                          />
+                        }
+                      >
+                        <Icon className="size-4" />
+                        {item.label}
                       </DropdownMenuItem>
                     );
                   })}

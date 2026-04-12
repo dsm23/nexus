@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Heart, Plus, Search } from "lucide-react";
 import { Header } from "~/components/header";
 import { PageSection, PageWrapper } from "~/components/page-wrapper";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Dialog,
@@ -115,11 +115,11 @@ export const KudosFeedPage: FunctionComponent = () => {
                   open={isAddDialogOpen}
                   onOpenChange={setIsAddDialogOpen}
                 >
-                  <DialogTrigger asChild>
-                    <Button className="gap-2">
-                      <Plus className="size-4" />
-                      Give Kudos
-                    </Button>
+                  <DialogTrigger
+                    className={buttonVariants({ className: "gap-2" })}
+                  >
+                    <Plus className="size-4" />
+                    Give Kudos
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-106.25">
                     <DialogHeader>
@@ -196,11 +196,13 @@ export const KudosFeedPage: FunctionComponent = () => {
                         open={isAddDialogOpen}
                         onOpenChange={setIsAddDialogOpen}
                       >
-                        <DialogTrigger asChild>
-                          <Button className="mt-4 gap-2">
-                            <Plus className="size-4" />
-                            Give First Kudos
-                          </Button>
+                        <DialogTrigger
+                          className={buttonVariants({
+                            className: "mt-4 gap-2",
+                          })}
+                        >
+                          <Plus className="size-4" />
+                          Give First Kudos
                         </DialogTrigger>
                       </Dialog>
                     )}
