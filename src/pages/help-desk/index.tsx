@@ -25,7 +25,7 @@ import { toast } from "sonner";
 import { Header } from "~/components/header";
 import { PageSection, PageWrapper } from "~/components/page-wrapper";
 import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Dialog,
@@ -263,11 +263,9 @@ const NewTicketDialog: FunctionComponent<{
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger asChild>
-        <Button className="gap-2">
-          <Plus className="size-4" />
-          New Ticket
-        </Button>
+      <DialogTrigger className={buttonVariants({ className: "gap-2" })}>
+        <Plus className="size-4" />
+        New Ticket
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -292,8 +290,15 @@ const NewTicketDialog: FunctionComponent<{
               <Label htmlFor="category">Category *</Label>
               <Select
                 value={formData.category}
+                items={helpdeskCategories.map((category) => ({
+                  value: category.id,
+                  label: category.name,
+                }))}
                 onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, category: value }))
+                  setFormData((prev) => ({
+                    ...prev,
+                    category: value as string,
+                  }))
                 }
               >
                 <SelectTrigger>
@@ -312,8 +317,17 @@ const NewTicketDialog: FunctionComponent<{
               <Label htmlFor="priority">Priority</Label>
               <Select
                 value={formData.priority}
+                items={[
+                  { value: "low", label: "Low" },
+                  { value: "medium", label: "Medium" },
+                  { value: "high", label: "High" },
+                  { value: "critical", label: "Critical" },
+                ]}
                 onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, priority: value }))
+                  setFormData((prev) => ({
+                    ...prev,
+                    priority: value as string,
+                  }))
                 }
               >
                 <SelectTrigger>
@@ -523,7 +537,19 @@ export const HelpDeskPage: FunctionComponent = () => {
             <TabsContent value="tickets" className="space-y-6">
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <h2 className="text-lg font-semibold">Support Tickets</h2>
-                <Select value={ticketFilter} onValueChange={setTicketFilter}>
+                <Select
+                  value={ticketFilter}
+                  items={[
+                    { value: "all", label: "All Tickets" },
+                    { value: "open", label: "Open" },
+                    { value: "in-progress", label: "In Progress" },
+                    { value: "resolved", label: "Resolved" },
+                    { value: "closed", label: "Closed" },
+                  ]}
+                  onValueChange={(newValue) =>
+                    setTicketFilter(newValue as string)
+                  }
+                >
                   <SelectTrigger className="w-full sm:w-48">
                     <SelectValue placeholder="Filter by status" />
                   </SelectTrigger>

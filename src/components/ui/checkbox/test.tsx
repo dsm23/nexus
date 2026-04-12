@@ -21,7 +21,10 @@ describe("component", () => {
     it("should render correctly", () => {
       const { container } = render(<Checkbox />);
 
-      expect(container.querySelector("button")).toBeInTheDocument();
+      expect(container.querySelector("span")).toBeInTheDocument();
+      expect(
+        container.querySelector('input[type="checkbox"]'),
+      ).toBeInTheDocument();
     });
   });
 
@@ -32,6 +35,7 @@ describe("component", () => {
       </form>,
     );
 
+    expect(container.querySelector("span")).toBeInTheDocument();
     expect(
       container.querySelector('input[type="checkbox"]'),
     ).toBeInTheDocument();

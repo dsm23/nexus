@@ -12,7 +12,7 @@ describe("component", () => {
   describe("Accordion", () => {
     it("should render correctly", () => {
       render(
-        <Accordion type="single" collapsible defaultValue="item-1">
+        <Accordion defaultValue={["item-1"]}>
           <AccordionItem value="item-1">
             <AccordionTrigger>How do I reset my password?</AccordionTrigger>
             <AccordionContent>

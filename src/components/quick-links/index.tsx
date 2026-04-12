@@ -11,7 +11,7 @@ import {
   Settings,
   Trash2,
 } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -181,15 +181,15 @@ export const QuickLinks: FunctionComponent = () => {
           <CardDescription>Your most-used tools and resources</CardDescription>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-          <DialogTrigger asChild>
-            <Button
-              variant="outline"
-              size="sm"
-              className="w-full gap-2 sm:w-auto"
-            >
-              <Plus className="size-4" />
-              Add
-            </Button>
+          <DialogTrigger
+            className={buttonVariants({
+              variant: "outline",
+              size: "sm",
+              className: "w-full gap-2 sm:w-auto",
+            })}
+          >
+            <Plus className="size-4" />
+            Add
           </DialogTrigger>
           <DialogContent className="w-[95vw] max-w-[95vw] sm:w-full sm:max-w-[425px]">
             <DialogHeader>

@@ -254,7 +254,22 @@ export const CalendarPage: FunctionComponent = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Filter className="size-4 text-muted-foreground" />
-                  <Select value={filterType} onValueChange={setFilterType}>
+                  <Select
+                    value={filterType}
+                    items={[
+                      {
+                        value: "all",
+                        label: "All Types",
+                      },
+                      ...eventTypes.map((type) => ({
+                        value: type,
+                        label: type.charAt(0).toUpperCase() + type.slice(1),
+                      })),
+                    ]}
+                    onValueChange={(newValue) =>
+                      setFilterType(newValue as string)
+                    }
+                  >
                     <SelectTrigger className="w-40">
                       <SelectValue placeholder="Filter by type" />
                     </SelectTrigger>

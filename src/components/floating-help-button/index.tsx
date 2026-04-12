@@ -52,27 +52,29 @@ export const FloatingHelpButton: FunctionComponent = () => {
       <div className="fixed right-6 bottom-26 z-40">
         <Dialog open={isOpen} onOpenChange={handleDialogOpenChange}>
           <Tooltip open={tooltipOpen} onOpenChange={setTooltipOpen}>
-            <TooltipTrigger asChild>
-              <Button
-                size="sm"
-                variant="outline"
-                className="relative size-14 rounded-full border-primary bg-background/90 text-foreground shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-accent hover:text-foreground hover:shadow-lg"
-                onClick={handleButtonClick}
-              >
-                <Headphones
-                  size={24}
-                  style={{ width: "24px", height: "24px" }}
-                  className="text-foreground"
+            <TooltipTrigger
+              render={
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="relative size-14 rounded-full border-primary bg-background/90 text-foreground shadow-md backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:bg-accent hover:text-foreground hover:shadow-lg"
+                  onClick={handleButtonClick}
                 />
-                {/* Notification Badge */}
-                {hasOpenTickets && (
-                  <div className="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-red-500">
-                    <span className="text-xs font-bold text-white">
-                      {openTickets}
-                    </span>
-                  </div>
-                )}
-              </Button>
+              }
+            >
+              <Headphones
+                size={24}
+                style={{ width: "24px", height: "24px" }}
+                className="text-foreground"
+              />
+              {/* Notification Badge */}
+              {hasOpenTickets && (
+                <div className="absolute -top-1 -right-1 flex size-5 items-center justify-center rounded-full bg-red-500">
+                  <span className="text-xs font-bold text-white">
+                    {openTickets}
+                  </span>
+                </div>
+              )}
             </TooltipTrigger>
             <TooltipContent side="left">
               <p>Help & Support</p>

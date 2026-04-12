@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Heart, Plus } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -70,11 +70,15 @@ export const KudosFeed: FunctionComponent = () => {
         </div>
         <div className="flex w-full items-center gap-2 sm:w-auto">
           <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="gap-2">
-                <Plus className="size-4" />
-                Give Kudos
-              </Button>
+            <DialogTrigger
+              className={buttonVariants({
+                variant: "outline",
+                size: "sm",
+                className: "gap-2",
+              })}
+            >
+              <Plus className="size-4" />
+              New Ticket
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>

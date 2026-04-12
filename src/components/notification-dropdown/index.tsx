@@ -2,7 +2,7 @@ import type { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Bell, CheckSquare, FileText, Info } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -50,19 +50,23 @@ export const NotificationDropdown: FunctionComponent = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="relative size-10">
-          <Bell className="size-5" />
-          {unreadCount > 0 && (
-            <Badge
-              variant="destructive"
-              className="absolute -top-1 -right-1 flex size-5 items-center justify-center p-0 text-xs"
-            >
-              {unreadCount > 9 ? "9+" : unreadCount}
-            </Badge>
-          )}
-          <span className="sr-only">View notifications</span>
-        </Button>
+      <DropdownMenuTrigger
+        className={buttonVariants({
+          variant: "outline",
+          size: "icon",
+          className: "relative size-10",
+        })}
+      >
+        <Bell className="size-5" />
+        {unreadCount > 0 && (
+          <Badge
+            variant="destructive"
+            className="absolute -top-1 -right-1 flex size-5 items-center justify-center p-0 text-xs"
+          >
+            {unreadCount > 9 ? "9+" : unreadCount}
+          </Badge>
+        )}
+        <span className="sr-only">View notifications</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-96 border p-0 shadow-lg">
         <div className="border-b bg-muted/30 p-4">
