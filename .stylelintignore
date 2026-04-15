@@ -4,7 +4,7 @@ dist
 # Public Folder
 public
 
-# Jest
+# Vitest
 coverage
 
 # Storybook
