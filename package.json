@@ -36,9 +36,9 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.1.2",
-    "@commitlint/cli": "20.5.3",
-    "@commitlint/config-conventional": "20.5.3",
-    "@commitlint/types": "20.5.0",
+    "@commitlint/cli": "21.0.0",
+    "@commitlint/config-conventional": "21.0.0",
+    "@commitlint/types": "21.0.0",
     "@playwright/test": "1.59.1",
     "@storybook/addon-a11y": "10.3.6",
     "@storybook/addon-docs": "10.3.6",
