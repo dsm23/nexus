@@ -57,7 +57,7 @@
     "dotenv": "17.4.2",
     "eslint-plugin-better-tailwindcss": "4.5.0",
     "eslint-plugin-storybook": "10.3.6",
-    "globals": "17.5.0",
+    "globals": "17.6.0",
     "jsdom": "29.1.1",
     "lefthook": "2.1.6",
     "npm-run-all2": "8.0.4",
