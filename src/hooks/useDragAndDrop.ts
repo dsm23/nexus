@@ -46,11 +46,11 @@ export const useDragAndDrop = (): UseDragAndDropResult => {
     setDraggedItem(null);
 
     // Reset visual feedback for drag handles
-    document.querySelectorAll('[data-drag-handle="true"]').forEach((el) => {
+    for (const el of document.querySelectorAll('[data-drag-handle="true"]')) {
       if (el instanceof HTMLElement) {
         el.style.opacity = "1";
       }
-    });
+    }
   }, []);
 
   const handleDragOver = useCallback((e: DragEvent<HTMLElement>) => {
@@ -65,10 +65,10 @@ export const useDragAndDrop = (): UseDragAndDropResult => {
 
         try {
           const data = e.dataTransfer.getData("text/plain");
-          const draggedItem = JSON.parse(data) as DragItem;
+          const targetDraggedItem = JSON.parse(data) as DragItem;
 
-          if (draggedItem.id !== targetId) {
-            onDrop(draggedItem.id, targetId);
+          if (targetDraggedItem.id !== targetId) {
+            onDrop(targetDraggedItem.id, targetId);
           }
         } catch (error) {
           console.error("Error parsing drag data:", error);

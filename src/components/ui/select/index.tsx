@@ -52,6 +52,36 @@ const SelectTrigger: FunctionComponent<
   </SelectPrimitive.Trigger>
 );
 
+const SelectScrollUpButton: FunctionComponent<
+  ComponentProps<typeof SelectPrimitive.ScrollUpArrow>
+> = ({ className, ...props }) => (
+  <SelectPrimitive.ScrollUpArrow
+    data-slot="select-scroll-up-button"
+    className={cn(
+      "top-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4",
+      className,
+    )}
+    {...props}
+  >
+    <ChevronUpIcon />
+  </SelectPrimitive.ScrollUpArrow>
+);
+
+const SelectScrollDownButton: FunctionComponent<
+  ComponentProps<typeof SelectPrimitive.ScrollDownArrow>
+> = ({ className, ...props }) => (
+  <SelectPrimitive.ScrollDownArrow
+    data-slot="select-scroll-down-button"
+    className={cn(
+      "bottom-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4",
+      className,
+    )}
+    {...props}
+  >
+    <ChevronDownIcon />
+  </SelectPrimitive.ScrollDownArrow>
+);
+
 const SelectContent: FunctionComponent<
   SelectPrimitive.Popup.Props &
     Pick<
@@ -140,36 +170,6 @@ const SelectSeparator: FunctionComponent<SelectPrimitive.Separator.Props> = ({
     className={cn("pointer-events-none -mx-1 my-1 h-px bg-border", className)}
     {...props}
   />
-);
-
-const SelectScrollUpButton: FunctionComponent<
-  ComponentProps<typeof SelectPrimitive.ScrollUpArrow>
-> = ({ className, ...props }) => (
-  <SelectPrimitive.ScrollUpArrow
-    data-slot="select-scroll-up-button"
-    className={cn(
-      "top-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4",
-      className,
-    )}
-    {...props}
-  >
-    <ChevronUpIcon />
-  </SelectPrimitive.ScrollUpArrow>
-);
-
-const SelectScrollDownButton: FunctionComponent<
-  ComponentProps<typeof SelectPrimitive.ScrollDownArrow>
-> = ({ className, ...props }) => (
-  <SelectPrimitive.ScrollDownArrow
-    data-slot="select-scroll-down-button"
-    className={cn(
-      "bottom-0 z-10 flex w-full cursor-default items-center justify-center bg-popover py-1 [&_svg:not([class*='size-'])]:size-4",
-      className,
-    )}
-    {...props}
-  >
-    <ChevronDownIcon />
-  </SelectPrimitive.ScrollDownArrow>
 );
 
 export {

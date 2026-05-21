@@ -105,6 +105,7 @@ export const Dashboard: FunctionComponent = () => {
   };
 
   // Render card component based on ID
+  // oxlint-disable-next-line unicorn/consistent-function-scoping
   const renderMainCard = (cardId: string) => {
     switch (cardId) {
       case "company-announcements":

@@ -80,8 +80,7 @@ export const ForYouPage: FunctionComponent = () => {
     const matchesSearch =
       item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (item.author &&
-        item.author.toLowerCase().includes(searchQuery.toLowerCase()));
+      item.author?.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesType = filterType === "all" || item.type === filterType;
 

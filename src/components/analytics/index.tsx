@@ -82,7 +82,7 @@ export const Analytics: FunctionComponent = () => {
                 <LineChart data={activityData.slice(-7)}>
                   <XAxis
                     dataKey="date"
-                    tickFormatter={(value) =>
+                    tickFormatter={(value: string) =>
                       new Date(value).toLocaleDateString("en-US", {
                         day: "numeric",
                       })

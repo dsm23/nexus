@@ -35,6 +35,44 @@ import type { QuickLink } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 import { generateId, storage } from "~/lib/utils";
 
+// Function to get appropriate icon for a link based on its name or URL
+const getLinkIcon = (name: string, url: string) => {
+  const lowerName = name.toLowerCase();
+  const lowerUrl = url.toLowerCase();
+
+  if (
+    lowerName.includes("mail") ||
+    lowerName.includes("email") ||
+    lowerUrl.includes("mail")
+  ) {
+    return <Mail className="size-4" />;
+  }
+  if (
+    lowerName.includes("doc") ||
+    lowerName.includes("wiki") ||
+    lowerName.includes("confluence") ||
+    lowerUrl.includes("doc")
+  ) {
+    return <FileText className="size-4" />;
+  }
+  if (
+    lowerName.includes("setting") ||
+    lowerName.includes("admin") ||
+    lowerName.includes("config")
+  ) {
+    return <Settings className="size-4" />;
+  }
+  if (
+    lowerName.includes("home") ||
+    lowerName.includes("dashboard") ||
+    lowerName.includes("main")
+  ) {
+    return <Home className="size-4" />;
+  }
+  // Default to globe icon for external links
+  return <Globe className="size-4" />;
+};
+
 export const QuickLinks: FunctionComponent = () => {
   const [links, setLinks] = useState<QuickLink[]>([]);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -43,44 +81,6 @@ export const QuickLinks: FunctionComponent = () => {
   const [draggedItem, setDraggedItem] = useState<string | null>(null);
   const [dragOverItem, setDragOverItem] = useState<string | null>(null);
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
-
-  // Function to get appropriate icon for a link based on its name or URL
-  const getLinkIcon = (name: string, url: string) => {
-    const lowerName = name.toLowerCase();
-    const lowerUrl = url.toLowerCase();
-
-    if (
-      lowerName.includes("mail") ||
-      lowerName.includes("email") ||
-      lowerUrl.includes("mail")
-    ) {
-      return <Mail className="size-4" />;
-    }
-    if (
-      lowerName.includes("doc") ||
-      lowerName.includes("wiki") ||
-      lowerName.includes("confluence") ||
-      lowerUrl.includes("doc")
-    ) {
-      return <FileText className="size-4" />;
-    }
-    if (
-      lowerName.includes("setting") ||
-      lowerName.includes("admin") ||
-      lowerName.includes("config")
-    ) {
-      return <Settings className="size-4" />;
-    }
-    if (
-      lowerName.includes("home") ||
-      lowerName.includes("dashboard") ||
-      lowerName.includes("main")
-    ) {
-      return <Home className="size-4" />;
-    }
-    // Default to globe icon for external links
-    return <Globe className="size-4" />;
-  };
 
   // Load links from localStorage on mount
   useEffect(() => {
@@ -117,12 +117,6 @@ export const QuickLinks: FunctionComponent = () => {
     const updatedLinks = links.filter((link) => link.id !== id);
     setLinks(updatedLinks);
     storage.setQuickLinks(updatedLinks);
-  };
-
-  const handleLinkClick = (url: string) => {
-    // Ensure URL has protocol
-    const finalUrl = url.startsWith("http") ? url : `https://${url}`;
-    window.open(finalUrl, "_blank", "noopener,noreferrer");
   };
 
   // Drag and drop handlers
@@ -191,7 +185,7 @@ export const QuickLinks: FunctionComponent = () => {
             <Plus className="size-4" />
             Add
           </DialogTrigger>
-          <DialogContent className="w-[95vw] max-w-[95vw] sm:w-full sm:max-w-[425px]">
+          <DialogContent className="w-[95vw] max-w-[95vw] sm:w-full sm:max-w-106.25">
             <DialogHeader>
               <DialogTitle>Add Quick Link</DialogTitle>
               <DialogDescription>
@@ -270,13 +264,19 @@ export const QuickLinks: FunctionComponent = () => {
                   >
                     <GripVertical className="size-4 text-muted-foreground" />
                   </div>
-                  <button
-                    onClick={() => handleLinkClick(link.url)}
+                  <a
+                    href={
+                      link.url.startsWith("http")
+                        ? link.url
+                        : `https://${link.url}`
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex flex-1 items-center gap-2 text-left"
                   >
                     {getLinkIcon(link.name, link.url)}
                     <span className="text-sm font-medium">{link.name}</span>
-                  </button>
+                  </a>
                 </div>
                 <Button
                   variant="ghost"

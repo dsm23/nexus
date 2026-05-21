@@ -9,7 +9,7 @@ pre-commit:
       glob: "*.css"
 
     oxlint:
-      run: ./node_modules/.bin/oxlint {staged_files}
+      run: ./node_modules/.bin/oxlint --report-unused-disable-directives --deny-warnings {staged_files}
       glob:
         - "*.ts"
         - "*.js"

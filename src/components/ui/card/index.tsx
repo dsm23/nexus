@@ -36,7 +36,8 @@ const CardTitle: FunctionComponent<React.ComponentProps<"div">> = ({
   <div
     data-slot="card-title"
     className={cn(
-      "cn-font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm",
+      // oxlint-disable-next-line better-tailwindcss/no-unknown-classes
+      "cn-font-heading text-base/snug font-medium group-data-[size=sm]/card:text-sm",
       className,
     )}
     {...props}

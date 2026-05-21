@@ -9,7 +9,6 @@ export default defineConfig({
     "react",
     "typescript",
     "unicorn",
-    "vitest",
   ],
   jsPlugins: ["eslint-plugin-better-tailwindcss"],
   categories: {
@@ -41,7 +40,7 @@ export default defineConfig({
     "max-lines-per-function": [
       "warn",
       {
-        max: 600,
+        max: 650,
         skipComments: true,
         skipBlankLines: true,
       },
@@ -88,14 +87,19 @@ export default defineConfig({
     "better-tailwindcss/no-duplicate-classes": "warn",
     "better-tailwindcss/no-unnecessary-whitespace": "warn",
     "better-tailwindcss/no-unknown-classes": "warn",
-    "jsx-a11y/anchor-is-valid": "off",
-    "jsx-a11y/anchor-has-content": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-autofocus": "off",
+    // TODO: investigate roles for a datepicker
+    "jsx-a11y/no-static-element-interactions": "off",
     "oxc/no-async-await": "off",
     "oxc/no-rest-spread-properties": "off",
     "react/button-has-type": "off",
-    // TODO: remove when it supports tsx
-    "react/jsx-filename-extension": "off",
+    "react/forbid-component-props": "off",
+    "react/jsx-filename-extension": ["warn", { extensions: ["jsx", "tsx"] }],
+    // TODO: investigate if this can be turned on
+    "react/jsx-no-constructed-context-values": "off",
     "react/no-multi-comp": "off",
+    "react/only-export-components": "off",
     "react/react-in-jsx-scope": "off",
     "typescript/consistent-type-imports": [
       "warn",
@@ -110,6 +114,7 @@ export default defineConfig({
     "typescript/no-confusing-void-expression": "off",
     "typescript/no-misused-promises": ["warn", { checksVoidReturn: false }],
     "typescript/no-unsafe-type-assertion": "off",
+    "typescript/non-nullable-type-assertion-style": "off",
     "typescript/prefer-readonly-parameter-types": "off",
     "typescript/strict-boolean-expressions": "off",
     "unicorn/filename-case": [
@@ -118,17 +123,8 @@ export default defineConfig({
         case: "camelCase",
       },
     ],
-    "vitest/consistent-vitest-vi": "warn",
-    "vitest/no-conditional-expect": "off",
-    "vitest/no-conditional-in-test": "off",
-    "vitest/no-importing-vitest-globals": "off",
-    "vitest/no-standalone-expect": [
-      "warn",
-      {
-        additionalTestBlockFunctions: ["fc.property"],
-      },
-    ],
-    "vitest/require-test-timeout": "off",
+    "unicorn/no-array-reduce": "off",
+    "unicorn/no-negated-condition": "off",
   },
   settings: {
     "better-tailwindcss": {
@@ -136,6 +132,33 @@ export default defineConfig({
     },
   },
   overrides: [
+    {
+      files: [
+        "**/*.{spec,test}.{ts,tsx,js,jsx}",
+        "**/{spec,test}.{ts,tsx,js,jsx}",
+        "**/__tests__/**/*",
+      ],
+      rules: {
+        "jest/no-conditional-expect": "off",
+        "jest/no-conditional-in-test": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "jsx-a11y/anchor-has-content": "off",
+        "jsx-a11y/control-has-associated-label": "off",
+        "unicorn/consistent-function-scoping": "off",
+        "vitest/consistent-vitest-vi": "warn",
+        "vitest/no-conditional-expect": "off",
+        "vitest/no-conditional-in-test": "off",
+        "vitest/no-importing-vitest-globals": "off",
+        "vitest/no-standalone-expect": [
+          "warn",
+          {
+            additionalTestBlockFunctions: ["fc.property"],
+          },
+        ],
+        "vitest/require-test-timeout": "off",
+      },
+      plugins: ["vitest"],
+    },
     {
       files: [
         "**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)",

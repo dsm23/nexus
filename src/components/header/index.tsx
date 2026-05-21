@@ -66,7 +66,7 @@ export const Header: FunctionComponent = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/70">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-sm supports-backdrop-filter:bg-background/70">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Left side - Logo */}
           <div className="flex items-center gap-6">
@@ -114,7 +114,7 @@ export const Header: FunctionComponent = () => {
 
       {/* Navigation Bar */}
       {/* Navigation Bar */}
-      <div className="sticky top-16 z-40 w-full border-b bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/70">
+      <div className="sticky top-16 z-40 w-full border-b bg-background/80 backdrop-blur-sm supports-backdrop-filter:bg-background/70">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center py-2">
             {/* Main Navigation - Cleaner with dropdowns */}
@@ -267,7 +267,7 @@ export const Header: FunctionComponent = () => {
       </div>
 
       {/* Mobile greeting */}
-      <div className="mx-auto max-w-7xl border-b bg-background/80 px-4 py-3 backdrop-blur supports-backdrop-filter:bg-background/70 sm:hidden sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl border-b bg-background/80 px-4 py-3 backdrop-blur-sm supports-backdrop-filter:bg-background/70 sm:hidden sm:px-6 lg:px-8">
         <p className="text-sm text-muted-foreground">
           {greeting}, {currentUser.name}! 👋
         </p>

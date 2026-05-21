@@ -1,3 +1,5 @@
+/* oxlint-disable no-unnecessary-condition */
+
 import type { FunctionComponent } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Bell, CheckSquare, FileText, Info } from "lucide-react";

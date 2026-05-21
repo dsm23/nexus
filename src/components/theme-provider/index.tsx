@@ -17,6 +17,7 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
+    // oxlint-disable-next-line typescript/no-unnecessary-condition
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
   );
 
@@ -40,9 +41,9 @@ export function ThemeProvider({
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
+    setTheme: (newTheme: Theme) => {
+      localStorage.setItem(storageKey, newTheme);
+      setTheme(newTheme);
     },
   };
 

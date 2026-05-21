@@ -14,6 +14,59 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { helpdeskTickets } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case "open":
+      return "bg-blue-100 text-blue-700 border-blue-200";
+    case "in-progress":
+      return "bg-yellow-100 text-yellow-700 border-yellow-200";
+    case "resolved":
+      return "bg-green-100 text-green-700 border-green-200";
+    case "closed":
+      return "bg-gray-100 text-gray-700 border-gray-200";
+    default:
+      return "bg-gray-100 text-gray-700 border-gray-200";
+  }
+};
+
+const getStatusIcon = (status: string) => {
+  switch (status) {
+    case "open":
+      return <AlertCircle className="size-3" />;
+    case "in-progress":
+      return <Clock className="size-3" />;
+    case "resolved":
+    case "closed":
+      return <CheckCircle className="size-3" />;
+    default:
+      return <Clock className="size-3" />;
+  }
+};
+
+const getPriorityColor = (priority: string) => {
+  switch (priority) {
+    case "urgent":
+      return "text-red-600";
+    case "high":
+      return "text-orange-600";
+    case "medium":
+      return "text-yellow-600";
+    case "low":
+      return "text-green-600";
+    default:
+      return "text-gray-600";
+  }
+};
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+};
+
 export const Helpdesk: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
@@ -24,59 +77,6 @@ export const Helpdesk: FunctionComponent = () => {
     (ticket) => ticket.status === "open" || ticket.status === "in-progress",
   );
   const recentTickets = userTickets.slice(0, 3);
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "open":
-        return "bg-blue-100 text-blue-700 border-blue-200";
-      case "in-progress":
-        return "bg-yellow-100 text-yellow-700 border-yellow-200";
-      case "resolved":
-        return "bg-green-100 text-green-700 border-green-200";
-      case "closed":
-        return "bg-gray-100 text-gray-700 border-gray-200";
-      default:
-        return "bg-gray-100 text-gray-700 border-gray-200";
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "open":
-        return <AlertCircle className="size-3" />;
-      case "in-progress":
-        return <Clock className="size-3" />;
-      case "resolved":
-      case "closed":
-        return <CheckCircle className="size-3" />;
-      default:
-        return <Clock className="size-3" />;
-    }
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "urgent":
-        return "text-red-600";
-      case "high":
-        return "text-orange-600";
-      case "medium":
-        return "text-yellow-600";
-      case "low":
-        return "text-green-600";
-      default:
-        return "text-gray-600";
-    }
-  };
-
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    }).format(date);
-  };
 
   return (
     <Card>

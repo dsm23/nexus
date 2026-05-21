@@ -1,3 +1,5 @@
+/* oxlint-disable no-unnecessary-condition */
+
 import { useState } from "react";
 import type {
   CSSProperties,
@@ -296,8 +298,8 @@ const NewRequestDialog: FunctionComponent = () => {
               <div
                 className="relative cursor-pointer"
                 onClick={() => {
-                  const input = document.getElementById(
-                    "startDate",
+                  const input = document.querySelector(
+                    "#startDate",
                   ) as HTMLInputElement;
                   if (input) {
                     input.focus();
@@ -330,8 +332,8 @@ const NewRequestDialog: FunctionComponent = () => {
               <div
                 className="relative cursor-pointer"
                 onClick={() => {
-                  const input = document.getElementById(
-                    "endDate",
+                  const input = document.querySelector(
+                    "#endDate",
                   ) as HTMLInputElement;
                   if (input) {
                     input.focus();
