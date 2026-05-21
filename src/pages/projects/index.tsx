@@ -84,6 +84,13 @@ const getPriorityIcon = (priority: Project["priority"]) => {
   }
 };
 
+const getProgressColor = (progress: number) => {
+  if (progress >= 80) return "bg-green-500";
+  if (progress >= 50) return "bg-blue-500";
+  if (progress >= 25) return "bg-yellow-500";
+  return "bg-gray-500";
+};
+
 export const ProjectsPage: FunctionComponent = () => {
   const [projectsList, setProjectsList] = useState(projects);
   const [searchQuery, setSearchQuery] = useState("");
@@ -131,13 +138,6 @@ export const ProjectsPage: FunctionComponent = () => {
     setNewProjectDescription("");
     setNewProjectPriority("medium");
     setIsAddDialogOpen(false);
-  };
-
-  const getProgressColor = (progress: number) => {
-    if (progress >= 80) return "bg-green-500";
-    if (progress >= 50) return "bg-blue-500";
-    if (progress >= 25) return "bg-yellow-500";
-    return "bg-gray-500";
   };
 
   return (
@@ -204,7 +204,7 @@ export const ProjectsPage: FunctionComponent = () => {
                     <span className="sm:hidden">Create Project</span>
                     <span className="hidden sm:inline">New Project</span>
                   </DialogTrigger>
-                  <DialogContent className="mx-4 sm:max-w-[500px]">
+                  <DialogContent className="mx-4 sm:max-w-125">
                     <DialogHeader>
                       <DialogTitle>Create New Project</DialogTitle>
                       <DialogDescription>
@@ -487,6 +487,8 @@ export const ProjectsPage: FunctionComponent = () => {
                               .slice(0, 3)
                               .map((member: string, idx: number) => (
                                 <Badge
+                                  // does not change order
+                                  // oxlint-disable-next-line react/no-array-index-key
                                   key={idx}
                                   variant="secondary"
                                   className="text-xs"

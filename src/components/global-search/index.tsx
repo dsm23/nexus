@@ -90,6 +90,8 @@ export const GlobalSearch: FunctionComponent = () => {
         case "kudos":
           await navigate("/kudos");
           break;
+        default:
+          break;
       }
       setIsOpen(false);
     },
@@ -118,12 +120,14 @@ export const GlobalSearch: FunctionComponent = () => {
         case "Enter":
           e.preventDefault();
           if (results[selectedIndex] && searchQuery.trim()) {
-            handleResultClick(results[selectedIndex]);
+            void handleResultClick(results[selectedIndex]);
           }
           break;
         case "Escape":
           e.preventDefault();
           setIsOpen(false);
+          break;
+        default:
           break;
       }
     };
@@ -143,7 +147,7 @@ export const GlobalSearch: FunctionComponent = () => {
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (searchQuery.trim() && results[selectedIndex]) {
-      handleResultClick(results[selectedIndex]);
+      void handleResultClick(results[selectedIndex]);
     }
   };
 
@@ -196,36 +200,28 @@ export const GlobalSearch: FunctionComponent = () => {
                     <div className="space-y-1">
                       <div
                         className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
-                        onClick={async () => {
-                          await handleQuickAction("employees");
-                        }}
+                        onClick={() => void handleQuickAction("employees")}
                       >
                         <span className="text-lg">👤</span>
                         <span className="text-sm">Search employees</span>
                       </div>
                       <div
                         className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
-                        onClick={async () => {
-                          await handleQuickAction("announcements");
-                        }}
+                        onClick={() => void handleQuickAction("announcements")}
                       >
                         <span className="text-lg">📢</span>
                         <span className="text-sm">Search announcements</span>
                       </div>
                       <div
                         className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
-                        onClick={async () => {
-                          await handleQuickAction("events");
-                        }}
+                        onClick={() => void handleQuickAction("events")}
                       >
                         <span className="text-lg">📅</span>
                         <span className="text-sm">Search calendar events</span>
                       </div>
                       <div
                         className="flex cursor-pointer items-center gap-3 rounded-lg p-3 hover:bg-accent"
-                        onClick={async () => {
-                          await handleQuickAction("kudos");
-                        }}
+                        onClick={() => void handleQuickAction("kudos")}
                       >
                         <span className="text-lg">❤️</span>
                         <span className="text-sm">Search kudos</span>
@@ -262,9 +258,7 @@ export const GlobalSearch: FunctionComponent = () => {
                       className={`flex cursor-pointer items-start px-6 py-3 hover:bg-accent ${
                         index === selectedIndex ? "bg-accent" : ""
                       }`}
-                      onClick={async () => {
-                        await handleResultClick(result);
-                      }}
+                      onClick={() => void handleResultClick(result)}
                     >
                       <div className="mt-0.5 mr-3 text-lg">
                         {typeIcons[result.type]}

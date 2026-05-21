@@ -42,7 +42,7 @@ const calculateRelevance = (query: string, text: string): number => {
   for (const queryWord of queryWords) {
     for (const textWord of textWords) {
       if (textWord.includes(queryWord) || queryWord.includes(textWord)) {
-        matchCount++;
+        matchCount += 1;
       }
     }
   }
@@ -81,7 +81,7 @@ const searchAnnouncements = (query: string): SearchResult[] => {
         title: announcement.title,
         description:
           announcement.body.length > 100
-            ? `${announcement.body.substring(0, 100)}...`
+            ? `${announcement.body.slice(0, 100)}...`
             : announcement.body,
         type: "announcement" as const,
         data: announcement,
@@ -165,7 +165,7 @@ export const search = (query: string): SearchResult[] => {
   ];
 
   // Sort by relevance (highest first) and limit results
-  return allResults.sort((a, b) => b.relevance - a.relevance).slice(0, 20); // Limit to top 20 results
+  return allResults.toSorted((a, b) => b.relevance - a.relevance).slice(0, 20); // Limit to top 20 results
 };
 
 // const searchByType = (

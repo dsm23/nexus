@@ -6,15 +6,9 @@ import { render } from "~/test-utils/render";
 import { Toaster } from ".";
 
 class ResizeObserverMock {
-  disconnect() {
-    return vi.fn<() => void>();
-  }
-  observe() {
-    return vi.fn<() => void>();
-  }
-  unobserve() {
-    return vi.fn<() => void>();
-  }
+  public disconnect = vi.fn<() => void>();
+  public observe = vi.fn<() => void>();
+  public unobserve = vi.fn<() => void>();
 }
 
 vi.stubGlobal("ResizeObserver", ResizeObserverMock);
@@ -41,52 +35,6 @@ describe("component", () => {
       );
 
       expect(container.querySelector("svg")).toHaveClass("lucide-circle-check");
-      // const sonner = screen.getByTestId("sonner-mock");
-      // expect(sonner).toHaveAttribute("data-theme", "dark");
     });
-
-    // it("defaults to 'system' theme if useTheme returns undefined", () => {
-    //   (useTheme as any).mockReturnValue({ theme: undefined });
-
-    //   render(<Toaster />);
-
-    //   const sonner = screen.getByTestId("sonner-mock");
-    //   expect(sonner).toHaveAttribute("data-theme", "system");
-    // });
-
-    // it("applies the correct CSS variable styles", () => {
-    //   (useTheme as any).mockReturnValue({ theme: "light" });
-
-    //   render(<Toaster />);
-
-    //   const styleContainer = screen.getByTestId("style-bg");
-    //   expect(styleContainer.textContent).toBe("var(--popover)");
-    // });
-
-    // it("passes the custom Lucide icons to Sonner", () => {
-    //   (useTheme as any).mockReturnValue({ theme: "light" });
-
-    //   render(<Toaster />);
-
-    //   const successIconContainer = screen.getByTestId("icon-success");
-    //   // Check if the icon (SVG from lucide) is rendered inside
-    //   expect(successIconContainer.querySelector("svg")).toBeTruthy();
-    // });
-
-    // it("spreads additional props to the Sonner component", () => {
-    //   (useTheme as any).mockReturnValue({ theme: "light" });
-
-    //   // We mock Sonner again specifically for this test to check positioning
-    //   const { Toaster: SonnerToaster } = require("sonner");
-
-    //   render(<Toaster position="top-right" />);
-
-    //   expect(SonnerToaster).toHaveBeenCalledWith(
-    //     expect.objectContaining({
-    //       position: "top-right",
-    //     }),
-    //     expect.anything(),
-    //   );
-    // });
   });
 });

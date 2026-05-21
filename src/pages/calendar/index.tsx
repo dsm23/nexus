@@ -65,6 +65,18 @@ const getEventBgColor = (type: CalendarEvent["type"]) => {
   }
 };
 
+const getMonthName = (date: Date) => {
+  return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+};
+
+const getDaysInMonth = (date: Date) => {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+};
+
+const getFirstDayOfMonth = (date: Date) => {
+  return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+};
+
 export const CalendarPage: FunctionComponent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all");
@@ -79,26 +91,12 @@ export const CalendarPage: FunctionComponent = () => {
   const filteredEvents = calendarEvents.filter((event) => {
     const matchesSearch =
       event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (event.description &&
-        event.description.toLowerCase().includes(searchQuery.toLowerCase()));
+      event.description?.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesType = filterType === "all" || event.type === filterType;
 
     return matchesSearch && matchesType;
   });
-
-  // Calendar helper functions
-  const getMonthName = (date: Date) => {
-    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-  };
-
-  const getDaysInMonth = (date: Date) => {
-    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-  };
-
-  const getFirstDayOfMonth = (date: Date) => {
-    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
-  };
 
   const navigateMonth = (direction: "prev" | "next") => {
     setCurrentDate((prevDate) => {
@@ -193,7 +191,7 @@ export const CalendarPage: FunctionComponent = () => {
                 title={`${event.title}${event.description ? ` - ${event.description}` : ""}`}
               >
                 <div className="flex items-center gap-1">
-                  <div className={`${getEventColor(event.type)}`}>
+                  <div className={getEventColor(event.type)}>
                     {getEventIcon(event.type)}
                   </div>
                   <span className="truncate">{event.title}</span>

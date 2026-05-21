@@ -80,7 +80,7 @@ export const KudosFeed: FunctionComponent = () => {
               <Plus className="size-4" />
               New Ticket
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-106.25">
               <DialogHeader>
                 <DialogTitle>Give Kudos</DialogTitle>
                 <DialogDescription>

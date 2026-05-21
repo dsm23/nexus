@@ -7,6 +7,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { resourcesData } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
+const getFileIcon = (type: string) => {
+  switch (type) {
+    case "pdf":
+      return "📄";
+    case "doc":
+      return "📝";
+    case "video":
+      return "🎥";
+    case "xls":
+      return "📊";
+    case "link":
+      return "🔗";
+    default:
+      return "📄";
+  }
+};
+
 export const Resources: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
@@ -24,23 +41,6 @@ export const Resources: FunctionComponent = () => {
     (sum, r) => sum + r.downloadCount,
     0,
   );
-
-  const getFileIcon = (type: string) => {
-    switch (type) {
-      case "pdf":
-        return "📄";
-      case "doc":
-        return "📝";
-      case "video":
-        return "🎥";
-      case "xls":
-        return "📊";
-      case "link":
-        return "🔗";
-      default:
-        return "📄";
-    }
-  };
 
   return (
     <Card>

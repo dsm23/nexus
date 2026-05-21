@@ -73,7 +73,7 @@ export const storage = {
       // Restore preserved data
       for (const key of keysToPreserve) {
         if (preservedData[key] !== null) {
-          localStorage.setItem(key, preservedData[key] as string);
+          localStorage.setItem(key, preservedData[key]);
         }
       }
 
@@ -121,5 +121,5 @@ export const storage = {
 
 // Generate unique ID
 export const generateId = (): string => {
-  return Math.random().toString(36).substring(2) + Date.now().toString(36);
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
 };

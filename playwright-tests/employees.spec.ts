@@ -1,10 +1,9 @@
-// import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 test("has title", async ({ page }) => {
   await page.goto("/employees");
 
-  await expect(page).toHaveTitle(/Nexus/);
+  await expect(page).toHaveTitle(/Nexus/v);
 });
 
 test("has heading", async ({ page }) => {
@@ -28,13 +27,3 @@ test("route back to dashboard", async ({ page }) => {
 
   await expect(page).toHaveURL("/");
 });
-
-// test("should not have any automatically detectable accessibility issues", async ({
-//   page,
-// }) => {
-//   await page.goto("/");
-
-//   const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
-
-//   expect(accessibilityScanResults.violations).toEqual([]);
-// });

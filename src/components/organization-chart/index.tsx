@@ -4,7 +4,7 @@ import { Tree, TreeNode } from "react-organizational-chart";
 import { Crown, Shield, User, Users } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import { employees } from "~/data/mockData";
+import { employees as employeesData } from "~/data/mockData";
 import type { Employee } from "~/data/mockData";
 
 const getDepartmentBadgeColor = (department: string) => {
@@ -83,7 +83,7 @@ const EmployeeNode: FunctionComponent<EmployeeNodeProps> = ({
   return (
     <div className="flex justify-center">
       <Card
-        className={`relative cursor-pointer transition-all duration-200 hover:shadow-lg ${isRoot ? "border-2 border-primary shadow-lg" : ""} ${level <= 1 ? "bg-linear-to-br from-background to-muted/20" : ""} w-[240px] max-w-[240px] min-w-[240px] shrink-0`}
+        className={`relative cursor-pointer transition-all duration-200 hover:shadow-lg ${isRoot ? "border-2 border-primary shadow-lg" : ""} ${level <= 1 ? "bg-linear-to-br from-background to-muted/20" : ""} w-60 max-w-60 min-w-60 shrink-0`}
       >
         <CardContent className="p-4">
           <div className="flex flex-col items-center space-y-3 text-center">
@@ -100,7 +100,7 @@ const EmployeeNode: FunctionComponent<EmployeeNodeProps> = ({
                     : level <= 2
                       ? "bg-blue-500 text-blue-50"
                       : "bg-gray-500 text-gray-50"
-                } `}
+                }`}
               >
                 {/* TODO re-write this logic to avoid the component being defined in render */}
                 <HierarchyIcon className="size-3" />
@@ -156,7 +156,7 @@ const buildHierarchy = (employees: Employee[]): OrgNode | null => {
 
     if (employee.id === ceo.id) {
       // CEO's children are department heads
-      departmentGroups.forEach((deptEmployees) => {
+      for (const deptEmployees of departmentGroups.values()) {
         // Find department head (lowest hierarchy level)
         const sortedByLevel = deptEmployees.toSorted(
           (a, b) => getHierarchyLevel(a.role) - getHierarchyLevel(b.role),
@@ -174,7 +174,7 @@ const buildHierarchy = (employees: Employee[]): OrgNode | null => {
 
           node.children.push(deptHeadNode);
         }
-      });
+      }
     }
 
     return node;
@@ -204,7 +204,7 @@ const renderOrgNode = (node: OrgNode, isRoot = false): ReactElement => {
 };
 
 export const OrganizationChart: FunctionComponent = () => {
-  const orgHierarchy = buildHierarchy(employees);
+  const orgHierarchy = buildHierarchy(employeesData);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Center the org chart horizontally when component mounts
@@ -248,9 +248,10 @@ export const OrganizationChart: FunctionComponent = () => {
   }
 
   // Calculate some stats
-  const totalEmployees = employees.length;
-  const departmentCount = new Set(employees.map((emp) => emp.department)).size;
-  const levelCounts = employees.reduce(
+  const totalEmployees = employeesData.length;
+  const departmentCount = new Set(employeesData.map((emp) => emp.department))
+    .size;
+  const levelCounts = employeesData.reduce(
     (acc, emp) => {
       const level = getHierarchyLevel(emp.role);
       acc[level] = (acc[level] || 0) + 1;
@@ -307,6 +308,7 @@ export const OrganizationChart: FunctionComponent = () => {
           <div className="w-full">
             <div className="overflow-x-auto" ref={scrollContainerRef}>
               <div
+                // oxlint-disable-next-line better-tailwindcss/no-unknown-classes
                 className="org-chart-container flex justify-center"
                 style={{
                   minWidth: "100%",

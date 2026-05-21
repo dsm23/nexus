@@ -1,3 +1,6 @@
+// TODO: address this with a large object
+/* oxlint-disable better-tailwindcss/no-unknown-classes */
+
 import { useMemo, useState } from "react";
 import type { CSSProperties, FunctionComponent } from "react";
 import { Link } from "react-router-dom";
@@ -123,6 +126,7 @@ const ResourceCard: FunctionComponent<{
             <User className="size-3" />
             <span>{resource.uploadedBy}</span>
           </div>
+          {/* oxlint-disable-next-line unicorn/explicit-length-check */}
           {resource.size && <span>{resource.size}</span>}
         </div>
 

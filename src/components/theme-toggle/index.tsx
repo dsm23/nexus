@@ -13,10 +13,11 @@ export function ThemeToggle() {
   const { setTheme } = useTheme();
 
   const handleSetTheme = async (
-    event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
+    event: MouseEvent<HTMLElement>,
     theme: "light" | "dark" | "system",
   ) => {
     if (
+      // oxlint-disable-next-line typescript/no-unnecessary-condition
       !document.startViewTransition ||
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
@@ -70,13 +71,13 @@ export function ThemeToggle() {
         <span className="sr-only">Toggle theme</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={(e) => handleSetTheme(e, "light")}>
+        <DropdownMenuItem onClick={(e) => void handleSetTheme(e, "light")}>
           Light
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={(e) => handleSetTheme(e, "dark")}>
+        <DropdownMenuItem onClick={(e) => void handleSetTheme(e, "dark")}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={(e) => handleSetTheme(e, "system")}>
+        <DropdownMenuItem onClick={(e) => void handleSetTheme(e, "system")}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

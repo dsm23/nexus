@@ -110,9 +110,7 @@ export const WelcomeChecklist: FunctionComponent<WelcomeChecklistProps> = ({
               <Checkbox
                 id={item.id}
                 checked={item.completed}
-                onCheckedChange={(checked) =>
-                  handleCheckItem(item.id, checked as boolean)
-                }
+                onCheckedChange={(checked) => handleCheckItem(item.id, checked)}
                 className="mt-1"
               />
               <div className="flex-1 space-y-1">

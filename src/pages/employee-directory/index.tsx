@@ -15,7 +15,7 @@ import { Header } from "~/components/header";
 import { OrganizationChart } from "~/components/organization-chart";
 import { PageSection, PageWrapper } from "~/components/page-wrapper";
 import { Badge } from "~/components/ui/badge";
-import { Button } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import {
@@ -64,8 +64,7 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
       employee.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       employee.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
       employee.department.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (employee.email &&
-        employee.email.toLowerCase().includes(searchQuery.toLowerCase()));
+      employee.email?.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesDepartment =
       filterDepartment === "all" || employee.department === filterDepartment;
@@ -257,36 +256,32 @@ export const EmployeeDirectoryPage: FunctionComponent = () => {
                                   {/* Action Buttons */}
                                   <div className="flex gap-2 pt-2">
                                     {employee.email && (
-                                      <Button
-                                        variant="outline"
-                                        size="sm"
-                                        className="flex-1 gap-2 text-xs"
-                                        onClick={() =>
-                                          window.open(
-                                            `mailto:${employee.email}`,
-                                            "_blank",
-                                          )
-                                        }
+                                      <a
+                                        href={`mailto:${employee.email}`}
+                                        className={buttonVariants({
+                                          variant: "outline",
+                                          size: "sm",
+                                          className: "flex-1 gap-2 text-xs",
+                                        })}
+                                        target="_blank"
                                       >
                                         <Mail className="size-3" />
                                         Email
-                                      </Button>
+                                      </a>
                                     )}
                                     {employee.phone && (
-                                      <Button
-                                        variant="outline"
-                                        size="sm"
-                                        className="flex-1 gap-2 text-xs"
-                                        onClick={() =>
-                                          window.open(
-                                            `tel:${employee.phone}`,
-                                            "_blank",
-                                          )
-                                        }
+                                      <a
+                                        href={`tel:${employee.phone}`}
+                                        className={buttonVariants({
+                                          variant: "outline",
+                                          size: "sm",
+                                          className: "flex-1 gap-2 text-xs",
+                                        })}
+                                        target="_blank"
                                       >
                                         <Phone className="size-3" />
                                         Call
-                                      </Button>
+                                      </a>
                                     )}
                                   </div>
                                 </div>

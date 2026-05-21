@@ -17,7 +17,6 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
-  Cell,
   Legend,
   Line,
   LineChart,
@@ -246,7 +245,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis
                         dataKey="date"
-                        tickFormatter={(value) =>
+                        tickFormatter={(value: string) =>
                           new Date(value).toLocaleDateString("en-US", {
                             month: "short",
                             day: "numeric",
@@ -256,8 +255,8 @@ export const AnalyticsPage: FunctionComponent = () => {
                       />
                       <YAxis fontSize={12} />
                       <Tooltip
-                        labelFormatter={(value) =>
-                          new Date(value).toLocaleDateString()
+                        labelFormatter={(label) =>
+                          new Date(label as string).toLocaleDateString()
                         }
                         contentStyle={{ fontSize: "12px" }}
                       />
@@ -302,22 +301,18 @@ export const AnalyticsPage: FunctionComponent = () => {
                   <ResponsiveContainer width="100%" height={300}>
                     <PieChart>
                       <Pie
-                        data={projectStatusData}
+                        data={projectStatusData.map((obj, index) =>
+                          Object.assign(obj, {
+                            fill: pieColors[index % pieColors.length],
+                          }),
+                        )}
                         cx="50%"
                         cy="50%"
                         labelLine={false}
                         label={({ name, percent }) => `${name} (${percent}%)`}
                         outerRadius={80}
                         fill="#8884d8"
-                        dataKey="count"
-                      >
-                        {projectStatusData.map((_, index) => (
-                          <Cell
-                            key={`cell-${index}`}
-                            fill={pieColors[index % pieColors.length]}
-                          />
-                        ))}
-                      </Pie>
+                      />
                       <Tooltip contentStyle={{ fontSize: "12px" }} />
                     </PieChart>
                   </ResponsiveContainer>
@@ -388,7 +383,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                     <div className="text-center">
                       <p className="text-2xl font-bold text-primary">
                         {engagementData.at(engagementData.length - 1)
-                          ?.kudosGiven || 0}
+                          ?.kudosGiven ?? 0}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         Kudos Given This Month
@@ -397,7 +392,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                     <div className="text-center">
                       <p className="text-2xl font-bold text-secondary">
                         {engagementData.at(engagementData.length - 1)
-                          ?.kudosReceived || 0}
+                          ?.kudosReceived ?? 0}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         Kudos Received
@@ -406,7 +401,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                     <div className="text-center">
                       <p className="text-2xl font-bold text-yellow-600">
                         {engagementData.at(engagementData.length - 1)
-                          ?.announcements || 0}
+                          ?.announcements ?? 0}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         Announcements
@@ -495,7 +490,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                     <div className="text-center">
                       <p className="text-2xl font-bold text-primary">
                         {productivityData.at(productivityData.length - 1)
-                          ?.tasksCompleted || 0}
+                          ?.tasksCompleted ?? 0}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         Tasks Completed
@@ -504,7 +499,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                     <div className="text-center">
                       <p className="text-2xl font-bold text-secondary">
                         {productivityData.at(productivityData.length - 1)
-                          ?.projectsDelivered || 0}
+                          ?.projectsDelivered ?? 0}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         Projects Delivered
@@ -513,7 +508,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                     <div className="text-center">
                       <p className="text-2xl font-bold text-yellow-600">
                         {productivityData.at(productivityData.length - 1)
-                          ?.teamEfficiency || 0}
+                          ?.teamEfficiency ?? 0}
                         %
                       </p>
                       <p className="text-sm text-muted-foreground">
@@ -628,7 +623,7 @@ export const AnalyticsPage: FunctionComponent = () => {
                       <Tooltip
                         contentStyle={{ fontSize: "12px" }}
                         formatter={(value) => [
-                          `${value}/5`,
+                          `${value as number}/5`,
                           "Satisfaction Score",
                         ]}
                       />

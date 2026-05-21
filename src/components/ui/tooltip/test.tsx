@@ -5,15 +5,9 @@ import { render } from "~/test-utils/render";
 import { Tooltip, TooltipContent, TooltipTrigger } from ".";
 
 class ResizeObserverMock {
-  disconnect() {
-    return vi.fn<() => void>();
-  }
-  observe() {
-    return vi.fn<() => void>();
-  }
-  unobserve() {
-    return vi.fn<() => void>();
-  }
+  public disconnect = vi.fn<() => void>();
+  public observe = vi.fn<() => void>();
+  public unobserve = vi.fn<() => void>();
 }
 
 vi.stubGlobal("ResizeObserver", ResizeObserverMock);

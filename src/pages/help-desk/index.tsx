@@ -454,7 +454,11 @@ export const HelpDeskPage: FunctionComponent = () => {
             </div>
             <NewTicketDialog
               autoOpen={autoOpenNewTicket}
-              onOpenChange={(open) => !open && setAutoOpenNewTicket(false)}
+              onOpenChange={(open) => {
+                if (!open) {
+                  setAutoOpenNewTicket(false);
+                }
+              }}
             />
           </div>
         </PageSection>

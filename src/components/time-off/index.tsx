@@ -7,12 +7,32 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { timeOffRequests, userTimeOffBalance } from "~/data/mockData";
 import { useWaveAnimation } from "~/hooks/useWaveAnimation";
 
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+  }).format(date);
+};
+
+const getTypeIcon = (type: string) => {
+  switch (type) {
+    case "vacation":
+      return <Plane className="size-3 text-blue-600" />;
+    case "sick":
+      return <AlertCircle className="size-3 text-red-600" />;
+    case "personal":
+      return <Clock className="size-3 text-purple-600" />;
+    default:
+      return <Calendar className="size-3 text-gray-600" />;
+  }
+};
+
 export const TimeOff: FunctionComponent = () => {
   const { containerRef, getItemStyle, getItemClassName } = useWaveAnimation();
 
   const upcomingRequests = timeOffRequests
     .filter((r) => r.status === "approved" && r.startDate > new Date())
-    .sort((a, b) => a.startDate.getTime() - b.startDate.getTime())
+    .toSorted((a, b) => a.startDate.getTime() - b.startDate.getTime())
     .slice(0, 2);
 
   const pendingRequests = timeOffRequests.filter((r) => r.status === "pending");
@@ -22,26 +42,6 @@ export const TimeOff: FunctionComponent = () => {
     0,
   );
   const vacationBalance = userTimeOffBalance.find((b) => b.type === "vacation");
-
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-    }).format(date);
-  };
-
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case "vacation":
-        return <Plane className="size-3 text-blue-600" />;
-      case "sick":
-        return <AlertCircle className="size-3 text-red-600" />;
-      case "personal":
-        return <Clock className="size-3 text-purple-600" />;
-      default:
-        return <Calendar className="size-3 text-gray-600" />;
-    }
-  };
 
   return (
     <Card>
