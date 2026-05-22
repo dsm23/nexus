@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { render } from "~/test-utils/render";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -63,5 +64,47 @@ describe("component", () => {
         ).toBeInTheDocument(),
       );
     });
+  });
+
+  it("should render correctly on click and then close", async () => {
+    render(
+      <Dialog>
+        <DialogTrigger>Open</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogClose>Close</DialogClose>
+        </DialogContent>
+      </Dialog>,
+    );
+
+    expect(
+      screen.queryByText("Are you absolutely sure?"),
+    ).not.toBeInTheDocument();
+
+    const button = screen.getByRole("button");
+    const user = userEvent.setup();
+
+    await user.click(button);
+
+    await waitFor(() =>
+      expect(screen.getByText("Are you absolutely sure?")).toBeInTheDocument(),
+    );
+
+    const closeButton = screen.getByText("Close", { selector: "button" });
+
+    await user.click(closeButton);
+
+    await waitFor(() =>
+      expect(
+        screen.queryByText("Are you absolutely sure?"),
+      ).not.toBeInTheDocument(),
+    );
   });
 });
