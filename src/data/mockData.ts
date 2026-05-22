@@ -91,7 +91,7 @@ export interface ProductivityData {
   teamEfficiency: number;
 }
 
-export interface Task {
+interface Task {
   id: string;
   title: string;
   description?: string;
@@ -1118,7 +1118,7 @@ export interface HelpdeskTicket {
   comments?: HelpdeskComment[];
 }
 
-export interface HelpdeskComment {
+interface HelpdeskComment {
   id: string;
   ticketId: string;
   author: string;
@@ -1252,34 +1252,6 @@ export const helpdeskTickets: HelpdeskTicket[] = [
     assignedAt: new Date("2025-07-21T09:00:00"),
     resolvedAt: new Date("2025-07-21T15:30:00"),
     resolution: "VPN access granted. Credentials sent via secure email.",
-  },
-];
-
-export const helpdeskComments: HelpdeskComment[] = [
-  {
-    id: "HC-001",
-    ticketId: "HT-001",
-    author: "IT Support Team",
-    content:
-      "We're investigating the authentication issue. Please try resetting your password first.",
-    timestamp: new Date("2025-07-22T09:30:00"),
-    isInternal: false,
-  },
-  {
-    id: "HC-002",
-    ticketId: "HT-001",
-    author: "John Doe",
-    content: "I tried resetting the password but still getting the same error.",
-    timestamp: new Date("2025-07-22T10:00:00"),
-    isInternal: false,
-  },
-  {
-    id: "HC-003",
-    ticketId: "HT-004",
-    author: "Software Management",
-    content: "Working on license renewal. Should be resolved by end of day.",
-    timestamp: new Date("2025-07-22T12:15:00"),
-    isInternal: false,
   },
 ];
 

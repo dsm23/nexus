@@ -6,6 +6,7 @@ import {
   SelectGroup,
   SelectItem,
   SelectLabel,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from ".";
@@ -28,6 +29,7 @@ describe("component", () => {
               <SelectItem value="akst">Alaska Standard Time (AKST)</SelectItem>
               <SelectItem value="hst">Hawaii Standard Time (HST)</SelectItem>
             </SelectGroup>
+            <SelectSeparator />
             <SelectGroup>
               <SelectLabel>Europe & Africa</SelectLabel>
               <SelectItem value="gmt">Greenwich Mean Time (GMT)</SelectItem>

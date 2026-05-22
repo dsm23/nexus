@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { PlusIcon } from "lucide-react";
 import { render } from "~/test-utils/render";
 import {
   AlertDialog,
@@ -10,6 +11,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogMedia,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from ".";
@@ -22,6 +24,9 @@ describe("component", () => {
           <AlertDialogTrigger>Show Dialog</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
+              <AlertDialogMedia>
+                <PlusIcon />
+              </AlertDialogMedia>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription>
                 This action cannot be undone. This will permanently delete your
@@ -45,6 +50,9 @@ describe("component", () => {
           <AlertDialogTrigger>Show Dialog</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
+              <AlertDialogMedia>
+                <PlusIcon />
+              </AlertDialogMedia>
               <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
               <AlertDialogDescription>
                 This action cannot be undone. This will permanently delete your
