@@ -4,7 +4,7 @@ FROM ghcr.io/pnpm/pnpm:11.8.0@sha256:1775f476677df2daba429d0e69f91d9a2a911c1850d
 FROM nginx:1.31.1-alpine-slim@sha256:3fe7a344f234ac4b84817896c9294ffae74eae03fc1ad0ff502457fef5cebef8 AS runtime
 
 # renovate: datasource=node-version depName=node
-ARG NODE_VERSION="26.3.0"
+ARG NODE_VERSION="26.3.1"
 
 # Stage 1: Install dependencies only when needed
 FROM base AS deps
