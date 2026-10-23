@@ -41,7 +41,7 @@ jobs:
       (${{ matrix.shardIndex[0] }}, ${{ matrix.shardTotal }})
 
     container:
-      image: mcr.microsoft.com/playwright:v1.62.0@sha256:baed2032d533817f3dbe6425de795788430ba345e819a1201337009ba17c9d07
+      image: mcr.microsoft.com/playwright:v1.64.1@sha256:47b510dd9230bf0b9bfc9b20102241e577ea7a99334ab4c3ca19f19770e9b8ea
       options: --user 1001
     steps:
       - name: Git Checkout
